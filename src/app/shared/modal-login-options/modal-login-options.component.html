@@ -1,0 +1,18 @@
+<mat-nav-list>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <mat-list-item (click)="login('upload_file')">
+  	<mat-icon matListIcon color="primary">upload</mat-icon>
+    <span mat-line>Upload your private key file</span>
+    <span mat-line>*The key will always remain on your browser</span>
+  </mat-list-item>
+  <mat-list-item (click)="login('waveid')">
+  	<img matListAvatar src="./assets/img/weaveid_logo.png">
+    <span mat-line>WaveID</span>
+    <span mat-line>*Use your email address to generate a key</span>
+  </mat-list-item>
+  <mat-list-item (click)="login('arconnect')">
+    <img matListAvatar src="./assets/img/arconnect.jpg">
+    <span mat-line>ArConnect (Beta)</span>
+    <span mat-line>*Try at your own risk</span>
+  </mat-list-item>
+</mat-nav-list>

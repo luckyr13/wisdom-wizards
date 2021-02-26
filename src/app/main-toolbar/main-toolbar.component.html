@@ -1,13 +1,48 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button mat-icon-button class="menu-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Wisdom Wizards</span>
+
+  <img class="logo" src="assets/img/wizard.png" width="30px">
+  <span class="logo-text">Wisdom Wizards</span>
   <span class="menu-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
+  <button 
+    mat-button 
+    (click)="login()"
+    aria-label="Login">
+    <mat-icon>login</mat-icon>
+    Login
   </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
+  <button 
+  		[matMenuTriggerFor]="langMenu"
+  		mat-icon-button 
+      class="translate-icon"
+  		aria-label="Select language">
+    <mat-icon>translate</mat-icon>
   </button>
+  <mat-menu #langMenu="matMenu">
+	  <button mat-menu-item>English</button>
+	</mat-menu>
+	<button 
+  		[matMenuTriggerFor]="themeMenu"
+  		mat-icon-button 
+      class="theme-icon"
+  		aria-label="Select theme">
+    <mat-icon>format_color_fill</mat-icon>
+  </button>
+  <mat-menu #themeMenu="matMenu">
+	  <button mat-menu-item>Light theme</button>
+	  <button mat-menu-item>Dark theme</button>
+	</mat-menu>
+
 </mat-toolbar>
+<div class="status-toolbar container-fluid">
+  <div class="row">
+    <div class="col">
+      <span class="yellow">Account:</span> {{account}}
+    </div>
+    <div class="col">
+      <span class="yellow">Network:</span> {{network}}
+    </div>
+  </div>
+</div>

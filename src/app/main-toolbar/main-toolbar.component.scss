@@ -1,3 +1,28 @@
 .menu-spacer {
   flex: 1 1 auto;
 }
+
+.status-toolbar {
+	background-color: black;
+	color: white;
+	padding: 4px;
+	padding-right: 20px;
+}
+
+.logo {
+}
+
+.logo-text {
+	margin-left: 6px;
+	font-weight: bold;
+	font-size: 22px;
+	text-shadow: 2px 2px 2px #FFC107;
+}
+
+.translate-icon {
+	color: #FFF;
+}
+
+.theme-icon {
+	color: #FFF;
+}
