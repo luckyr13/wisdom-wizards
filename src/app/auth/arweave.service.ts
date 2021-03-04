@@ -11,7 +11,11 @@ export class ArweaveService {
   arweave: any = null;
 
   constructor() {
-  	this.arweave = Arweave.init({});
+  	this.arweave = Arweave.init({
+      host: "arweave.net",
+      port: 443,
+      protocol: "https",
+    });
   }
 
   getNetworkInfo(): Observable<INetworkResponse> {

@@ -25,11 +25,11 @@ export class AuthService {
 
   	switch (walletOption) {
   		case 'upload_file':
-
+        return throwError('Not implemented yet :)');
   		break;
 
   		case 'waveid':
-
+        return throwError('Not implemented yet :)');
   		break;
 
   		case 'arconnect':
