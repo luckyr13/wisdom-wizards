@@ -1,6 +1,9 @@
 <mat-nav-list>
   <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-  <mat-list-item (click)="login('upload_file')">
+  <mat-list-item (click)="uploadFileListener(fileUploader)" >
+    <div style="visibility: hidden">
+      <input type="file" #fileUploader accept=".json,application/json" (change)="login('upload_file', $event)">
+    </div>
   	<mat-icon matListIcon color="primary">upload</mat-icon>
     <span mat-line>Upload your private key file</span>
     <span mat-line>*The key will always remain on your browser</span>

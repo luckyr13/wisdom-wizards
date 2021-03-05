@@ -34,6 +34,22 @@ export class ArweaveService {
     );
   }
 
+  getNetworkName(): Observable<string> {
+    const obs = new Observable<string>((subscriber) => {
+      // Get network info
+      this.arweave.network.getInfo().then((res: INetworkResponse) => {
+        subscriber.next(res.network);
+        subscriber.complete();
+      }).catch((error: any) => {
+        subscriber.error(error);
+      });
+    })
+
+    return obs.pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
   getAccount(): Observable<any> {
     const obs = new Observable<any>((subscriber) => {
       // Get network info

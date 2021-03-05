@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ArweaveService } from './arweave.service';
 import { Observable, EMPTY, of, throwError, Subject} from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +21,21 @@ export class AuthService {
     this.account.next(account);
   }
 
-  login(walletOption: string): Observable<any> {
+  uploadFile(event: any) {
+    const file = event.target.files.length ? 
+      event.target.files[0] : null;
+
+    console.log(file);
+    console.log(typeof file);
+
+  }
+
+  login(walletOption: string, uploadInputEvent: any = null): Observable<any> {
   	let method = of({});
 
   	switch (walletOption) {
   		case 'upload_file':
-        return throwError('Not implemented yet :)');
+        this.uploadFile(uploadInputEvent);
   		break;
 
   		case 'waveid':

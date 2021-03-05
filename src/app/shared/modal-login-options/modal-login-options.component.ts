@@ -34,10 +34,14 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
   	}
   }
 
-  login(walletOption: string) {
+  uploadFileListener(fileUploader: any) {
+    fileUploader.click();
+  }
+
+  login(walletOption: string, fileInput: any = null) {
     this.loading = true;
 
-  	this.login$ = this._auth.login(walletOption).subscribe({
+  	this.login$ = this._auth.login(walletOption, fileInput).subscribe({
   		next: (res: any) => {
         this.loading = false;
         this._bottomSheetRef.dismiss();

@@ -1,9 +1,3 @@
-const _hasOwnProperty = Object.prototype.hasOwnProperty.call;
-const _trim = String.prototype.trim.call;
-const _keys = Object.keys;
-const _isSafeInteger = Number.isSafeInteger;
-const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER;
-
 export function handle(state, action)
 {	
 	const _msgSender = SmartWeave.transaction.owner;
@@ -48,9 +42,9 @@ export function handle(state, action)
 
 		// Create course structure
 		const res = { 
-			name: _trim(action.input.name), 
-			description: _trim(action.input.description),
-			imgUrl: _trim(action.input.imgUrl),
+			name: String.prototype.trim.call(action.input.name), 
+			description: String.prototype.trim.call(action.input.description),
+			imgUrl: String.prototype.trim.call(action.input.imgUrl),
 			subject: action.input.subject, 
 			active: false, 
 			createdBy: _msgSender,
@@ -201,16 +195,16 @@ export function handle(state, action)
 
 function _modifier_userAlreadyRegistered(_users, _msgSender)
 {
-	if (_hasOwnProperty(_users, _msgSender) && 
-		 _keys(_users[_msgSender]).length > 0) {
+	if (Object.prototype.hasOwnProperty.call(_users, _msgSender) && 
+		 Object.keys(_users[_msgSender]).length > 0) {
 		throw new ContractError('User already exists!');
 	}
 }
 
 function _modifier_userMustBeRegistered(_users, _msgSender)
 {
-	if (!_hasOwnProperty(_users, _msgSender) || 
-		  !_keys(_users[_msgSender]).length) {
+	if (!Object.prototype.hasOwnProperty.call(_users, _msgSender) || 
+		  !Object.keys(_users[_msgSender]).length) {
 		throw new ContractError('You must be registered to create a new course!');
 	}
 }
@@ -226,9 +220,9 @@ function _modifier_validateInputString(_s, _strName, _maxStrLen)
 
 function _modifier_validateInputNumber(_n, _nName)
 {
-	if (isNaN(_n) || !_isSafeInteger(_n)) {
+	if (isNaN(_n) || !Number.isSafeInteger(_n)) {
 		throw new ContractError(
-			`${_nName} must be a number less than ${ MAX_SAFE_INTEGER }`
+			`${_nName} must be a number less than ${ Number.MAX_SAFE_INTEGER }`
 		);
 	}
 }

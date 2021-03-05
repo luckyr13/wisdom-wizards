@@ -9,6 +9,7 @@ import { ModalLoginOptionsComponent } from './modal-login-options/modal-login-op
 import {MatListModule} from '@angular/material/list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatListModule,
     MatIconModule,
     MatProgressBarModule,
+    MatFormFieldModule
   ],
   exports: [
     MatToolbarModule,
@@ -27,7 +29,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatBottomSheetModule,
     MatListModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatFormFieldModule
   ],
   entryComponents: [
     ModalLoginOptionsComponent

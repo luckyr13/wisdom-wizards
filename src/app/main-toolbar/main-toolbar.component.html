@@ -39,10 +39,14 @@
 <div class="status-toolbar container-fluid">
   <div class="row">
     <div class="col">
-      <span class="yellow">Account:</span> {{account}}
+      <span class="yellow">Account:</span>
+      &nbsp;
+      <span>{{account | async}}</span>
     </div>
     <div class="col">
-      <span class="yellow">Network:</span> {{network}}
+      <span class="yellow">Network:</span>
+      &nbsp;
+      <span>{{ network | async}}</span>
     </div>
   </div>
 </div>

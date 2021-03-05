@@ -3,7 +3,7 @@ import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet'
 import { ModalLoginOptionsComponent } from '../shared/modal-login-options/modal-login-options.component';
 import { AuthService } from '../auth/auth.service';
 import { ArweaveService } from '../auth/arweave.service';
-import { Subscription, EMPTY } from 'rxjs';
+import { Subscription, EMPTY, Observable } from 'rxjs';
 import { INetworkResponse } from '../auth/INetworkResponse';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -13,9 +13,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./main-toolbar.component.scss']
 })
 export class MainToolbarComponent implements OnInit, OnDestroy {
-	network: string = 'Not connected';
-  account: string = 'Not connected';
-	network$: Subscription = Subscription.EMPTY;
+  account: Observable<string> = this._auth.account$;
+	network: Observable<string> = this._arweave.getNetworkName();
 
   constructor(
   	private _bottomSheet: MatBottomSheet,
@@ -25,24 +24,11 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.network$ = this._arweave.getNetworkInfo().subscribe({
-      next: (res: INetworkResponse) => {
-        this.network = res.network;
-      },
-      error: (error) => {
-        this.message(`Error: ${error}`, 'error');
-      }
-    });
 
-    this._auth.account$.subscribe((_account) => {
-      this.account = _account;
-    })
   }
 
   ngOnDestroy(): void {
-  	if (this.network$) {
-  		this.network$.unsubscribe();
-  	}
+  	
   }
 
 
