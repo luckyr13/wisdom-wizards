@@ -21,21 +21,18 @@ export class AuthService {
     this.account.next(account);
   }
 
-  uploadFile(event: any) {
-    const file = event.target.files.length ? 
-      event.target.files[0] : null;
 
-    console.log(file);
-    console.log(typeof file);
-
-  }
 
   login(walletOption: string, uploadInputEvent: any = null): Observable<any> {
   	let method = of({});
 
   	switch (walletOption) {
   		case 'upload_file':
-        this.uploadFile(uploadInputEvent);
+        method = this._arweave.uploadKeyFile(uploadInputEvent).pipe(
+            tap( (_account) => {
+              this.setAccount(_account.toString());
+            })
+          );
   		break;
 
   		case 'waveid':

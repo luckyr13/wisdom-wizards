@@ -22,9 +22,9 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
+    // this.loading = true;
 
-    this.loading = false;
+    // this.loading = false;
     
   }
 
@@ -43,8 +43,8 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
 
   	this.login$ = this._auth.login(walletOption, fileInput).subscribe({
   		next: (res: any) => {
-        this.loading = false;
         this._bottomSheetRef.dismiss();
+        this.loading = false;
         this._router.navigate(['/dashboard']);
   		},
   		error: (error) => {
