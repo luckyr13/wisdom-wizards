@@ -1,5 +1,8 @@
 <mat-sidenav-container class="main-container">
-  <mat-sidenav mode="over" [(opened)]="opened">
+  <mat-sidenav 
+  		mode="over" 
+      autoFocus="false"
+      [(opened)]="opened">
   	<app-main-menu [(opened)]="opened"></app-main-menu>
   </mat-sidenav>
   <mat-sidenav-content>
