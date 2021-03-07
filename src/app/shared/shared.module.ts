@@ -10,6 +10,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatListModule,
     MatSnackBarModule,
     MatProgressBarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSidenavModule
   ],
   entryComponents: [
     ModalLoginOptionsComponent

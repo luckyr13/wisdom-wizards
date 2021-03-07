@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { ModalLoginOptionsComponent } from '../shared/modal-login-options/modal-login-options.component';
 import { AuthService } from '../auth/auth.service';
@@ -15,6 +15,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class MainToolbarComponent implements OnInit, OnDestroy {
   account: Observable<string> = this._auth.account$;
 	network: Observable<string> = this._arweave.getNetworkName();
+  @Input() opened!: boolean;
+  @Output() openedChange = new EventEmitter<boolean>();
 
   constructor(
   	private _bottomSheet: MatBottomSheet,
@@ -31,6 +33,11 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
   	
   }
 
+
+  toggleSideMenu() {
+    this.opened = !this.opened;
+    this.openedChange.emit(this.opened);
+  }
 
 
   login() {
