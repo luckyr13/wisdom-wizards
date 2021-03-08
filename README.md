@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
 ## Demo
-You can find a little demo here: https://bafzbeia73qidqysqfvzanvomdneyvhre2z3x4krtekmsdhg6tpyfpzcaoa.textile.space/home
+You can find a little demo here: https://bafzbeiauq5muzh3somknp2uuximmzj3swu5topixgz2z6gryn4dbbp2zli.textile.space/ 
 
 ## Development server
 
