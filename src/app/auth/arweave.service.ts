@@ -9,8 +9,8 @@ import Arweave from 'arweave';
 })
 export class ArweaveService {
   arweave: any = null;
-  key: any = null;
-  mainAddress: string = '';
+  private _key: any = null;
+  private _mainAddress: string = '';
 
   constructor() {
   	this.arweave = Arweave.init({
@@ -58,7 +58,7 @@ export class ArweaveService {
       // very similar to window.ethereum.enable
       this.arweave.wallets.getAddress().then((res: any) => {
         // Save main address for convenience 
-        this.mainAddress = res.toString();
+        this._mainAddress = res.toString();
         
         subscriber.next(res);
         subscriber.complete();
@@ -92,12 +92,12 @@ export class ArweaveService {
         freader.onload = async (_keyFile) => {
           const key = JSON.parse(freader.result + '');
           // Save key in global property for convenience :)
-          this.key = key;
+          this._key = key;
 
           try {
             const address = await this.arweave.wallets.jwkToAddress(key);
             // Save main address for convenience 
-            this.mainAddress = address;
+            this._mainAddress = address;
 
             subscriber.next(address);
             subscriber.complete();
@@ -125,8 +125,11 @@ export class ArweaveService {
   getAccountBalance(_address: string): Observable<any> {
     const obs = new Observable<any>((subscriber) => {
       // Get balance
-      this.arweave.wallets.getBalance(_address).then((res: any) => {
-        subscriber.next(res);
+      this.arweave.wallets.getBalance(_address).then((_balance: string) => {
+        let winston = _balance;
+        let ar = this.arweave.ar.winstonToAr(_balance);
+
+        subscriber.next(ar);
         subscriber.complete();
       }).catch((error: any) => {
         subscriber.error(error);
@@ -136,6 +139,14 @@ export class ArweaveService {
     return obs.pipe(
       catchError(this.errorHandler)
     );
+  }
+
+  getMainAddress() {
+    return this._mainAddress;
+  }
+
+  getPrivateKey() {
+    return this._key;
   }
 
 }

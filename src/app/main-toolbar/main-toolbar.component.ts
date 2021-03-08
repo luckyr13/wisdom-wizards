@@ -10,6 +10,7 @@ import { Subscription, EMPTY, Observable } from 'rxjs';
 import { INetworkResponse } from '../auth/INetworkResponse';
 import {MatSnackBar} from '@angular/material/snack-bar';
 declare const document: any;
+declare const window: any;
 
 @Component({
   selector: 'app-main-toolbar',
@@ -21,6 +22,7 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
 	network: Observable<string> = this._arweave.getNetworkName();
   @Input() opened!: boolean;
   @Output() openedChange = new EventEmitter<boolean>();
+  isLoggedIn: boolean = false;
 
   constructor(
   	private _bottomSheet: MatBottomSheet,
@@ -30,6 +32,11 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this._auth.account$.subscribe((_address: string) => {
+      if (_address) {
+        this.isLoggedIn = true;
+      }
+    })
 
   }
 
@@ -76,9 +83,13 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
       default:
       break;
     }
-    
 
+  }
 
+  logout() {
+    this._auth.logout();
+    this.isLoggedIn = false;
+    window.location.reload();
   }
 
 }

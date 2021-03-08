@@ -24,6 +24,7 @@
     "arweave": "^1.10.11",
     "bootstrap": "^4.6.0",
     "rxjs": "~6.6.0",
+    "smartweave": "^0.4.27",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

@@ -1,3 +1,6 @@
+/*
+*	Version 3
+*/
 export function handle(state, action)
 {	
 	const _msgSender = SmartWeave.transaction.owner;
@@ -33,6 +36,8 @@ export function handle(state, action)
 		_modifier_validateInputString(action.input.imgUrl, 'imgUrl', 200);
 		// Validate inputs that must be numbers
 		_modifier_validateInputNumber(action.input.subject, 'subject');
+		// Validate inputs that must be numbers
+		_modifier_validateInputNumber(action.input.price, 'price');
 
 		// Subject must exist
 		if (state.subjects[action.input.subject] === undefined ||
@@ -51,7 +56,8 @@ export function handle(state, action)
 			users: [],
 			passedUsers: [],
 			rating: 0,
-			evaluators: 0
+			evaluators: 0,
+			price: parseInt(action.input.price)
 		};
 		// Add new course
 		state.courses.push(res);
@@ -74,6 +80,45 @@ export function handle(state, action)
 
 		// Update state
 		state.courses[action.input.courseId].active = !!action.input.active;
+
+		return {state};
+	}
+
+	/*
+	*	@dev Update course info
+	*/
+	if (action.input.function === "updateCourseInfo") {
+		// Validate inputs that must be numbers
+		_modifier_validateInputNumber(action.input.courseId, 'courseId');
+		// Course must exist
+		if (!state.courses[action.input.courseId]) {
+			throw new ContractError('Invalid courseId');
+		}
+		// Only owner (professor) can update the course
+		// this helps to know if course should be listed or not in the UI
+		_modifier_onlyOwnerCanUpdateCourse(state.courses[action.input.courseId], _msgSender);
+		// Validate inputs that must be strings
+		_modifier_validateInputString(action.input.name, 'name', 60);
+		_modifier_validateInputString(action.input.description, 'description', 200);
+		_modifier_validateInputString(action.input.imgUrl, 'imgUrl', 200);
+		// Validate inputs that must be numbers
+		_modifier_validateInputNumber(action.input.subject, 'subject');
+		// Validate inputs that must be numbers
+		_modifier_validateInputNumber(action.input.price, 'price');
+
+		// Subject must exist
+		if (state.subjects[action.input.subject] === undefined ||
+				!state.subjects[action.input.subject]) {
+			throw new ContractError('Invalid subject');
+		}
+
+		// Update state
+		state.courses[action.input.courseId].active = !!action.input.active;
+		state.courses[action.input.courseId].name = String.prototype.trim.call(action.input.name);
+		state.courses[action.input.courseId].description = String.prototype.trim.call(action.input.description);
+		state.courses[action.input.courseId].imgUrl = String.prototype.trim.call(action.input.imgUrl);
+		state.courses[action.input.courseId].subject = action.input.subject;
+		state.courses[action.input.courseId].price = parseInt(action.input.price);
 
 		return {state};
 	}
@@ -189,6 +234,66 @@ export function handle(state, action)
 		return {state};
 	}
 
+	/*
+	*	@dev Get the list of subjects
+	*/
+	if (action.input.function === "getSubjects") {
+		return { result: state.subjects}
+	}
+
+	/*
+	*	@dev Get the list of active courses grouped by subject
+	*/
+	if (action.input.function === "getActiveCourses") {
+		const courses = state.courses;
+		const subjects = state.subjects;
+		const res = {};
+
+		for (let c in courses) {
+			// Skip inactive courses
+			if (!c.active) {
+				continue;
+			}
+			// Save course
+			if (!Object.prototype.hasOwnProperty.call(res, c.subject)) {
+				res[c.subject] = [];
+			}
+
+			res[c.subject].push({
+				name: c.name,
+				description: c.description,
+				imgUrl: c.imgUrl,
+				price: c.price,
+				numUsers: c.users.length,
+				numPassedUsers: c.passedUsers.length,
+				rating: c.rating,
+				evaluators: c.evaluators
+			});
+		}
+
+		return { result: res }
+	}
+
+	/*
+	*	@dev Get my user data
+	*/
+	if (action.input.function === "getMyUserData") {
+		return { result: state.users[_msgSender]}
+	}
+
+	/*
+	*	@dev Get course detail
+	*/
+	if (action.input.function === "getCourseDetail") {
+		// Validate inputs that must be numbers
+		_modifier_validateInputNumber(action.input.courseId, 'courseId');
+		// Course must exist
+		if (!state.courses[action.input.courseId]) {
+			throw new ContractError('Invalid courseId');
+		}
+
+		return { result: state.courses[action.input.courseId]}
+	}
 
 	throw new ContractError('Invalid option!');
 }

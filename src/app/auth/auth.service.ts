@@ -55,6 +55,10 @@ export class AuthService {
 
   	return method;
   }
- 
+
+  logout() {
+    this.setAccount('');
+  }
+
 
 }

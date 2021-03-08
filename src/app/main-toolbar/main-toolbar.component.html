@@ -13,9 +13,18 @@
   <button 
     mat-button 
     (click)="login()"
-    aria-label="Login">
+    aria-label="Login"
+    *ngIf="!isLoggedIn">
     <mat-icon>login</mat-icon>
     Login
+  </button>
+  <button 
+    mat-button 
+    (click)="logout()"
+    aria-label="Logout"
+    *ngIf="isLoggedIn">
+    <mat-icon>logout</mat-icon>
+    Logout
   </button>
   <button 
   		[matMenuTriggerFor]="langMenu"

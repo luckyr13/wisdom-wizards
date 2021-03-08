@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<div class="container dashboard-container fadeIn">
+	<h1>Welcome back!</h1>
+	<div class="row">
+		<div class="col" >
+			Account Balance: <span>{{ balance | async }}</span> AR
+		</div>
+	</div>
+	<div class="row">
+		<div class="col" >
+			Register: 
+    	<button mat-flat-button (click)="register()" color="primary">REGISTER NOW</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			State:
+			{{ state | json }}
+		</div>
+	</div>
+
+</div>
