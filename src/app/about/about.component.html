@@ -1,4 +1,4 @@
-<mat-toolbar class="fadeIn" color="accent">
+<mat-toolbar class="fadeIn" color="accent" >
   <mat-icon 
   	aria-hidden="false"
   	aria-label="About">info</mat-icon>
@@ -9,3 +9,32 @@
 	*ngIf="loading"
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
+
+<div class="container fadeIn" *ngIf="!loading">
+	<div class="row">
+  	<div class="col-12 about-container">
+  		<mat-card>
+				<h1 class="text-center">About Wisdom Wizards</h1>
+			</mat-card>
+		</div>
+		<div class="col-12">
+  		<mat-card>
+				<p class="text-center">
+					<strong>Contract address:</strong> {{ contractAddress }}
+				</p>
+				<p class="text-center">
+					<strong>Contract info:</strong>
+					&nbsp;
+					<a target="_blank" href="https://viewblock.io/arweave/address/KeOt45twVd0UwSmiY7SteZXuvwBiixb8XaAkXVs3ePE" class="yellow">Open external link to viewblock.io</a>
+				</p>
+				<p class="text-center">
+					<strong>Courses created:</strong> {{ state.courses | json }}
+				</p>
+
+				
+				
+			</mat-card>
+		</div>
+
+	</div> 
+</div>

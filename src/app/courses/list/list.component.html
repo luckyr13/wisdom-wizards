@@ -1,1 +1,22 @@
-<p>list works!</p>
+<mat-toolbar class="fadeIn" color="accent">
+  <mat-icon 
+  	aria-hidden="false"
+  	aria-label="Courses list">school</mat-icon>
+	<span>&nbsp;Courses</span>
+</mat-toolbar>
+<mat-progress-bar 
+	mode="indeterminate"
+	*ngIf="loading"
+	class="fadeIn"></mat-progress-bar>
+<div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
+
+<div class="container fadeIn">
+	<div class="row">
+  	<div class="col list-container">
+  		<mat-card>
+				<h1 class="text-center">Select a subject</h1>
+			</mat-card>
+		</div>
+
+	</div> 
+</div>

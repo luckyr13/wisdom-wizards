@@ -9,6 +9,7 @@ import { ArweaveService } from '../auth/arweave.service';
 import { Subscription, EMPTY, Observable } from 'rxjs';
 import { INetworkResponse } from '../auth/INetworkResponse';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { UserSettingsService } from '../auth/user-settings.service';
 declare const document: any;
 declare const window: any;
 
@@ -28,7 +29,8 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
   	private _bottomSheet: MatBottomSheet,
   	private _auth: AuthService,
   	private _arweave: ArweaveService,
-  	private _snackBar: MatSnackBar
+  	private _snackBar: MatSnackBar,
+    private _userSettings: UserSettingsService
   ) {}
 
   ngOnInit(): void {
@@ -86,22 +88,11 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
   *  Set default theme (Updates the href property)
   */
   setMainTheme(theme: string) {
-    const _ts = document.getElementById('LINK_MAIN_TEMPLATE');
-    if (!_ts) {
-      this.message('Error updating theme', 'error')
-      return;
+    try {
+      this._userSettings.setTheme(theme);
+    } catch (err) {
+      this.message(`Error: ${err}`, 'error');
     }
-    switch (theme) {
-      case 'indigo-pink':
-        _ts.href = `./assets/css/${theme}.css`;
-      break;
-      case 'pink-bluegrey':
-        _ts.href = `./assets/css/${theme}.css`;
-      break;
-      default:
-      break;
-    }
-
   }
 
   /*

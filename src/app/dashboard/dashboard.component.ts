@@ -93,21 +93,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   /*
-  *	 Get contract's state
-  */
-  getState() {
-  	this.state$ = this._wisdomWizards.getState(this._arweave.arweave).subscribe({
-  		next: (state) => {
-  			this.state = state;
-  		},
-  		error: (error) => {
-  			this.message('Error!' + error, 'error');
-
-  		}
-  	});
-  }
-
-  /*
   *	@dev Destroy subscriptions
   */
   ngOnDestroy() {

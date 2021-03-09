@@ -72,4 +72,8 @@ export class WisdomWizardsContract
 		return obs;
 	}
 
+	getContractAddres(): string {
+		return this._contractAddress;
+	}
+
 }
