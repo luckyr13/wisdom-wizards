@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { INetworkResponse } from './INetworkResponse';
 import Arweave from 'arweave';
+declare const window: any;
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,14 @@ export class ArweaveService {
       port: 443,
       protocol: "https",
     });
+    const arkey = window.sessionStorage.getItem('ARKEY');
+    const mainAddress = window.sessionStorage.getItem('MAINADDRESS');
+    if (arkey) {
+      this._key = JSON.parse(arkey);
+    }
+    if (mainAddress) {
+      this._mainAddress = mainAddress;
+    }
   }
 
   getNetworkInfo(): Observable<INetworkResponse> {
@@ -59,6 +68,7 @@ export class ArweaveService {
       this.arweave.wallets.getAddress().then((res: any) => {
         // Save main address for convenience 
         this._mainAddress = res.toString();
+        window.sessionStorage.setItem('MAINADDRESS', this._mainAddress);
         
         subscriber.next(res);
         subscriber.complete();
@@ -93,11 +103,13 @@ export class ArweaveService {
           const key = JSON.parse(freader.result + '');
           // Save key in global property for convenience :)
           this._key = key;
+          window.sessionStorage.setItem('ARKEY', JSON.stringify(this._key));
 
           try {
             const address = await this.arweave.wallets.jwkToAddress(key);
             // Save main address for convenience 
             this._mainAddress = address;
+            window.sessionStorage.setItem('MAINADDRESS', this._mainAddress);
 
             subscriber.next(address);
             subscriber.complete();
@@ -147,6 +159,11 @@ export class ArweaveService {
 
   getPrivateKey() {
     return this._key;
+  }
+
+  logout() {
+    window.sessionStorage.removeItem('ARKEY');
+    window.sessionStorage.removeItem('MAINADDRESS');
   }
 
 }

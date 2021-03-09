@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     HomeComponent,
     PageNotFoundComponent,
     DashboardComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

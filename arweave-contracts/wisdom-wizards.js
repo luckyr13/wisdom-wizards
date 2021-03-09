@@ -1,5 +1,5 @@
 /*
-*	Version 3
+*	Version 4
 */
 export function handle(state, action)
 {	
@@ -19,7 +19,8 @@ export function handle(state, action)
 		state.users[_msgSender] = { 
 			coursesEnrolled: [],
 			completedCourses: [],
-			coursesEvaluated: []
+			coursesEvaluated: [],
+			coursesCreated: []
 		};
 		return { state };
 	}
@@ -60,7 +61,9 @@ export function handle(state, action)
 			price: parseInt(action.input.price)
 		};
 		// Add new course
-		state.courses.push(res);
+		const id = state.courses.push(res);
+		state.users[_msgSender].coursesCreated.push(id);
+
 		return { state };
 	}
 
@@ -278,6 +281,10 @@ export function handle(state, action)
 	*	@dev Get my user data
 	*/
 	if (action.input.function === "getMyUserData") {
+		// Validate if user exists
+		if (!Object.prototype.hasOwnProperty.call(state.users, _msgSender)) {
+			throw new ContractError('User is not registered');
+		}
 		return { result: state.users[_msgSender]}
 	}
 

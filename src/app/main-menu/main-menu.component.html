@@ -8,5 +8,8 @@
     <mat-icon mat-list-icon>dashboard</mat-icon>
     <div mat-line>Dashboard</div>
   </a>
-  <mat-divider></mat-divider>
+  <a mat-list-item (click)="toggleSideMenu()" routerLink="/about" routerLinkActive="active">
+    <mat-icon mat-list-icon>info</mat-icon>
+    <div mat-line>About</div>
+  </a>
 </mat-nav-list>

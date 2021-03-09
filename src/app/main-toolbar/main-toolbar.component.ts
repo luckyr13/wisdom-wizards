@@ -36,7 +36,15 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
       if (_address) {
         this.isLoggedIn = true;
       }
-    })
+    });
+
+    // Check for account on sessionStorage
+    window.setTimeout(() => {
+      const mainAddress = window.sessionStorage.getItem('MAINADDRESS');
+      if (mainAddress) {
+        this._auth.setAccount(mainAddress);
+      }
+    }, 500);
 
   }
 
@@ -44,19 +52,27 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
   	
   }
 
-
+  /*
+  *  Open/close main menu
+  */
   toggleSideMenu() {
     this.opened = !this.opened;
     this.openedChange.emit(this.opened);
   }
 
 
+  /*
+  *  @dev Modal login (or bottom sheet)
+  */
   login() {
   	this._bottomSheet.open(ModalLoginOptionsComponent, {
       
     });
   }
 
+  /*
+  *  Custom snackbar message
+  */
   message(msg: string, panelClass: string = '', verticalPosition: any = undefined) {
     this._snackBar.open(msg, 'X', {
       duration: 5000,
@@ -66,13 +82,15 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
     });
   }
 
+  /*
+  *  Set default theme (Updates the href property)
+  */
   setMainTheme(theme: string) {
     const _ts = document.getElementById('LINK_MAIN_TEMPLATE');
     if (!_ts) {
       this.message('Error updating theme', 'error')
       return;
     }
-
     switch (theme) {
       case 'indigo-pink':
         _ts.href = `./assets/css/${theme}.css`;
@@ -86,6 +104,9 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
 
   }
 
+  /*
+  *  @dev Destroy session
+  */
   logout() {
     this._auth.logout();
     this.isLoggedIn = false;

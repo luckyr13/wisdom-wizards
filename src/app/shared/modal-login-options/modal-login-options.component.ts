@@ -28,16 +28,25 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
     
   }
 
+  /*
+  *  @dev Destroy subscriptions
+  */
   ngOnDestroy(): void {
   	if (this.login$) {
   		this.login$.unsubscribe();
   	}
   }
 
+  /*
+  *  @dev Listen for click on HTML element
+  */
   uploadFileListener(fileUploader: any) {
     fileUploader.click();
   }
 
+  /*
+  *  @dev Select a method to connect wallet from modal (or bottom sheet)
+  */
   login(walletOption: string, fileInput: any = null) {
     this.loading = true;
 
@@ -56,6 +65,9 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
   	});
   }
 
+  /*
+  *  @dev Custom snackbar message
+  */
   message(msg: string, panelClass: string = '', verticalPosition: any = undefined) {
     this._snackBar.open(msg, 'X', {
       duration: 5000,

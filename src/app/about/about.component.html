@@ -1,0 +1,11 @@
+<mat-toolbar class="fadeIn" color="accent">
+  <mat-icon 
+  	aria-hidden="false"
+  	aria-label="About">info</mat-icon>
+	<span>&nbsp;About</span>
+</mat-toolbar>
+<mat-progress-bar 
+	mode="indeterminate"
+	*ngIf="loading"
+	class="fadeIn"></mat-progress-bar>
+<div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>

@@ -4,6 +4,7 @@ import { Observable, EMPTY, of, throwError, Subject} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,7 @@ export class AuthService {
   constructor(private _arweave: ArweaveService) {
     this.account = new Subject<string>();
     this.account$ = this.account.asObservable();
+
   }
 
   setAccount(account: string) {
@@ -58,6 +60,7 @@ export class AuthService {
 
   logout() {
     this.setAccount('');
+    this._arweave.logout();
   }
 
 
