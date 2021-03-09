@@ -72,8 +72,47 @@ export class WisdomWizardsContract
 		return obs;
 	}
 
+	/*
+	*	Returns arweave address
+	*/
 	getContractAddres(): string {
 		return this._contractAddress;
+	}
+
+	/*
+	*	@dev Get subjects list as Observable
+	*/
+	getSubjects(arweave: any, walletJWK: any): Observable<any> {
+		const obs = new Observable((subscriber) => {
+			const input = { function: 'getSubjects' };
+			interactRead(arweave, walletJWK, this._contractAddress, input)
+				.then((subjects) => {
+					subscriber.next(subjects);
+					subscriber.complete();
+				}).catch((error) => {
+					subscriber.error(error);
+				});
+		});
+
+		return obs;
+	}
+
+	/*
+	*	@dev Get courses list as Observable
+	*/
+	getCourses(arweave: any, walletJWK: any): Observable<any> {
+		const obs = new Observable((subscriber) => {
+			const input = { function: 'getActiveCourses' };
+			interactRead(arweave, walletJWK, this._contractAddress, input)
+				.then((courses) => {
+					subscriber.next(courses);
+					subscriber.complete();
+				}).catch((error) => {
+					subscriber.error(error);
+				});
+		});
+
+		return obs;
 	}
 
 }

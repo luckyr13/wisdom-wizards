@@ -67,7 +67,32 @@
 	<div class="row">
 		<div class="col" >
 			Register: 
-    	<button mat-flat-button (click)="register()" color="primary">REGISTER NOW</button>
+    	<button 
+    		[disabled]="disableRegisterButton"
+	    	mat-flat-button 
+	    	(click)="register()" 
+	    	color="primary">REGISTER NOW</button>
+	    &nbsp;
+	    <button 
+    		[disabled]="disableRegisterButton"
+	    	mat-flat-button 
+	    	(click)="reload()" 
+	    	color="accent">RELOAD PAGE</button>
+		</div>
+		<div class="col text-right" >
+			<strong class="red">*</strong> If you already pressed the "REGISTER NOW" button, then you don't have to do it again. You only have to wait until the transaction is processed by the Arweave network. (Unless that your transaction fails! ;) Hint: Do you have enough AR?)
+		</div>
+
+	</div>
+	<div class="row" *ngIf="txmessage">
+		<div class="col" >
+			Processing transaction ... Please come back again in a few minutes while the jobe is done:)
+			<br>
+			Transaction status:&nbsp;
+			<a target="_blank" class="purple" [href]="txmessage">{{ txmessage }}</a>
+			<br>
+			Meanwhile you can browse our courses list: 
+			<a class="purple" routerLink="/courses">View courses</a>
 		</div>
 	</div>
 

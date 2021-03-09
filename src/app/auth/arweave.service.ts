@@ -158,7 +158,13 @@ export class ArweaveService {
   }
 
   getPrivateKey() {
-    return this._key;
+    let res = null;
+    if (this._key) {
+      res = this._key;
+    } else {
+      res = 'use_wallet';
+    }
+    return res;
   }
 
   logout() {

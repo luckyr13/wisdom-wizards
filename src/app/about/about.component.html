@@ -28,7 +28,11 @@
 					<a target="_blank" href="https://viewblock.io/arweave/address/KeOt45twVd0UwSmiY7SteZXuvwBiixb8XaAkXVs3ePE" class="yellow">Open external link to viewblock.io</a>
 				</p>
 				<p class="text-center">
-					<strong>Courses created:</strong> {{ state.courses | json }}
+					<strong>Courses created:</strong> {{ state.courses.length }}
+				</p>
+
+				<p class="text-center">
+					<strong>Users registered:</strong> {{ getNumElements(state.users) }}
 				</p>
 
 				

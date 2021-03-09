@@ -3,6 +3,16 @@
   	aria-hidden="false"
   	aria-label="Courses list">school</mat-icon>
 	<span>&nbsp;Courses</span>
+	<span class="toolbar-spacer"></span>
+  <button 
+  	*ngIf="hideSubjects"
+  	mat-icon-button 
+  	class="fadeIn" 
+  	(click)="showSubjects()"
+  	aria-label="Go back">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+
 </mat-toolbar>
 <mat-progress-bar 
 	mode="indeterminate"
@@ -10,13 +20,40 @@
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
 
-<div class="container fadeIn">
+<div class="container fadeIn" *ngIf="!loading && !hideSubjects">
 	<div class="row">
   	<div class="col list-container">
   		<mat-card>
 				<h1 class="text-center">Select a subject</h1>
 			</mat-card>
 		</div>
+	</div>
+	<div class="row">
+  	<div 
+  		class="col-3 subject-card" 
+  		*ngFor="let subject of subjects; let subjectId = index">
+  		<mat-card (click)="searchCoursesBySubject(subjectId)">
+				<div class="text-center subject-card-title">{{ subject }}</div>
+			</mat-card>
+		</div>
+	</div>
+</div>
 
-	</div> 
+<div class="container fadeIn" *ngIf="!loading && hideSubjects">
+	<div class="row">
+  	<div class="col list-container">
+  		<mat-card>
+				<h1 class="text-center">Courses</h1>
+			</mat-card>
+		</div>
+	</div>
+	<div class="row">
+  	<div 
+  		class="col-4 subject-card" 
+  		*ngFor="let course of filteredCourses">
+  		<mat-card>
+				<div class="text-center subject-card-title">{{ course }}</div>
+			</mat-card>
+		</div>
+	</div>
 </div>

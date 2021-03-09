@@ -1,3 +1,18 @@
 .list-container {
-	margin: 20px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.subject-card {
+	padding: 10px;
+}
+
+.subject-card mat-card {
+	
+	cursor: pointer;
+}
+
+.subject-card-title {
+	font-size: 14px;
+	font-weight: bold;
 }

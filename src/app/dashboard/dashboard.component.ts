@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ArweaveService } from '../auth/arweave.service';
 import { Observable, Subscription, EMPTY } from 'rxjs';
-import { WisdomWizardsContract } from '../contracts/wisdom-wizards'; 
+import { WisdomWizardsContract } from '../contracts/wisdom-wizards';
+declare const window: any;
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +20,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	userInfo: any = {};
 	userInfo$: Subscription = Subscription.EMPTY;
 	loading: boolean = false;
+  disableRegisterButton: boolean = false;
+  txmessage: string = '';
 
   constructor(
   	private _router: Router,
@@ -57,12 +60,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   *	 Register user in platform
   */
   register() {
+    this.disableRegisterButton = true;
   	this.register$ = this._wisdomWizards.register(
   		this._arweave.arweave,
   		this._arweave.getPrivateKey()
   	).subscribe({
   		next: (res) => {
+        this.disableRegisterButton = false;
   			this.message(`Success! TXID: ${res}`, 'success');
+        this.txmessage = `https://viewblock.io/arweave/tx/${res}`;
 
   		},
   		error: (error) => {
@@ -81,6 +87,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   		this._arweave.getPrivateKey()
   	).subscribe({
   		next: (res) => {
+        console.log('user', res, this._arweave.getPrivateKey(), this._arweave.arweave);
+
   			this.userInfo = res;
   			this.loading = false;
 
@@ -105,6 +113,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   	if (this.userInfo$) {
   		this.userInfo$.unsubscribe();
   	}
+  }
+
+  /*
+  * @dev Reload page
+  */
+  reload() {
+    window.location.reload();
   }
 
 

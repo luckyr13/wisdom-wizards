@@ -56,5 +56,9 @@ export class AboutComponent implements OnInit {
     });
   }
 
+  getNumElements(obj: any) {
+    return Object.keys(obj).length;
+  }
+
 
 }
