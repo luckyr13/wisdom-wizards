@@ -3,17 +3,16 @@
 }
 
 .home-parent-container {
-	height: 500px;
+	height: 540px;
   background: url('./../../assets/img/slider1.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  margin-bottom: 24px;
 }
 
 .main-title {
-	margin-top: 200px;
+	margin-top: 300px;
 	font-size: 62px;
 	font-weight: bold;
 	color: #FFF;
@@ -32,6 +31,17 @@
 .how-title {
 	font-size: 42px;
 	font-weight: bold;
-	color: #000;
+	margin-bottom: 28px;
+	margin-top: 28px;
 
+}
+
+.how-card {
+	padding: 40px;
+	text-align: center;
+}
+
+.how-card-icon {
+	font-size: 64px;
+	width: 100%;
 }

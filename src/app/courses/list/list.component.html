@@ -20,15 +20,15 @@
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
 
-<div class="container fadeIn" *ngIf="!loading && !hideSubjects">
-	<div class="row">
+<div class="container list-container-parent" >
+	<div class="row" *ngIf="!loading && !hideSubjects">
   	<div class="col list-container">
   		<mat-card>
 				<h1 class="text-center">Select a subject</h1>
 			</mat-card>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row fadeIn" *ngIf="!loading && !hideSubjects">
   	<div 
   		class="col-3 subject-card" 
   		*ngFor="let subject of subjects; let subjectId = index">
@@ -37,23 +37,23 @@
 			</mat-card>
 		</div>
 	</div>
-</div>
 
-<div class="container fadeIn" *ngIf="!loading && hideSubjects">
-	<div class="row">
-  	<div class="col list-container">
-  		<mat-card>
-				<h1 class="text-center">Courses</h1>
-			</mat-card>
+	<div class="container" *ngIf="!loading && hideSubjects">
+		<div class="row">
+	  	<div class="col list-container">
+	  		<mat-card>
+					<h1 class="text-center">Courses</h1>
+				</mat-card>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-  	<div 
-  		class="col-4 subject-card" 
-  		*ngFor="let course of filteredCourses">
-  		<mat-card>
-				<div class="text-center subject-card-title">{{ course }}</div>
-			</mat-card>
+		<div class="row fadeIn">
+	  	<div 
+	  		class="col-4 subject-card" 
+	  		*ngFor="let course of filteredCourses">
+	  		<mat-card>
+					<div class="text-center subject-card-title">{{ course }}</div>
+				</mat-card>
+			</div>
 		</div>
 	</div>
 </div>

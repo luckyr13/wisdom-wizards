@@ -4,11 +4,13 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
+import { WhitepaperComponent } from './whitepaper/whitepaper.component';
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: 'dashboard', component: DashboardComponent },
 	{ path: 'about', component: AboutComponent },
+	{ path: 'whitepaper', component: WhitepaperComponent },
 	{ path: '', redirectTo: '/home', pathMatch: 'full' },
 	{ path: '**', component: PageNotFoundComponent },
 ];

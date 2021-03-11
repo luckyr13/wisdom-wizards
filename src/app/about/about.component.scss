@@ -3,7 +3,9 @@
 	margin-bottom: 20px;
 
 }
-
+.about-container-parent {
+	min-height: 440px;
+}
 
 .loading-txt {
 	font-style: italic;
@@ -12,4 +14,14 @@
 
 .scoreboard {
 	padding: 10px;
+}
+
+.about-container-info {
+	font-size: 18px;
+	line-height: 18px;
+}
+
+.bn {
+	font-size: 40px;
+	padding-bottom: 10px;
 }

@@ -9,59 +9,60 @@
 	*ngIf="loading"
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
-<div *ngIf="userInfo && userInfo.coursesEnrolled && !loading"
-	class="container dashboard-container fadeIn">
-	<h1>Welcome back!</h1>
-	<div class="row">
-		<div class="col-12 col-md-12 scoreboard">
-			<mat-card>
-				<div class="text-center"><span class="bn2">{{ balance | async }}</span> AR</div>
-				<div class="text-center">Account balance</div>
-			</mat-card>
+<div class="container dashboard-container">
+	<div *ngIf="userInfo && userInfo.coursesEnrolled && !loading" class="fadeIn">
+		<h1>Welcome back!</h1>
+		<div class="row">
+			<div class="col-12 col-md-12 scoreboard">
+				<mat-card>
+					<div class="text-center"><span class="bn2">{{ balance | async }}</span> AR</div>
+					<div class="text-center">Account balance</div>
+				</mat-card>
+			</div>
+			<div class="col-12 col-md-3 scoreboard">
+				<mat-card>
+					<div class="bn text-center">{{ userInfo.coursesEnrolled.length }}</div>
+					<div class="text-center">Courses enrolled</div>
+				</mat-card>
+			</div>
+			<div class="col-12 col-md-3 scoreboard">
+				<mat-card>
+					<div class="bn text-center">{{ userInfo.completedCourses.length }}</div>
+					<div class="text-center">Completed courses</div>
+					
+				</mat-card>
+			</div>
+			<div class="col-12 col-md-3 scoreboard">
+				<mat-card>
+					<div class="bn text-center">{{ userInfo.coursesEvaluated.length }}</div>
+					<div class="text-center">Courses evaluated</div>
+				</mat-card>
+			</div>
+			<div class="col-12 col-md-3 scoreboard">
+				<mat-card>
+					<div class="bn text-center">{{ userInfo.coursesCreated.length }}</div>
+					<div class="text-center">Courses created</div>
+				</mat-card>
+			</div>
+			<div class="col-12 scoreboard">
+				<mat-card>
+					<button 
+						color="primary"
+						style="float: left; margin-right: 10px"
+						mat-mini-fab 
+						routerLink="/courses/new"
+						aria-label="">
+	          <mat-icon>add</mat-icon>
+	        </button>
+					<h1 class="text-left" style="margin-top: 4px">
+						Create a new course
+					</h1>
+				</mat-card>
+			</div>
+			
 		</div>
-		<div class="col-12 col-md-3 scoreboard">
-			<mat-card>
-				<div class="bn text-center">{{ userInfo.coursesEnrolled.length }}</div>
-				<div class="text-center">Courses enrolled</div>
-			</mat-card>
-		</div>
-		<div class="col-12 col-md-3 scoreboard">
-			<mat-card>
-				<div class="bn text-center">{{ userInfo.completedCourses.length }}</div>
-				<div class="text-center">Completed courses</div>
-				
-			</mat-card>
-		</div>
-		<div class="col-12 col-md-3 scoreboard">
-			<mat-card>
-				<div class="bn text-center">{{ userInfo.coursesEvaluated.length }}</div>
-				<div class="text-center">Courses evaluated</div>
-			</mat-card>
-		</div>
-		<div class="col-12 col-md-3 scoreboard">
-			<mat-card>
-				<div class="bn text-center">{{ userInfo.coursesCreated.length }}</div>
-				<div class="text-center">Courses created</div>
-			</mat-card>
-		</div>
-		<div class="col-12 scoreboard">
-			<mat-card>
-				<button 
-					color="primary"
-					style="float: left; margin-right: 10px"
-					mat-mini-fab 
-					routerLink="/courses/new"
-					aria-label="">
-          <mat-icon>add</mat-icon>
-        </button>
-				<h1 class="text-left" style="margin-top: 4px">
-					Create a new course
-				</h1>
-			</mat-card>
-		</div>
-		
-	</div>
 
+	</div>
 </div>
 
 <div *ngIf="(!userInfo || !userInfo.coursesEnrolled) && !loading"

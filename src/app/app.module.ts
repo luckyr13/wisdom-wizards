@@ -12,6 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { AboutComponent } from './about/about.component';
 import { CoursesModule } from './courses/courses.module';
+import { WhitepaperComponent } from './whitepaper/whitepaper.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { CoursesModule } from './courses/courses.module';
     PageNotFoundComponent,
     DashboardComponent,
     MainMenuComponent,
-    AboutComponent
+    AboutComponent,
+    WhitepaperComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

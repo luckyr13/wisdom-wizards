@@ -14,6 +14,41 @@ export class WisdomWizardsContract
 	// private _contractAddress: string = 'Bg2yem2w0dWkTHbO9xpCtXnC9BV2ptLZ5BiZVjFcDC8';
 //	private _contractAddress: string = '-KUy-Gv2sD1BZHhUBwsNO075PVYX6NLudK73D2SH_5Y';
 	private _contractAddress: string = 'KeOt45twVd0UwSmiY7SteZXuvwBiixb8XaAkXVs3ePE';
+	private _subjectsLocal: string[] = [
+		"Architecture",
+		"Art & Culture",
+		"Biology & Life Sciences",
+		"Business & Management",
+		"Chemistry",
+		"Communication",
+		"Computer Science",
+		"Data Analysis & Statistics",
+		"Design",
+		"Economics & Finance",
+		"Education & Teacher Training",
+		"Electronics",
+		"Energy & Earth Sciences",
+		"Engineering",
+		"Environmental Studies",
+		"Ethics",
+		"Food & Nutrition",
+		"Health & Safety",
+		"History",
+		"Humanities",
+		"Language",
+		"Law",
+		"Literature",
+		"Math",
+		"Medicine",
+		"Music",
+		"Philanthropy",
+		"Philosophy & Ethics",
+		"Physics",
+		"Science",
+		"Social Sciences",
+		"Other"
+	];
+	
 
 	constructor() {
 
@@ -92,6 +127,22 @@ export class WisdomWizardsContract
 				}).catch((error) => {
 					subscriber.error(error);
 				});
+		});
+
+		return obs;
+	}
+
+	/*
+	*	@dev Alternative to getSubjects
+	*/
+	getSubjectsLocalCopy() {
+		const obs = new Observable<string[]>((subscriber) => {
+			try {
+				subscriber.next(this._subjectsLocal);
+				subscriber.complete();
+			} catch (error) {
+				subscriber.error(error);
+			}
 		});
 
 		return obs;

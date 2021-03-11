@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   	if (!this.mainAddress) {
   		this.message('Please login first!', 'error');
   		this._router.navigate(['/home']);
+      return;
   	}
 
   	// Fetch data to display

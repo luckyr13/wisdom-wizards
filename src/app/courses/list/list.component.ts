@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WisdomWizardsContract } from '../../contracts/wisdom-wizards';
 import { ArweaveService } from '../../auth/arweave.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -9,6 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  mainAddress: string = this._arweave.getMainAddress();
 	loading: boolean = false;
 	subjects: string[] = [];
   hideSubjects: boolean = false;
@@ -18,21 +20,26 @@ export class ListComponent implements OnInit {
   constructor(
   	private _wisdomWizards: WisdomWizardsContract,
   	private _arweave: ArweaveService,
-  	private _snackBar: MatSnackBar
+  	private _snackBar: MatSnackBar,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
   	this.loading = true;
 
-    // Update loading state inside
+    if (!this.mainAddress) {
+      this.message('Please login first!', 'error');
+      this._router.navigate(['/home']);
+      return;
+    }
+
+    // Update loading inside
   	this.getSubjects();
   }
 
   getSubjects() {
-  	this._wisdomWizards.getSubjects(
-  		this._arweave.arweave,
-  		this._arweave.getPrivateKey()
-  	).subscribe({
+    // Get the local copy instead of the state's copy
+  	this._wisdomWizards.getSubjectsLocalCopy().subscribe({
   		next: (subjects) => {
   			this.subjects = subjects;
         // Get courses data
