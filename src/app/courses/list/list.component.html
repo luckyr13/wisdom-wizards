@@ -4,11 +4,19 @@
   	aria-label="Courses list">school</mat-icon>
 	<span>&nbsp;Courses</span>
 	<span class="toolbar-spacer"></span>
+	<button 
+  		mat-icon-button 
+      class="fadeIn"
+      matTooltip="Create a new course"
+  		aria-label="New course">
+    <mat-icon>add</mat-icon>
+  </button>
   <button 
   	*ngIf="hideSubjects"
   	mat-icon-button 
   	class="fadeIn" 
   	(click)="showSubjects()"
+    matTooltip="Go back"
   	aria-label="Go back">
     <mat-icon>navigate_before</mat-icon>
   </button>
@@ -48,10 +56,25 @@
 		</div>
 		<div class="row fadeIn">
 	  	<div 
+	  		class="col" 
+	  		*ngIf="filteredCourses">
+	  		<mat-card>
+					<div class="text-center ">
+						No results found.
+					</div>
+				</mat-card>
+			</div>
+		</div>
+		<div class="row fadeIn">
+	  	<div 
 	  		class="col-4 subject-card" 
 	  		*ngFor="let course of filteredCourses">
 	  		<mat-card>
-					<div class="text-center subject-card-title">{{ course }}</div>
+					<div class="text-center subject-card-title">
+						<a [routerLink]="['/courses', course.id]">
+							{{ course }}
+						</a>
+					</div>
 				</mat-card>
 			</div>
 		</div>

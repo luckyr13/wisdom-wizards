@@ -1,9 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
+import { ViewDetailComponent } from './view-detail/view-detail.component';
+import { EditComponent } from './edit/edit.component';
+import { NewComponent } from './new/new.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-	{ path: 'courses', component: ListComponent }
+	{ 
+		path: 'courses',
+		canActivateChild: [AuthGuard],
+		children: [
+			{
+				path: 'new', component: NewComponent
+			},
+			{
+				path: ':id', component: ViewDetailComponent
+			},
+			{
+				path: ':id/edit', component: EditComponent
+			},
+			{
+				path: '', component: ListComponent, pathMatch: 'full'
+			}
+		]
+	}
 ];
 
 @NgModule({

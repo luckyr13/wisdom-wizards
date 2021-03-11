@@ -76,7 +76,7 @@ export class ListComponent implements OnInit {
     this.hideSubjects = true;
 
     if (!Object.prototype.hasOwnProperty.call(this.courses, subjectId)) {
-      this.message(`There are no courses on this category`, 'error');
+      // this.message(`There are no courses on this category`, 'error');
       return;
     }
 

@@ -3,6 +3,7 @@
     mat-icon-button 
     class="menu-icon" 
     (click)="toggleSideMenu()"
+    matTooltip="Show menu"
     aria-label="Menu">
     <mat-icon>menu</mat-icon>
   </button>
@@ -30,6 +31,7 @@
   		[matMenuTriggerFor]="langMenu"
   		mat-icon-button 
       class="translate-icon"
+      matTooltip="Select language"
   		aria-label="Select language">
     <mat-icon>translate</mat-icon>
   </button>
@@ -40,6 +42,7 @@
   		[matMenuTriggerFor]="themeMenu"
   		mat-icon-button 
       class="theme-icon"
+      matTooltip="Select theme"
   		aria-label="Select theme">
     <mat-icon>format_color_fill</mat-icon>
   </button>

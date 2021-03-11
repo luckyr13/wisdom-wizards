@@ -1,0 +1,29 @@
+<mat-toolbar class="fadeIn" color="accent">
+  <mat-icon 
+  	aria-hidden="false"
+  	aria-label="Courses list">school</mat-icon>
+	<span>&nbsp;Courses</span>
+	<span class="toolbar-spacer"></span>
+  <button 
+  	mat-icon-button 
+  	class="fadeIn" 
+  	(click)="goBack()"
+  	aria-label="Go back">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+
+</mat-toolbar>
+<mat-progress-bar 
+	mode="indeterminate"
+	*ngIf="loading"
+	class="fadeIn"></mat-progress-bar>
+<div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
+
+<div class="container new-container-parent" >
+	<div class="row" *ngIf="!loading">
+  	<div class="col new-container">
+  		<mat-card>
+				<h1 class="text-center">Create new course</h1>
+			</mat-card>
+		</div>
+	</div>
