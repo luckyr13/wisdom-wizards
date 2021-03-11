@@ -5,6 +5,7 @@ import { ViewDetailComponent } from './view-detail/view-detail.component';
 import { EditComponent } from './edit/edit.component';
 import { NewComponent } from './new/new.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { CreatedComponent } from './created/created.component';
 
 const routes: Routes = [
 	{ 
@@ -13,6 +14,9 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'new', component: NewComponent
+			},
+			{
+				path: 'created', component: CreatedComponent
 			},
 			{
 				path: ':id', component: ViewDetailComponent

@@ -166,4 +166,62 @@ export class WisdomWizardsContract
 		return obs;
 	}
 
+	/*
+	*	@dev Create a new course
+	*/
+	createCourse(
+		arweave: any,
+		walletJWK: any,
+		name: string,
+		description: string,
+		imgUrl: string,
+		subject: number,
+		price: number
+	): Observable<any> {
+		const obs = new Observable((subscriber) => {
+			const input = {
+				function: 'createCourse',
+	  		name: name,
+	  		description: description,
+	  		imgUrl: imgUrl,
+	  		subject: subject,
+	  		price: price
+			};
+
+			interactWrite(arweave, walletJWK, this._contractAddress, input)
+				.then((result) => {
+					subscriber.next(result);
+					subscriber.complete();
+				}).catch((error) => {
+					subscriber.error(error);
+				});
+		});
+
+		return obs;
+	}
+
+	/*
+	*	@dev Activate/deactivate course
+	*/
+	activateDeactivateCourse(
+		arweave: any,
+		walletJWK: any
+	): Observable<any> {
+		const obs = new Observable((subscriber) => {
+			const input = {
+				function: 'updateActiveStatusCourse'
+			};
+
+			interactWrite(arweave, walletJWK, this._contractAddress, input)
+				.then((result) => {
+					subscriber.next(result);
+					subscriber.complete();
+				}).catch((error) => {
+					subscriber.error(error);
+				});
+		});
+
+		return obs;
+	}
+
 }

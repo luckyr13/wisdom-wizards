@@ -41,7 +41,12 @@
   		class="col-3 subject-card" 
   		*ngFor="let subject of subjects; let subjectId = index">
   		<mat-card (click)="searchCoursesBySubject(subjectId)">
-				<div class="text-center subject-card-title">{{ subject }}</div>
+				<div class="text-center subject-card-title">
+					{{ subject }}
+				</div>
+				<span *ngIf="filteredCourses && filteredCourses[subjectId]">
+					# {{ filteredCourses[subjectId].length }}
+				</span>
 			</mat-card>
 		</div>
 	</div>

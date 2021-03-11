@@ -88,8 +88,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   		this._arweave.getPrivateKey()
   	).subscribe({
   		next: (res) => {
-        console.log('user', res, this._arweave.getPrivateKey(), this._arweave.arweave);
-
+        
   			this.userInfo = res;
   			this.loading = false;
 

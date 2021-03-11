@@ -22,7 +22,7 @@
 			<div class="col-12 col-md-3 scoreboard">
 				<mat-card>
 					<div class="bn text-center">{{ userInfo.coursesEnrolled.length }}</div>
-					<div class="text-center">Courses enrolled</div>
+					<div class="text-center">Enrolled courses</div>
 				</mat-card>
 			</div>
 			<div class="col-12 col-md-3 scoreboard">
@@ -35,13 +35,13 @@
 			<div class="col-12 col-md-3 scoreboard">
 				<mat-card>
 					<div class="bn text-center">{{ userInfo.coursesEvaluated.length }}</div>
-					<div class="text-center">Courses evaluated</div>
+					<div class="text-center">Evaluated courses</div>
 				</mat-card>
 			</div>
 			<div class="col-12 col-md-3 scoreboard">
 				<mat-card>
 					<div class="bn text-center">{{ userInfo.coursesCreated.length }}</div>
-					<div class="text-center">Courses created</div>
+					<div class="text-center">Created courses</div>
 				</mat-card>
 			</div>
 			<div class="col-6 scoreboard">
@@ -57,6 +57,22 @@
 	        </button>
 					<h1 class="text-left" style="margin-top: 4px">
 						Create a new course
+					</h1>
+				</mat-card>
+			</div>
+			<div class="col-6 scoreboard">
+				<mat-card>
+					<button 
+						color="primary"
+						style="float: right; margin-right: 10px"
+						mat-mini-fab 
+						routerLink="/courses/created"
+        		matTooltip="List of created courses"
+						aria-label="List of created courses">
+	          <mat-icon>bolt</mat-icon>
+	        </button>
+					<h1 class="text-left" style="margin-top: 4px">
+						View created courses
 					</h1>
 				</mat-card>
 			</div>

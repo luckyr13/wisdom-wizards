@@ -13,6 +13,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -36,7 +39,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatFormFieldModule,
     MatSidenavModule,
     MatCardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule
   ],
   entryComponents: [
     ModalLoginOptionsComponent

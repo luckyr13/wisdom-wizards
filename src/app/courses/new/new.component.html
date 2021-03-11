@@ -15,15 +15,80 @@
 </mat-toolbar>
 <mat-progress-bar 
 	mode="indeterminate"
-	*ngIf="loading"
+	*ngIf="loading || loadingFrm"
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
 
 <div class="container new-container-parent" >
-	<div class="row" *ngIf="!loading">
-  	<div class="col new-container">
+	<div class="row justify-content-center" *ngIf="!loading">
+  	<div class="col-6 new-container">
   		<mat-card>
 				<h1 class="text-center">Create new course</h1>
 			</mat-card>
+			<form class="frmNew" [formGroup]="frmNew" (ngSubmit)="onSubmit()">
+				<mat-card>
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Course name</mat-label>
+					  <input matInput 
+					 		type="text" 
+					 		maxlength="60" 
+					 		required
+				    	formControlName="name">
+					</mat-form-field>
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Description</mat-label>
+				    <input matInput 
+					 		type="text" 
+					 		maxlength="200" 
+					 		required
+				    	formControlName="description">
+					</mat-form-field>
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Image</mat-label>
+				    <input matInput 
+					 		type="text" 
+					 		maxlength="200" 
+					 		required
+				    	formControlName="imgUrl">
+					</mat-form-field>
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Subject</mat-label>
+				    <mat-select
+						 		required
+					    	formControlName="subject">
+					    <mat-option 
+					    	*ngFor="let sub of subjects | async; index as i"
+					    	[value]="i">
+					    	{{ sub }}
+					    </mat-option>
+					  </mat-select>
+					</mat-form-field>
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Price in winston</mat-label>
+				    <input matInput 
+					 		type="number"
+					 		step="1" 
+					 		maxlength="30" 
+					 		required
+				    	formControlName="price">
+					</mat-form-field>
+					<div class="text-center">
+				    <button 
+				    	mat-flat-button
+				    	type="submit"
+				    	[disabled]="!frmNew.valid ||  loadingFrm"
+				    	color="primary">Save</button>
+					</div>
+				</mat-card>
+			</form>
 		</div>
 	</div>
+
+	<div class="text-center fadeIn" *ngIf="loading && txmessage" >
+		Your transaction is being processed... <br>
+		Please copy the next link to follow your transaction:
+		<a [href]="txmessage" target="_blank">{{txmessage}}</a>
+		<br><br> Redirecting to dashboard in 10 seconds ...
+	</div>
+
+</div>
