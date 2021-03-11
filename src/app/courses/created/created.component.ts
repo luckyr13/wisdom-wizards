@@ -72,10 +72,12 @@ export class CreatedComponent implements OnInit {
 
   activateCourse(courseId: number) {
     this.loadingActivate = true;
+    const active = true;
     // Save data 
     this._wisdomWizards.activateDeactivateCourse(
       this._arweave.arweave,
-      this._arweave.getPrivateKey()
+      this._arweave.getPrivateKey(),
+      active
     ).subscribe({
       next: (res) => {
         this.loadingActivate = false;
