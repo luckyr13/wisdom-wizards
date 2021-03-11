@@ -206,11 +206,13 @@ export class WisdomWizardsContract
 	activateDeactivateCourse(
 		arweave: any,
 		walletJWK: any,
+		courseId: number,
 		active: boolean
 	): Observable<any> {
 		const obs = new Observable((subscriber) => {
 			const input = {
 				function: 'updateActiveStatusCourse',
+				courseId: courseId,
 				active: active
 			};
 

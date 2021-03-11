@@ -77,6 +77,7 @@ export class CreatedComponent implements OnInit {
     this._wisdomWizards.activateDeactivateCourse(
       this._arweave.arweave,
       this._arweave.getPrivateKey(),
+      courseId,
       active
     ).subscribe({
       next: (res) => {
