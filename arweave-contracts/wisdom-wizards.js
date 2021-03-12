@@ -1,5 +1,6 @@
 /*
-*	Version 6
+*	Version 9
+*	God bless this mess :)
 */
 export function handle(state, action)
 {	
@@ -61,7 +62,7 @@ export function handle(state, action)
 			price: parseInt(action.input.price)
 		};
 		// Add new course
-		const id = state.courses.push(res);
+		const id = state.courses.push(res) - 1;
 		state.users[_msgSender].coursesCreated.push(id);
 
 		return { state };
@@ -74,7 +75,7 @@ export function handle(state, action)
 		// Validate inputs that must be numbers
 		_modifier_validateInputNumber(action.input.courseId, 'courseId');
 		// Course must exist
-		if (!state.courses[action.input.courseId]) {
+		if (typeof state.courses[action.input.courseId] === 'undefined') {
 			throw new ContractError('Invalid courseId');
 		}
 		// Only owner (professor) can update the course
@@ -94,7 +95,7 @@ export function handle(state, action)
 		// Validate inputs that must be numbers
 		_modifier_validateInputNumber(action.input.courseId, 'courseId');
 		// Course must exist
-		if (!state.courses[action.input.courseId]) {
+		if (typeof state.courses[action.input.courseId] === 'undefined') {
 			throw new ContractError('Invalid courseId');
 		}
 		// Only owner (professor) can update the course
@@ -135,7 +136,7 @@ export function handle(state, action)
 		// Validate inputs that must be numbers
 		_modifier_validateInputNumber(action.input.courseId, 'courseId');
 		// Course must exist
-		if (!state.courses[action.input.courseId]) {
+		if (typeof state.courses[action.input.courseId] === 'undefined') {
 			throw new ContractError('Invalid courseId');
 		}
 		// Course must be active
@@ -164,7 +165,7 @@ export function handle(state, action)
 		// Validate inputs that must be numbers
 		_modifier_validateInputNumber(action.input.courseId, 'courseId');
 		// Course must exist
-		if (!state.courses[action.input.courseId]) {
+		if (typeof state.courses[action.input.courseId] === 'undefined') {
 			throw new ContractError('Invalid courseId');
 		}
 		// Course must be active
@@ -302,7 +303,39 @@ export function handle(state, action)
 			throw new ContractError('Invalid courseId');
 		}
 
-		return { result: state.courses[action.input.courseId]}
+		return { result: state.courses[action.input.courseId]};
+	}
+
+	/*
+	*	@dev Get the list detail of my courses
+	*/
+	if (action.input.function === "getAllMyCreatedCourses") {
+		// Validate if user exists
+		if (!Object.prototype.hasOwnProperty.call(state.users, _msgSender)) {
+			throw new ContractError('User is not registered');
+		}
+		const allCourses = state.courses;
+		const myCourses = state.users[_msgSender].coursesCreated;
+		const res = [];
+
+		for (let courseId of myCourses) {
+			const c = allCourses[courseId];
+
+			res.push({
+				id: courseId,
+				name: c.name,
+				description: c.description,
+				imgUrl: c.imgUrl,
+				price: c.price,
+				numUsers: c.users.length,
+				numPassedUsers: c.passedUsers.length,
+				rating: c.rating,
+				evaluators: c.evaluators,
+				active: c.active
+			});
+		}
+
+		return { result: res };
 	}
 
 	throw new ContractError('Invalid option!');

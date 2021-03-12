@@ -4,14 +4,6 @@
   	aria-label="Courses list">school</mat-icon>
 	<span>&nbsp;Courses</span>
 	<span class="toolbar-spacer"></span>
-	<button 
-  		mat-icon-button 
-      class="fadeIn"
-      matTooltip="Create a new course"
-      routerLink="/courses/new"
-  		aria-label="New course">
-    <mat-icon>add</mat-icon>
-  </button>
   <button 
   	*ngIf="hideSubjects"
   	mat-icon-button 
@@ -43,11 +35,10 @@
   		*ngFor="let subject of subjects; let subjectId = index">
   		<mat-card (click)="searchCoursesBySubject(subjectId)">
 				<div class="text-center subject-card-title">
-					{{ subject }}
-				</div>
-				<span *ngIf="filteredCourses && filteredCourses[subjectId]">
-					# {{ filteredCourses[subjectId].length }}
+					{{ subject }} <span class="text-center" *ngIf="courses[subjectId]">
+					({{ courses[subjectId].length }})
 				</span>
+				</div>
 			</mat-card>
 		</div>
 	</div>
@@ -64,7 +55,7 @@
 	  	<div 
 	  		class="col" 
 	  		*ngIf="filteredCourses">
-	  		<mat-card>
+	  		<mat-card *ngIf="!filteredCourses">
 					<div class="text-center ">
 						No results found.
 					</div>
@@ -76,9 +67,16 @@
 	  		class="col-4 subject-card" 
 	  		*ngFor="let course of filteredCourses">
 	  		<mat-card>
+	  			<h2 style="font-weight: bold">{{ course.name }}</h2>
+	        <p>Description: {{ course.description }}</p>
+	        <p>ImgURL: {{ course.imgUrl }}</p>
+	        <p>Price: {{ course.price }} winston</p>
+	        <p>Students: {{ course.numUsers.length }} winston</p>
+	        <p>Rating: {{ course.rating }} by {{ course.evaluators }} students</p>
+
 					<div class="text-center subject-card-title">
-						<a [routerLink]="['/courses', course.id]">
-							{{ course }}
+						<a mat-button [routerLink]="['/courses', course.id]">
+							View
 						</a>
 					</div>
 				</mat-card>

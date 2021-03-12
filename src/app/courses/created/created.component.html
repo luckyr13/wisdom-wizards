@@ -23,22 +23,77 @@
 	<div class="row justify-content-center fadeIn" *ngIf="!loading">
   	<div class="col-12 my-created-container">
   		<mat-card>
-				<h1 class="text-center">My created courses</h1>
+				<h1 class="bold text-center">My created courses</h1>
 			</mat-card>
 		</div>
-    <div class="col-12">
-      TX info: <a target="_blank" [href]="txmessageActivate">{{ txmessageActivate }}</a>
+    <div class="col-12 txbar">
+      <mat-card>
+        TX info: 
+        <a target="_blank" [href]="txmessageActivate">
+          {{ txmessageActivate }}
+        </a>
+      </mat-card>
     </div>
     <div 
-      *ngFor="let courseId of coursesCreatedById"
-      class="col-4 my-created-container ">
+      *ngFor="let course of coursesCreatedById"
+      class="col-12 col-md-6 col-lg-6 my-created-container ">
       <mat-card>
-        {{ courseId }}
-        <button 
-          mat-flat-button 
-          [disabled]="loadingActivate"
-          (click)="activateCourse(courseId)" 
-          color="primary">Activate</button>
+        
+        <h2 class="bold">{{ course.name }}</h2>
+        <p class="bold">Description: </p>
+        <p>{{ course.description }}</p>
+        <p>
+          <span class="bold">ImgURL:</span> {{ course.imgUrl }}
+        </p>
+        <p>
+          <span class="bold">Price:</span> {{ course.price }} winston
+        </p>
+        <p>
+          <span class="bold">Tx: </span>
+          <a target="_blank" [href]="course.txurl">
+            {{ course.txid }}
+          </a>
+        </p>
+        <p class="text-right">
+          <strong>Status: </strong>
+          <strong 
+            class="red"
+            *ngIf="!course.active" >
+            Inactive
+          </strong>
+          <strong 
+            class="green"
+            *ngIf="course.active">
+            Active
+          </strong>
+        </p>
+        <div class="text-right">
+          <button 
+            mat-flat-button 
+            [disabled]="loadingActivate"
+            routerLink="/courses/{{course.id}}/edit"
+            color="accent"><mat-icon>edit</mat-icon> Edit
+          </button>
+          &nbsp;
+          <button 
+            mat-flat-button 
+            *ngIf="!course.active"
+            [disabled]="loadingActivate"
+            (click)="activateCourse(course.id, true)" 
+            color="primary">
+            <mat-icon>power_settings_new</mat-icon> Activate
+          </button>
+          &nbsp;
+          <button 
+            mat-flat-button 
+            *ngIf="course.active"
+            [disabled]="loadingActivate"
+            (click)="activateCourse(course.id, false)" 
+            color="warn">
+            <mat-icon>power_off</mat-icon> Deactivate
+          </button>
+        </div>
+        
       </mat-card>
     </div>
 

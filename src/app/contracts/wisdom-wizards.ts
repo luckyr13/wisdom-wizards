@@ -17,8 +17,9 @@ export class WisdomWizardsContract
 	//private _contractAddress: string = 'kcE9B_T3H8zNHWghiSi5HLx6JnF5-znizCecIRWiy64';
 	// Very buggy
 	// private _contractAddress: string = 'sdOMIHnYrrco6rnl_yJGZirqO54SMhxhdGV9RC8xyyY';
-	private _contractAddress: string = 'WJd5hDNlEVaDCBF6wuau1S1HEqNgzgnVlXMPNK1psXU';
-	
+	//private _contractAddress: string = 'WJd5hDNlEVaDCBF6wuau1S1HEqNgzgnVlXMPNK1psXU';
+	// private _contractAddress: string = 'kHbA2BJCkX2jj1RGpVohp8ihzk6kKlCYoxaZOIPhL14';
+	private _contractAddress: string = 'lmOgf5O5wNiFi45rL5QMkB-bAEF5c-Yc0IZyoSCV-eU';
 	
 	private _subjectsLocal: string[] = [
 		"Architecture",
@@ -225,6 +226,24 @@ export class WisdomWizardsContract
 			interactWrite(arweave, walletJWK, this._contractAddress, input)
 				.then((result) => {
 					subscriber.next(result);
+					subscriber.complete();
+				}).catch((error) => {
+					subscriber.error(error);
+				});
+		});
+
+		return obs;
+	}
+
+	/*
+	*	@dev Get my list of created courses as Observable
+	*/
+	getMyCreatedCourses(arweave: any, walletJWK: any): Observable<any> {
+		const obs = new Observable((subscriber) => {
+			const input = { function: 'getAllMyCreatedCourses' };
+			interactRead(arweave, walletJWK, this._contractAddress, input)
+				.then((courses) => {
+					subscriber.next(courses);
 					subscriber.complete();
 				}).catch((error) => {
 					subscriber.error(error);

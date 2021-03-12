@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ArweaveService } from '../../auth/arweave.service';
@@ -10,11 +10,10 @@ import { WisdomWizardsContract } from '../../contracts/wisdom-wizards';
   templateUrl: './created.component.html',
   styleUrls: ['./created.component.scss']
 })
-export class CreatedComponent implements OnInit {
+export class CreatedComponent implements OnInit, OnDestroy {
 	loading: boolean = false;
-  userInfo: any = {};
-  userInfo$: Subscription = Subscription.EMPTY;
-  coursesCreatedById: number[] = [];
+  createdCourses$: Subscription = Subscription.EMPTY;
+  coursesCreatedById: any[] = [];
   loadingActivate: boolean = false;
   txmessageActivate: string = '';
 
@@ -28,7 +27,13 @@ export class CreatedComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.getUserInfo();
+    this.getMyCreatedCourses();
+  }
+
+  ngOnDestroy() {
+    if (this.createdCourses$) {
+      this.createdCourses$.unsubscribe();
+    }
   }
 
   goBack() {
@@ -48,18 +53,15 @@ export class CreatedComponent implements OnInit {
   }
 
   /*
-  *  @dev Get user info
+  *  @dev Get my list of created courses
   */
-  getUserInfo() {
-    this.userInfo$ = this._wisdomWizards.getUserInfo(
+  getMyCreatedCourses() {
+    this.createdCourses$ = this._wisdomWizards.getMyCreatedCourses(
       this._arweave.arweave,
       this._arweave.getPrivateKey()
     ).subscribe({
       next: (res) => {
-        console.log('user', res);
-
-        this.userInfo = res;
-        this.coursesCreatedById = res.coursesCreated;
+        this.coursesCreatedById = res;
         this.loading = false;
 
       },
@@ -70,9 +72,8 @@ export class CreatedComponent implements OnInit {
     });
   }
 
-  activateCourse(courseId: number) {
+  activateCourse(courseId: number, active: boolean) {
     this.loadingActivate = true;
-    const active = true;
     // Save data 
     this._wisdomWizards.activateDeactivateCourse(
       this._arweave.arweave,
@@ -85,6 +86,9 @@ export class CreatedComponent implements OnInit {
         this.message(`Success! TXID: ${res}`, 'success');
         this.txmessageActivate = `https://viewblock.io/arweave/tx/${res}`;
 
+        const modifiedCourse = this.coursesCreatedById.filter(e => e.id == courseId)[0];
+        modifiedCourse.txid = res;
+        modifiedCourse.txurl = this.txmessageActivate;
         // this._router.navigate(['/courses/created']);
       },
       error: (error) => {
@@ -95,4 +99,5 @@ export class CreatedComponent implements OnInit {
     });
   }
 
+  
 }
