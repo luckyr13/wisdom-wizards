@@ -71,9 +71,9 @@
 						 		required
 					    	formControlName="subject">
 					    <mat-option 
-					    	*ngFor="let sub of subjects | async; index as i"
-					    	[value]="i">
-					    	{{ sub }}
+					    	*ngFor="let sub of subjects"
+					    	[value]="sub.id">
+					    	{{ sub.label }}
 					    </mat-option>
 					  </mat-select>
 					</mat-form-field>

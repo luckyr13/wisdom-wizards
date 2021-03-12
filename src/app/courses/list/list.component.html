@@ -25,18 +25,18 @@
 	<div class="row" *ngIf="!loading && !hideSubjects">
   	<div class="col list-container">
   		<mat-card>
-				<h1 class="text-center">Select a subject</h1>
+				<h1 class="text-center bold">Select a subject</h1>
 			</mat-card>
 		</div>
 	</div>
 	<div class="row fadeIn" *ngIf="!loading && !hideSubjects">
   	<div 
   		class="col-3 subject-card" 
-  		*ngFor="let subject of subjects; let subjectId = index">
-  		<mat-card (click)="searchCoursesBySubject(subjectId)">
+  		*ngFor="let subject of subjects">
+  		<mat-card (click)="searchCoursesBySubject(subject.id)">
 				<div class="text-center subject-card-title">
-					{{ subject }} <span class="text-center" *ngIf="courses[subjectId]">
-					({{ courses[subjectId].length }})
+					{{ subject.label }} <span class="text-center" *ngIf="courses[subject.id]">
+					({{ courses[subject.id].length }})
 				</span>
 				</div>
 			</mat-card>
@@ -64,14 +64,14 @@
 		</div>
 		<div class="row fadeIn">
 	  	<div 
-	  		class="col-4 subject-card" 
+	  		class="col-6 subject-card" 
 	  		*ngFor="let course of filteredCourses">
 	  		<mat-card>
-	  			<h2 style="font-weight: bold">{{ course.name }}</h2>
-	        <p>Description: {{ course.description }}</p>
-	        <p>ImgURL: {{ course.imgUrl }}</p>
+	  			<h2 class="bold">{{ course.name }}</h2>
+	        <p>Description: </p>
+	        <p>{{ course.description }}</p>
 	        <p>Price: {{ course.price }} winston</p>
-	        <p>Students: {{ course.numUsers.length }} winston</p>
+	        <p>Students: {{ course.numUsers }}</p>
 	        <p>Rating: {{ course.rating }} by {{ course.evaluators }} students</p>
 
 					<div class="text-center subject-card-title">

@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class ListComponent implements OnInit {
   mainAddress: string = this._arweave.getMainAddress();
 	loading: boolean = false;
-	subjects: string[] = [];
+	subjects: any[] = [];
   hideSubjects: boolean = false;
   courses: any[] = [];
   filteredCourses: any[] = [];
@@ -61,6 +61,8 @@ export class ListComponent implements OnInit {
       next: (courses) => {
         this.courses = courses;
         this.loading = false;
+
+        console.log(this.courses);
       },
       error: (error) => {
         console.log('error', error);

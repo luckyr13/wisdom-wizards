@@ -6,12 +6,18 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ArweaveService } from './arweave.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-	constructor(private _arweave: ArweaveService) {
+	constructor(
+    private _arweave: ArweaveService,
+    private _snackBar: MatSnackBar,
+    private _router: Router
+   ) {
 
 	}
 
@@ -31,7 +37,25 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   isLoggedIn(): boolean {
   	const mainAddress = this._arweave.getMainAddress();
-  	return (mainAddress !== '');
+    const isLoggedIn = (mainAddress !== '');
+    if (!isLoggedIn) {
+      this.message('Please login first!', 'error');
+      this._router.navigate(['/home']);
+    }
+
+  	return isLoggedIn;
+  }
+
+  /*
+  *  Custom snackbar message
+  */
+  message(msg: string, panelClass: string = '', verticalPosition: any = undefined) {
+    this._snackBar.open(msg, 'X', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: verticalPosition,
+      panelClass: panelClass
+    });
   }
   
 }

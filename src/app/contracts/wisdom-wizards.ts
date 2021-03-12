@@ -21,39 +21,39 @@ export class WisdomWizardsContract
 	// private _contractAddress: string = 'kHbA2BJCkX2jj1RGpVohp8ihzk6kKlCYoxaZOIPhL14';
 	private _contractAddress: string = 'lmOgf5O5wNiFi45rL5QMkB-bAEF5c-Yc0IZyoSCV-eU';
 	
-	private _subjectsLocal: string[] = [
-		"Architecture",
-		"Art & Culture",
-		"Biology & Life Sciences",
-		"Business & Management",
-		"Chemistry",
-		"Communication",
-		"Computer Science",
-		"Data Analysis & Statistics",
-		"Design",
-		"Economics & Finance",
-		"Education & Teacher Training",
-		"Electronics",
-		"Energy & Earth Sciences",
-		"Engineering",
-		"Environmental Studies",
-		"Ethics",
-		"Food & Nutrition",
-		"Health & Safety",
-		"History",
-		"Humanities",
-		"Language",
-		"Law",
-		"Literature",
-		"Math",
-		"Medicine",
-		"Music",
-		"Philanthropy",
-		"Philosophy & Ethics",
-		"Physics",
-		"Science",
-		"Social Sciences",
-		"Other"
+	private _subjectsLocal: any[] = [
+		{ id: 0, label: "Architecture", icon: ""},
+		{ id: 1, label: "Art & Culture", icon: ""},
+		{ id: 2, label: "Biology & Life Sciences", icon: ""},
+		{ id: 3, label: "Business & Management", icon: ""},
+		{ id: 4, label: "Chemistry", icon: ""},
+		{ id: 5, label: "Communication", icon: ""},
+		{ id: 6, label: "Computer Science", icon: ""},
+		{ id: 7, label: "Data Analysis & Statistics", icon: ""},
+		{ id: 8, label: "Design", icon: ""},
+		{ id: 9, label: "Economics & Finance", icon: ""},
+		{ id: 10, label: "Education & Teacher Training", icon: ""},
+		{ id: 11, label: "Electronics", icon: ""},
+		{ id: 12, label: "Energy & Earth Sciences", icon: ""},
+		{ id: 13, label: "Engineering", icon: ""},
+		{ id: 14, label: "Environmental Studies", icon: ""},
+		{ id: 15, label: "Ethics", icon: ""},
+		{ id: 16, label: "Food & Nutrition", icon: ""},
+		{ id: 17, label: "Health & Safety", icon: ""},
+		{ id: 18, label: "History", icon: ""},
+		{ id: 19, label: "Humanities", icon: ""},
+		{ id: 20, label: "Language", icon: ""},
+		{ id: 21, label: "Law", icon: ""},
+		{ id: 22, label: "Literature", icon: ""},
+		{ id: 23, label: "Math", icon: ""},
+		{ id: 24, label: "Medicine", icon: ""},
+		{ id: 25, label: "Music", icon: ""},
+		{ id: 26, label: "Philanthropy", icon: ""},
+		{ id: 27, label: "Philosophy & Ethics", icon: ""},
+		{ id: 28, label: "Physics", icon: ""},
+		{ id: 29, label: "Science", icon: ""},
+		{ id: 30, label: "Social Sciences", icon: ""},
+		{ id: 31, label: "Other", icon: ""},
 	];
 	
 
@@ -143,7 +143,7 @@ export class WisdomWizardsContract
 	*	@dev Alternative to getSubjects
 	*/
 	getSubjectsLocalCopy() {
-		const obs = new Observable<string[]>((subscriber) => {
+		const obs = new Observable<any[]>((subscriber) => {
 			try {
 				subscriber.next(this._subjectsLocal);
 				subscriber.complete();

@@ -274,7 +274,8 @@ export function handle(state, action)
 				numUsers: c.users.length,
 				numPassedUsers: c.passedUsers.length,
 				rating: c.rating,
-				evaluators: c.evaluators
+				evaluators: c.evaluators,
+				createdBy: c.createdBy
 			});
 		}
 

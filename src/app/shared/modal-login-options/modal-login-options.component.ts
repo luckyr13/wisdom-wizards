@@ -57,7 +57,7 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
         this._router.navigate(['/dashboard']);
   		},
   		error: (error) => {
-        this.message(`Error: ${error}`);
+        this.message(`Error: ${error}`, 'error');
         this.loading = false;
         this._bottomSheetRef.dismiss();
 
@@ -65,12 +65,13 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
   	});
   }
 
+
   /*
-  *  @dev Custom snackbar message
+  *  Custom snackbar message
   */
   message(msg: string, panelClass: string = '', verticalPosition: any = undefined) {
     this._snackBar.open(msg, 'X', {
-      duration: 5000,
+      duration: 8000,
       horizontalPosition: 'center',
       verticalPosition: verticalPosition,
       panelClass: panelClass

@@ -24,7 +24,7 @@ export class NewComponent implements OnInit {
 		price: new FormControl('0'),
 
 	});
-	subjects: Observable<string[]> = this._wisdomWizards
+	subjects: Observable<any[]> = this._wisdomWizards
 		.getSubjectsLocalCopy();
   txmessage: string = '';
   previewImgUrl: string = '';
