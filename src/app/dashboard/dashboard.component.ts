@@ -22,6 +22,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	loading: boolean = false;
   disableRegisterButton: boolean = false;
   txmessage: string = '';
+  lastTransactionID: Observable<string> = this._arweave.getLastTransactionID(this.mainAddress);
+  otherDataInterval: any = null;
 
   constructor(
   	private _router: Router,
@@ -42,6 +44,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   	// Fetch data to display
   	// this.loading is updated to false on success
   	this.getUserInfo();
+
+    // Update last transaction every 15 seconds
+    this.otherDataInterval = window.setInterval(() => {
+      this.lastTransactionID = this._arweave.getLastTransactionID(this.mainAddress);
+      this.balance = this._arweave.getAccountBalance(this.mainAddress);
+      // this.getUserInfo();
+    }, 30000);
 
   }
 
@@ -71,6 +80,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   			this.message(`Success! TXID: ${res}`, 'success');
         this.txmessage = `https://viewblock.io/arweave/tx/${res}`;
 
+        
   		},
   		error: (error) => {
   			console.log('error', error);
@@ -113,6 +123,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   	if (this.userInfo$) {
   		this.userInfo$.unsubscribe();
   	}
+    window.clearInterval(this.otherDataInterval);
   }
 
   /*

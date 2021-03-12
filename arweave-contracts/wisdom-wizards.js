@@ -1,5 +1,5 @@
 /*
-*	Version 4
+*	Version 5
 */
 export function handle(state, action)
 {	
@@ -131,6 +131,7 @@ export function handle(state, action)
 	*/
 	if (action.input.function === "enrollMe") {
 		// TODO Modifier: User can not be the creator?
+		_modifier_ownerOfCourseDetected(state.courses[action.input.courseId], _msgSender);
 		// Validate inputs that must be numbers
 		_modifier_validateInputNumber(action.input.courseId, 'courseId');
 		// Course must exist
@@ -249,10 +250,11 @@ export function handle(state, action)
 	*/
 	if (action.input.function === "getActiveCourses") {
 		const courses = state.courses;
-		const subjects = state.subjects;
 		const res = {};
 
-		for (let c in courses) {
+		for (let courseId in courses) {
+			const c = courses[courseId];
+
 			// Skip inactive courses
 			if (!c.active) {
 				continue;
@@ -263,6 +265,7 @@ export function handle(state, action)
 			}
 
 			res[c.subject].push({
+				id: courseId,
 				name: c.name,
 				description: c.description,
 				imgUrl: c.imgUrl,
@@ -343,5 +346,12 @@ function _modifier_onlyOwnerCanUpdateCourse(_course, _msgSender)
 {
 	if (_course.createdBy !== _msgSender) {
 		throw new ContractError(`You are not the owner of this course!`);
+	}
+}
+
+function _modifier_ownerOfCourseDetected(_course, _msgSender)
+{
+	if (_course.createdBy === _msgSender) {
+		throw new ContractError(`You are the owner in this course!`);
 	}
 }

@@ -25,11 +25,10 @@
   		<mat-card>
 				<h1 class="text-center">My created courses</h1>
 			</mat-card>
-      
 		</div>
-
-    <div class="col-12">Res: <span>{{ txmessageActivate }}</span></div>
-
+    <div class="col-12">
+      TX info: <a target="_blank" [href]="txmessageActivate">{{ txmessageActivate }}</a>
+    </div>
     <div 
       *ngFor="let courseId of coursesCreatedById"
       class="col-4 my-created-container ">
@@ -37,6 +36,7 @@
         {{ courseId }}
         <button 
           mat-flat-button 
+          [disabled]="loadingActivate"
           (click)="activateCourse(courseId)" 
           color="primary">Activate</button>
       </mat-card>

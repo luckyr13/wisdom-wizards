@@ -12,20 +12,20 @@
   <span class="logo-text">Wisdom Wizards</span>
   <span class="menu-spacer"></span>
   <button 
-    mat-button 
+    mat-icon-button 
     (click)="login()"
     aria-label="Login"
+    matTooltip="Login"
     *ngIf="!isLoggedIn">
     <mat-icon>login</mat-icon>
-    Login
   </button>
   <button 
-    mat-button 
+    mat-icon-button 
     (click)="logout()"
     aria-label="Logout"
+    matTooltip="Logout"
     *ngIf="isLoggedIn">
     <mat-icon>logout</mat-icon>
-    Logout
   </button>
   <button 
   		[matMenuTriggerFor]="langMenu"

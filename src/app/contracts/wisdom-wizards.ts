@@ -13,7 +13,10 @@ export class WisdomWizardsContract
 {
 	// private _contractAddress: string = 'Bg2yem2w0dWkTHbO9xpCtXnC9BV2ptLZ5BiZVjFcDC8';
 //	private _contractAddress: string = '-KUy-Gv2sD1BZHhUBwsNO075PVYX6NLudK73D2SH_5Y';
-	private _contractAddress: string = 'KeOt45twVd0UwSmiY7SteZXuvwBiixb8XaAkXVs3ePE';
+	//private _contractAddress: string = 'KeOt45twVd0UwSmiY7SteZXuvwBiixb8XaAkXVs3ePE';
+	//private _contractAddress: string = 'kcE9B_T3H8zNHWghiSi5HLx6JnF5-znizCecIRWiy64';
+	private _contractAddress: string = 'sdOMIHnYrrco6rnl_yJGZirqO54SMhxhdGV9RC8xyyY';
+	
 	private _subjectsLocal: string[] = [
 		"Architecture",
 		"Art & Culture",

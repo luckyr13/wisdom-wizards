@@ -172,4 +172,19 @@ export class ArweaveService {
     window.sessionStorage.removeItem('MAINADDRESS');
   }
 
+  getLastTransactionID(_address: string): Observable<string> {
+    const obs = new Observable<string>((subscriber) => {
+      this.arweave.wallets.getLastTransactionID(_address).then((res: string) => {
+        subscriber.next(res);
+        subscriber.complete();
+      }).catch((error: any) => {
+        subscriber.error(error);
+      });
+    })
+
+    return obs.pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
 }

@@ -9,16 +9,35 @@
 	*ngIf="loading"
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
+
+<div *ngIf="!loading" class="container fadeIn">
+	<div class="row">
+		<div class="col-12 col-md-6 scoreboard">
+			<mat-card>
+				<div class="text-center"><span class="bn2">{{ balance | async }}</span> AR</div>
+				<div class="text-center">Account balance</div>
+			</mat-card>
+		</div>
+		
+		<div class="col-12 col-md-6 scoreboard">
+			<mat-card>
+				<div class="text-center">
+					<a 
+						mat-button
+						target="_blank"
+						href="https://viewblock.io/arweave/tx/{{lastTransactionID | async}}"
+						class="bn3 txurl">{{ lastTransactionID | async }}</a>
+				</div>
+				<div class="text-center">Last TXID processed</div>
+			</mat-card>
+		</div>
+	</div>
+</div>
+
 <div class="container dashboard-container">
 	<div *ngIf="userInfo && userInfo.coursesEnrolled && !loading" class="fadeIn">
 		<h1>Welcome back!</h1>
 		<div class="row">
-			<div class="col-12 col-md-12 scoreboard">
-				<mat-card>
-					<div class="text-center"><span class="bn2">{{ balance | async }}</span> AR</div>
-					<div class="text-center">Account balance</div>
-				</mat-card>
-			</div>
 			<div class="col-12 col-md-3 scoreboard">
 				<mat-card>
 					<div class="bn text-center">{{ userInfo.coursesEnrolled.length }}</div>
@@ -63,7 +82,7 @@
 			<div class="col-6 scoreboard">
 				<mat-card>
 					<button 
-						color="primary"
+						color="accent"
 						style="float: right; margin-right: 10px"
 						mat-mini-fab 
 						routerLink="/courses/created"
@@ -76,52 +95,49 @@
 					</h1>
 				</mat-card>
 			</div>
-			
-		</div>
-
-	</div>
-</div>
-
-<div *ngIf="(!userInfo || !userInfo.coursesEnrolled) && !loading"
-	class="container dashboard-container fadeIn">
-	<div class="row">
-		<div class="col-12 col-md-12 scoreboard">
-			<mat-card>
-				<div class="text-center"><span class="bn2">{{ balance | async }}</span> AR</div>
-				<div class="text-center">Account balance</div>
-			</mat-card>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col" >
-			Register: 
-    	<button 
-    		[disabled]="disableRegisterButton"
-	    	mat-flat-button 
-	    	(click)="register()" 
-	    	color="primary">REGISTER NOW</button>
-	    &nbsp;
-	    <button 
-    		[disabled]="disableRegisterButton"
-	    	mat-flat-button 
-	    	(click)="reload()" 
-	    	color="accent">RELOAD PAGE</button>
-		</div>
-		<div class="col text-right" >
-			<strong class="red">*</strong> If you already pressed the "REGISTER NOW" button, then you don't have to do it again. You only have to wait until the transaction is processed by the Arweave network. (Unless that your transaction fails! ;) Hint: Do you have enough AR?)
-		</div>
-
-	</div>
-	<div class="row" *ngIf="txmessage">
-		<div class="col" >
-			Processing transaction ... Please come back again in a few minutes while the jobe is done:)
-			<br>
-			Transaction status:&nbsp;
-			<a target="_blank" class="purple" [href]="txmessage">{{ txmessage }}</a>
-			<br>
-			Meanwhile you can browse our courses list: 
-			<a class="purple" routerLink="/courses">View courses</a>
 		</div>
 	</div>
 
+	<div *ngIf="(!userInfo || !userInfo.coursesEnrolled) && !loading"
+		class="container fadeIn">
+		<mat-card>
+			<h1>Create an account</h1>
+				<p>You need to register in our platform in order to start using it. Please click on the "Register" button and wait until your transaction gets processed.</p>
+			<div class="row">
+				<div class="col-12" >
+		    	<button 
+		    		[disabled]="disableRegisterButton"
+			    	mat-flat-button 
+			    	(click)="register()" 
+			    	color="primary">REGISTER NOW</button>
+			    &nbsp;
+			    <button 
+		    		[disabled]="disableRegisterButton"
+			    	mat-flat-button 
+			    	(click)="reload()" 
+			    	color="accent">RELOAD PAGE</button>
+				</div>
+				<div class="col-12 text-center" style="margin-top: 20px;" >
+					<strong class="red">*</strong> If you already pressed the "REGISTER NOW" button, then you don't have to do it again. You only have to wait a few minutes until the transaction is processed by the Arweave network. (Unless that your transaction fails! ;)
+					<br>
+					<strong class="red">Hint:</strong> Do you have enough AR?)
+				</div>
+
+			</div>
+			<div class="row" *ngIf="txmessage">
+				<div class="col" >
+					<h2>Processing transaction ... </h2>
+					<p>
+						Please come back again in a few minutes while the jobe is done:)
+					</p>
+					<br>
+					Transaction status:&nbsp;
+					<a target="_blank" class="purple" [href]="txmessage">{{ txmessage }}</a>
+					<br>
+					Meanwhile you can browse our courses list: 
+					<a class="purple" routerLink="/courses">View courses</a>
+				</div>
+			</div>
+		</mat-card>
+	</div>
 </div>
