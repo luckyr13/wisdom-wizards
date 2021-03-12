@@ -1,5 +1,5 @@
 /*
-*	Version 5
+*	Version 6
 */
 export function handle(state, action)
 {	
