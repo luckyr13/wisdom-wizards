@@ -27,6 +27,7 @@ export class NewComponent implements OnInit {
 	subjects: Observable<string[]> = this._wisdomWizards
 		.getSubjectsLocalCopy();
   txmessage: string = '';
+  previewImgUrl: string = '';
 
 	public get name() {
 		return this.frmNew.get('name');
@@ -127,4 +128,7 @@ export class NewComponent implements OnInit {
     });
   }
 
+  previewImage(imgUrl: string) {
+    this.previewImgUrl = imgUrl;
+  }
 }

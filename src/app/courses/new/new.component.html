@@ -22,11 +22,9 @@
 <div class="container new-container-parent" >
 	<div class="row justify-content-center" *ngIf="!loading">
   	<div class="col-6 new-container">
-  		<mat-card>
-				<h1 class="text-center">Create new course</h1>
-			</mat-card>
 			<form class="frmNew" [formGroup]="frmNew" (ngSubmit)="onSubmit()">
 				<mat-card>
+					<h1 class="text-center">Create new course</h1>
 					<mat-form-field appearance="fill" color="accent">
 					  <mat-label>Course name</mat-label>
 					  <input matInput 
@@ -34,23 +32,39 @@
 					 		maxlength="60" 
 					 		required
 				    	formControlName="name">
+    				<mat-hint>*Max 60 characters</mat-hint>
 					</mat-form-field>
 					<mat-form-field appearance="fill" color="accent">
 					  <mat-label>Description</mat-label>
-				    <input matInput 
+				    <textarea matInput 
 					 		type="text" 
 					 		maxlength="200" 
 					 		required
-				    	formControlName="description">
+					 		rows="4"
+				    	formControlName="description"></textarea>
+    				<mat-hint>*Max 200 characters</mat-hint>
 					</mat-form-field>
-					<mat-form-field appearance="fill" color="accent">
-					  <mat-label>Image</mat-label>
-				    <input matInput 
-					 		type="text" 
-					 		maxlength="200" 
-					 		required
-				    	formControlName="imgUrl">
-					</mat-form-field>
+					<div class="row">
+						<mat-form-field appearance="fill" color="accent" class="col-10">
+						  <mat-label>Image url</mat-label>
+					    <input matInput 
+						 		type="text" 
+						 		maxlength="200" 
+						 		required
+						 		(change)="previewImage(imgUrl!.value)"
+					    	formControlName="imgUrl">
+	    				<mat-hint>*Max 200 characters</mat-hint>
+						</mat-form-field>
+						<div class="col-2">
+							<button 
+					    	mat-flat-button
+					    	[disabled]="loadingFrm"
+					    	type="button"
+					    	color="primary">
+					    	<mat-icon>upload</mat-icon>
+					    </button>
+						</div>
+					</div>
 					<mat-form-field appearance="fill" color="accent">
 					  <mat-label>Subject</mat-label>
 				    <mat-select
@@ -67,8 +81,8 @@
 					  <mat-label>Price in winston</mat-label>
 				    <input matInput 
 					 		type="number"
+					 		min="0"
 					 		step="1" 
-					 		maxlength="30" 
 					 		required
 				    	formControlName="price">
 					</mat-form-field>
@@ -81,6 +95,14 @@
 					</div>
 				</mat-card>
 			</form>
+		</div>
+		<div class="col new-container">
+			<mat-card>
+					<h1 class="text-center">Image preview</h1>
+					<div class="img-preview">
+						<img [src]="previewImgUrl" title="Preview">
+					</div>
+			</mat-card>
 		</div>
 	</div>
 

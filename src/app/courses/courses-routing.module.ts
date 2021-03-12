@@ -10,6 +10,7 @@ import { CreatedComponent } from './created/created.component';
 const routes: Routes = [
 	{ 
 		path: 'courses',
+		component: ListComponent,
 		canActivateChild: [AuthGuard],
 		children: [
 			{
@@ -24,9 +25,6 @@ const routes: Routes = [
 			{
 				path: ':id/edit', component: EditComponent
 			},
-			{
-				path: '', component: ListComponent, pathMatch: 'full'
-			}
 		]
 	}
 ];

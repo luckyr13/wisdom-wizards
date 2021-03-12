@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+	sliderImages: string[] = [
+		'./../assets/img/slider1.jpg'
+	];
+	sliderImage: string = '';
 
-  constructor() { }
+  constructor() {
+  	this.sliderImage = this.sliderImages[0];
+  }
 
   ngOnInit(): void {
   }

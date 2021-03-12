@@ -18,14 +18,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('Please login to access this section.')
+    
     return this.isLoggedIn();
   }
 
   canActivateChild(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('Please login to access this section.', this.isLoggedIn())
+    
     return this.isLoggedIn();
   }
 
