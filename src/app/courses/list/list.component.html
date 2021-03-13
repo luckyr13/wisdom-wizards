@@ -47,7 +47,7 @@
 		<div class="row">
 	  	<div class="col list-container">
 	  		<mat-card>
-					<h1 class="text-center">Courses</h1>
+					<h1 class="text-center">Select a course</h1>
 				</mat-card>
 			</div>
 		</div>
@@ -64,19 +64,19 @@
 		</div>
 		<div class="row fadeIn">
 	  	<div 
-	  		class="col-6 subject-card" 
+	  		class="col-6 course-card" 
 	  		*ngFor="let course of filteredCourses">
 	  		<mat-card>
 	  			<h2 class="bold">{{ course.name }}</h2>
-	        <p>Description: </p>
 	        <p>{{ course.description }}</p>
-	        <p>Price: {{ course.price }} winston</p>
-	        <p>Students: {{ course.numUsers }}</p>
-	        <p>Rating: {{ course.rating }} by {{ course.evaluators }} students</p>
+	        <p><strong>Certificate price:</strong> {{ course.price }} winston</p>
+	        <p><strong>Students:</strong> {{ course.numUsers }}</p>
+	        <p><strong>Rating:</strong> {{ course.rating }} by {{ course.evaluators }} students</p>
+	        <p><strong>Created by:</strong> {{ course.createdBy }} </p>
 
-					<div class="text-center subject-card-title">
-						<a mat-button [routerLink]="['/courses', course.id]">
-							View
+					<div class="text-right course-card-title">
+						<a mat-button color="primary" [routerLink]="['/courses', course.id]">
+							View detail
 						</a>
 					</div>
 				</mat-card>

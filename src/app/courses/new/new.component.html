@@ -71,7 +71,7 @@
 						 		required
 					    	formControlName="subject">
 					    <mat-option 
-					    	*ngFor="let sub of subjects"
+					    	*ngFor="let sub of subjects | async"
 					    	[value]="sub.id">
 					    	{{ sub.label }}
 					    </mat-option>
@@ -85,6 +85,16 @@
 					 		step="1" 
 					 		required
 				    	formControlName="price">
+					</mat-form-field>
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Language code</mat-label>
+					  <input matInput 
+					 		type="text" 
+					 		maxlength="2" 
+					 		required
+					 		[value]="langCode!.value | uppercase"
+				    	formControlName="langCode">
+    				<mat-hint>*Max 2 characters</mat-hint>
 					</mat-form-field>
 					<div class="text-center">
 				    <button 

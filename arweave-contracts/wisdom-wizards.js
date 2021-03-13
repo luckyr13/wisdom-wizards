@@ -1,5 +1,5 @@
 /*
-*	Version 9
+*	Version 10
 *	God bless this mess :)
 */
 export function handle(state, action)
@@ -36,6 +36,7 @@ export function handle(state, action)
 		_modifier_validateInputString(action.input.name, 'name', 60);
 		_modifier_validateInputString(action.input.description, 'description', 200);
 		_modifier_validateInputString(action.input.imgUrl, 'imgUrl', 200);
+		_modifier_validateInputString(action.input.langCode, 'langCode', 2);
 		// Validate inputs that must be numbers
 		_modifier_validateInputNumber(action.input.subject, 'subject');
 		// Validate inputs that must be numbers
@@ -59,6 +60,7 @@ export function handle(state, action)
 			passedUsers: [],
 			rating: 0,
 			evaluators: 0,
+			langCode: String.prototype.trim.call(action.input.langCode),
 			price: parseInt(action.input.price)
 		};
 		// Add new course
@@ -105,6 +107,8 @@ export function handle(state, action)
 		_modifier_validateInputString(action.input.name, 'name', 60);
 		_modifier_validateInputString(action.input.description, 'description', 200);
 		_modifier_validateInputString(action.input.imgUrl, 'imgUrl', 200);
+		_modifier_validateInputString(action.input.langCode, 'langCode', 2);
+
 		// Validate inputs that must be numbers
 		_modifier_validateInputNumber(action.input.subject, 'subject');
 		// Validate inputs that must be numbers
@@ -122,6 +126,7 @@ export function handle(state, action)
 		state.courses[action.input.courseId].description = String.prototype.trim.call(action.input.description);
 		state.courses[action.input.courseId].imgUrl = String.prototype.trim.call(action.input.imgUrl);
 		state.courses[action.input.courseId].subject = action.input.subject;
+		state.courses[action.input.courseId].langCode = action.input.langCode;
 		state.courses[action.input.courseId].price = parseInt(action.input.price);
 
 		return {state};
@@ -275,7 +280,8 @@ export function handle(state, action)
 				numPassedUsers: c.passedUsers.length,
 				rating: c.rating,
 				evaluators: c.evaluators,
-				createdBy: c.createdBy
+				createdBy: c.createdBy,
+				langCode: c.langCode
 			});
 		}
 
@@ -332,15 +338,45 @@ export function handle(state, action)
 				numPassedUsers: c.passedUsers.length,
 				rating: c.rating,
 				evaluators: c.evaluators,
-				active: c.active
+				active: c.active,
+				langCode: c.langCode
 			});
 		}
 
 		return { result: res };
 	}
 
+	/*
+	*	@dev Get info about users in a course
+	*/
+	if (action.input.function === "getUsersFromMyCreatedCourse") {
+		// Validate if user exists
+		if (!Object.prototype.hasOwnProperty.call(state.users, _msgSender)) {
+			throw new ContractError('User is not registered');
+		}
+		// Validate inputs that must be numbers
+		_modifier_validateInputNumber(action.input.courseId, 'courseId');
+		// Course must exist
+		if (typeof state.courses[action.input.courseId] === 'undefined') {
+			throw new ContractError('Invalid courseId');
+		}
+		// Only owner (professor) can update the course
+		// this helps to know if course should be listed or not in the UI
+		_modifier_onlyOwnerCanUpdateCourse(state.courses[action.input.courseId], _msgSender);
+
+		const course = state.course[action.input.courseId];
+		const users = course.users.concat(course.passedUsers);
+		const result = {
+			users: course.users,
+			passedUsers: course.passedUsers
+		};
+
+		return { result: result };
+	}
+
 	throw new ContractError('Invalid option!');
 }
+
 
 function _modifier_userAlreadyRegistered(_users, _msgSender)
 {

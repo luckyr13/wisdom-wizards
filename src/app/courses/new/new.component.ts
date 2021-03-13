@@ -22,7 +22,7 @@ export class NewComponent implements OnInit {
 		imgUrl: new FormControl(''),
 		subject: new FormControl(''),
 		price: new FormControl('0'),
-
+    langCode: new FormControl('')
 	});
 	subjects: Observable<any[]> = this._wisdomWizards
 		.getSubjectsLocalCopy();
@@ -44,6 +44,9 @@ export class NewComponent implements OnInit {
 	public get price() {
 		return this.frmNew.get('price');
 	}
+  public get langCode() {
+    return this.frmNew.get('langCode');
+  }
 
   constructor(
   	private _location: Location,
@@ -66,6 +69,8 @@ export class NewComponent implements OnInit {
   	const imgUrl = this.imgUrl!.value;
   	const subject = this.subject!.value;
   	const price = this.price!.value;
+    const langCode = this.langCode!.value;
+
   	this.disableForm(true);
 
   	// Save data 
@@ -76,7 +81,8 @@ export class NewComponent implements OnInit {
   		description,
   		imgUrl,
   		subject,
-  		price
+  		price,
+      langCode
   	).subscribe({
   		next: (res) => {
         this.disableForm(false);
@@ -105,6 +111,7 @@ export class NewComponent implements OnInit {
 	  	this.imgUrl!.disable();
 	  	this.subject!.disable();
 	  	this.price!.disable();
+      this.langCode!.disable();
 	  	this.loadingFrm = true;
   	} else {
   		this.name!.disable();
@@ -112,6 +119,7 @@ export class NewComponent implements OnInit {
 	  	this.imgUrl!.disable();
 	  	this.subject!.disable();
 	  	this.price!.disable();
+      this.langCode!.disable();
 	  	this.loadingFrm = false;
   	}
   }

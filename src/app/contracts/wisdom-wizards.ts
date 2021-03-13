@@ -19,8 +19,9 @@ export class WisdomWizardsContract
 	// private _contractAddress: string = 'sdOMIHnYrrco6rnl_yJGZirqO54SMhxhdGV9RC8xyyY';
 	//private _contractAddress: string = 'WJd5hDNlEVaDCBF6wuau1S1HEqNgzgnVlXMPNK1psXU';
 	// private _contractAddress: string = 'kHbA2BJCkX2jj1RGpVohp8ihzk6kKlCYoxaZOIPhL14';
-	private _contractAddress: string = 'lmOgf5O5wNiFi45rL5QMkB-bAEF5c-Yc0IZyoSCV-eU';
-	
+	// private _contractAddress: string = 'lmOgf5O5wNiFi45rL5QMkB-bAEF5c-Yc0IZyoSCV-eU';
+	private _contractAddress: string = 'yowLo9OICoqnUJNwt55a0uZ_zrnV01laKReWUJWZyjA';
+
 	private _subjectsLocal: any[] = [
 		{ id: 0, label: "Architecture", icon: ""},
 		{ id: 1, label: "Art & Culture", icon: ""},
@@ -183,7 +184,8 @@ export class WisdomWizardsContract
 		description: string,
 		imgUrl: string,
 		subject: number,
-		price: number
+		price: number,
+		langCode: string
 	): Observable<any> {
 		const obs = new Observable((subscriber) => {
 			const input = {
@@ -192,7 +194,8 @@ export class WisdomWizardsContract
 	  		description: description,
 	  		imgUrl: imgUrl,
 	  		subject: subject,
-	  		price: price
+	  		price: price,
+	  		langCode: langCode
 			};
 
 			interactWrite(arweave, walletJWK, this._contractAddress, input)

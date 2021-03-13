@@ -26,13 +26,8 @@
 				<h1 class="bold text-center">My created courses</h1>
 			</mat-card>
 		</div>
-    <div class="col-12 txbar">
-      <mat-card>
-        TX info: 
-        <a target="_blank" [href]="txmessageActivate">
-          {{ txmessageActivate }}
-        </a>
-      </mat-card>
+    <div class="col-12 my-created-container">
+      <h1 class="text-center">No results found</h1>
     </div>
     <div 
       *ngFor="let course of coursesCreatedById"
@@ -43,10 +38,16 @@
         <p class="bold">Description: </p>
         <p>{{ course.description }}</p>
         <p>
-          <span class="bold">ImgURL:</span> {{ course.imgUrl }}
+          <span class="bold">ImgURL: </span> {{ course.imgUrl }}
         </p>
         <p>
-          <span class="bold">Price:</span> {{ course.price }} winston
+          <span class="bold">Price: </span> {{ course.price }} winston
+        </p>
+        <p class="text-center">
+          <span class="bold">Students: </span> {{ course.numUsers }} |
+          <span class="bold"> Passed students: </span> {{ course.numPassedUsers }} |
+          <span class="bold"> Rating: </span> 
+          {{ course.rating }} by {{ course.evaluators }}
         </p>
         <p>
           <span class="bold">Tx: </span>
