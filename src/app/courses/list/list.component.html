@@ -82,7 +82,7 @@
 	        <p><strong>Students:</strong> {{ course.numUsers }}</p>
 	        <p><strong>Rated:</strong> {{ course.rating }} by {{ course.evaluators }} students</p>
 	        <p><strong>Created by:</strong> {{ course.createdBy }} </p>
-
+	        <p><strong>Language:</strong> {{ course.langCode }} </p>
 					<div class="text-right course-card-title">
 						<a mat-button color="accent" [routerLink]="['/courses', course.id]">
 							View course
