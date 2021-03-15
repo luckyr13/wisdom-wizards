@@ -36,11 +36,14 @@ export class CreatedComponent implements OnInit, OnDestroy {
     }
   }
 
+  /*
+  *  @dev Navigate to previous page
+  */
   goBack() {
   	this._location.back();
   }
 
-   /*
+  /*
   *  Custom snackbar message
   */
   message(msg: string, panelClass: string = '', verticalPosition: any = undefined) {

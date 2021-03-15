@@ -2,7 +2,7 @@ import {
   Component, OnInit, OnDestroy, 
   Input, Output, EventEmitter
 } from '@angular/core';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import { ModalLoginOptionsComponent } from '../shared/modal-login-options/modal-login-options.component';
 import { AuthService } from '../auth/auth.service';
 import { ArweaveService } from '../auth/arweave.service';

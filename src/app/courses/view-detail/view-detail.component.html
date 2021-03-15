@@ -1,20 +1,27 @@
 <mat-toolbar class="fadeIn" color="accent" >
   <mat-icon 
   	aria-hidden="false"
-  	aria-label="Error">error</mat-icon>
+  	aria-label="Course">school</mat-icon>
 	<span>&nbsp;Courses : Info</span>
+	<span class="toolbar-spacer"></span>
+  <button 
+  	mat-icon-button 
+  	class="fadeIn" 
+  	(click)="goBack()"
+    matTooltip="Go back"
+  	aria-label="Go back">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
 </mat-toolbar>
 
-<div class="container error-container-parent" >
+<div class="container detail-container-parent" >
 	<div class="row fadeIn" >
-  	<div class="col-12 error-container">
+  	<div class="col-12 detail-container">
   		<mat-card>
-				<h1 class="text-center">ERROR</h1>
-				<p class="bn text-center">
-					404
+				<h1 class="text-center">Title</h1>
+				<p class="text-center">
+					Info
 				</p>
-
-				<h1 class="text-center">PAGE NOT FOUND</h1>
 			</mat-card>
 		</div>
 	</div> 

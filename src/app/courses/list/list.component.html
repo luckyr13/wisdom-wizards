@@ -35,8 +35,11 @@
   		*ngFor="let subject of subjects">
   		<mat-card (click)="searchCoursesBySubject(subject.id)">
 				<div class="text-center subject-card-title">
+					<mat-icon 
+						*ngIf="subject.icon"
+						class="subject-card-icon">{{ subject.icon }}</mat-icon>
 					{{ subject.label }} <span class="text-center" *ngIf="courses[subject.id]">
-					({{ courses[subject.id].length }})
+					(<span class="green">{{ courses[subject.id].length }}</span>)
 				</span>
 				</div>
 			</mat-card>
@@ -51,11 +54,17 @@
 				</mat-card>
 			</div>
 		</div>
-		<div class="row fadeIn">
+		<h1 class="selected-subject-bar">
+			<button mat-fab color="primary">
+				<mat-icon>{{ selectedSubject.icon }}</mat-icon>
+			</button>
+			<span> Subject: {{ selectedSubject.label }}</span>
+		</h1>
+		<div class="row">
 	  	<div 
-	  		class="col" 
-	  		*ngIf="filteredCourses">
-	  		<mat-card *ngIf="!filteredCourses">
+	  		class="col fadeIn" 
+	  		*ngIf="filteredCourses.length === 0">
+	  		<mat-card>
 					<div class="text-center ">
 						No results found.
 					</div>
@@ -71,12 +80,12 @@
 	        <p>{{ course.description }}</p>
 	        <p><strong>Certificate price:</strong> {{ course.price }} winston</p>
 	        <p><strong>Students:</strong> {{ course.numUsers }}</p>
-	        <p><strong>Rating:</strong> {{ course.rating }} by {{ course.evaluators }} students</p>
+	        <p><strong>Rated:</strong> {{ course.rating }} by {{ course.evaluators }} students</p>
 	        <p><strong>Created by:</strong> {{ course.createdBy }} </p>
 
 					<div class="text-right course-card-title">
-						<a mat-button color="primary" [routerLink]="['/courses', course.id]">
-							View detail
+						<a mat-button color="accent" [routerLink]="['/courses', course.id]">
+							View course
 						</a>
 					</div>
 				</mat-card>

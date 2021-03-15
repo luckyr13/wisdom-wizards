@@ -12,10 +12,19 @@
 
 .main-title {
 	margin-top: 300px;
-	font-size: 62px;
+	font-size: 42px;
 	font-weight: bold;
 	color: #FFF;
 	text-shadow: 2px 2px 8px #000;
+}
+
+@media (min-width: 768px) {
+
+	.main-title {
+		margin-top: 360px;
+		font-size: 62px;
+	}
+
 }
 
 .main-title span {
@@ -31,7 +40,7 @@
 	font-size: 42px;
 	font-weight: bold;
 	margin-bottom: 28px;
-	margin-top: 28px;
+	margin-top: 60px;
 
 }
 
@@ -41,6 +50,9 @@
 }
 
 .how-card-icon {
-	font-size: 64px;
+	font-size: 82px;
+	margin-bottom: 20px;
+
+	line-height: 82px;
 	width: 100%;
 }

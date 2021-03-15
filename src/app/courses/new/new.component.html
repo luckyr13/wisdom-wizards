@@ -109,8 +109,8 @@
 		<div class="col new-container">
 			<mat-card>
 					<h1 class="text-center">Image preview</h1>
-					<div class="img-preview">
-						<img [src]="previewImgUrl" title="Preview">
+					<div class="img-preview text-center">
+						<img width="200px" *ngIf="previewImgUrl" [src]="previewImgUrl" title="Preview">
 					</div>
 			</mat-card>
 		</div>

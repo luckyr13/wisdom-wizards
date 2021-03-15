@@ -19,13 +19,18 @@
 			<mat-card>
 				<div>
 						<mat-icon 
-							class="how-card-icon"
+							class="how-card-icon blue-happy"
 							aria-hidden="false" 
 							aria-label="Wisdom">school</mat-icon>
 				</div>
 				<div>	
 					Create a course and start earning AR by sharing your wisdom.
 				</div>
+				<br><br>
+				<button 
+						mat-button
+						color="primary"
+    				(click)="login()">Start now</button>
 				
 			</mat-card>
 		</div>
@@ -39,6 +44,11 @@
 				</div>
 				<div>	
 					Join us and start learning from instructors from all over the world.
+					<br><br>
+					<button 
+						mat-button
+						color="primary"
+    				(click)="login()">Start now</button>
 				</div>
 			</mat-card>
 		</div>
@@ -46,27 +56,29 @@
 			<mat-card>
 				<div>
 						<mat-icon 
-							class="how-card-icon"
+							class="how-card-icon pink"
 							aria-hidden="false" 
 							aria-label="Wizards">savings</mat-icon>
 				</div>
 				<div>
 					Support the community and earn passive income by buying/earning our PST tokens.
+					<br><br>
+					<a mat-button routerLink="/whitepaper" color="accent">Learn more</a>
 				</div>
 			</mat-card>
 		</div>
 	</div>
 	<h1 class="how-title text-center">How to start?</h1>
-	<h2 class="">You only need an Arweave wallet</h2>
+	<h2 class="text-center">You only need an Arweave wallet</h2>
 	
 	<div class="row">
 		<div class="col">
-			<h3>Recommended wallets</h3>
+			<h3 class="bold text-center">Recommended wallets</h3>
 			<p>
-				Arweave wallet: <a mat-button target="_blank" href="https://www.arweave.org/wallet">https://www.arweave.org/wallet</a>
+				+ Arweave wallet: <a mat-button target="_blank" href="https://www.arweave.org/wallet">https://www.arweave.org/wallet</a>
 			</p>
 			<p>
-				Arconnect wallet: <a mat-button target="_blank" href="https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap">https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap</a>
+				+ Arconnect wallet: <a mat-button target="_blank" href="https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap">https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap</a>
 			</p>
 		</div>
 	</div>

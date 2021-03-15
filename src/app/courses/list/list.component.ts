@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
   hideSubjects: boolean = false;
   courses: any[] = [];
   filteredCourses: any[] = [];
+  selectedSubject: any = null;
 
   constructor(
   	private _wisdomWizards: WisdomWizardsContract,
@@ -76,18 +77,22 @@ export class ListComponent implements OnInit {
   */
   searchCoursesBySubject(subjectId: number) {
     this.hideSubjects = true;
+    this.filteredCourses = [];
+    this.selectedSubject = this.subjects[subjectId];
 
     if (!Object.prototype.hasOwnProperty.call(this.courses, subjectId)) {
-      this.message(`There are no courses on this category`, 'error');
+      // this.message(`There are no courses on this category`, 'error');
       return;
     }
 
-    this.filteredCourses = [];
     for (let course of this.courses[subjectId]) {
       this.filteredCourses.push(course);
     }
   }
 
+  /*
+  *  @dev Display subjects
+  */
   showSubjects() {
     this.hideSubjects = false;
   }

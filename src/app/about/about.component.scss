@@ -19,9 +19,30 @@
 .about-container-info {
 	font-size: 18px;
 	line-height: 18px;
+	margin-bottom: 20px;
+}
+
+.about-container-info p {
+	width: 60%;
+	margin: 0 auto;
+	margin-bottom: 10px;
 }
 
 .bn {
 	font-size: 40px;
 	padding-bottom: 10px;
+}
+
+.small-legend, .small-legend a {
+	font-size: 12px;
+	font-style: italic;
+}
+
+.wwtext p, .wwtext a {
+	font-family: "Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, "Liberation Mono", Monaco, "Lucida Console", monospace;
+}
+
+.wwtextlink {
+	font-size: 24px;
+	margin-bottom: 20px;
 }
