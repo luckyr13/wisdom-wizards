@@ -23,13 +23,15 @@
 							aria-hidden="false" 
 							aria-label="Wisdom">school</mat-icon>
 				</div>
-				<div>	
-					Create a course and start earning AR by sharing your wisdom.
-				</div>
-				<br><br>
+				<p>	
+					Create an online course in the permaweb and share your wisdom with the rest of the world.
+				</p>
+				<p>
+					You can earn AR for each student that buy the Certificate of Completion.
+				</p>
 				<button 
 						mat-button
-						color="primary"
+						color="accent"
     				(click)="login()">Start now</button>
 				
 			</mat-card>
@@ -42,14 +44,16 @@
 							aria-hidden="false" 
 							aria-label="Wizards">psychology</mat-icon>
 				</div>
-				<div>	
+				<p>	
 					Join us and start learning from instructors from all over the world.
-					<br><br>
-					<button 
-						mat-button
-						color="primary"
-    				(click)="login()">Start now</button>
-				</div>
+				</p>
+				<p>	
+					All our courses are free! You only have to pay if you want a Certificate of Completion.
+				</p>
+				<button 
+					mat-button
+					color="accent"
+  				(click)="login()">Start now</button>
 			</mat-card>
 		</div>
 		<div class="col how-card">
@@ -62,7 +66,7 @@
 				</div>
 				<div>
 					Support the community and earn passive income by buying/earning our PST tokens.
-					<br><br>
+					<br>
 					<a mat-button routerLink="/whitepaper" color="accent">Learn more</a>
 				</div>
 			</mat-card>
