@@ -41,7 +41,7 @@
           <span class="bold">ImgURL: </span> {{ course.imgUrl }}
         </p>
         <p>
-          <span class="bold">Price: </span> {{ course.price }} winston
+          <span class="bold">Price: </span> {{ winstonToAr(course.price) }} AR
         </p>
         <p class="text-center">
           <span class="bold">Students: </span> {{ course.numUsers }} |
@@ -49,6 +49,13 @@
           <span class="bold"> Rating: </span> 
           {{ course.rating }} by {{ course.evaluators }}
         </p>
+        <p>
+          <span class="bold">Lang: </span>
+          <span>
+            {{ course.langCode }}
+          </span>
+        </p>
+
         <p>
           <span class="bold">Tx: </span>
           <a target="_blank" [href]="course.txurl">

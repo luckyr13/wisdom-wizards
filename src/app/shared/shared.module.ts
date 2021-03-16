@@ -16,16 +16,22 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { ModalFileManagerComponent } from './modal-file-manager/modal-file-manager.component';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
-  declarations: [ModalLoginOptionsComponent],
+  declarations: [ModalLoginOptionsComponent, ModalFileManagerComponent],
   imports: [
     CommonModule,
     MatListModule,
     MatIconModule,
     MatProgressBarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatTabsModule
   ],
   exports: [
     MatToolbarModule,
@@ -42,10 +48,16 @@ import {MatSelectModule} from '@angular/material/select';
     MatTooltipModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatTabsModule
   ],
   entryComponents: [
-    ModalLoginOptionsComponent
+    ModalLoginOptionsComponent,
+    ModalFileManagerComponent
   ],
+  providers: [
+    
+  ]
 })
 export class SharedModule { }

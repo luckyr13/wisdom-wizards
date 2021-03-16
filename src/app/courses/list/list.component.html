@@ -66,7 +66,12 @@
 	  		*ngIf="filteredCourses.length === 0">
 	  		<mat-card>
 					<div class="text-center ">
-						No results found.
+						<p>
+							No results found.
+						</p>
+						<button mat-raised-button color="accent" (click)="showSubjects()">
+							<mat-icon>navigate_before</mat-icon> Go back
+						</button>
 					</div>
 				</mat-card>
 			</div>
@@ -78,7 +83,7 @@
 	  		<mat-card>
 	  			<h2 class="bold">{{ course.name }}</h2>
 	        <p>{{ course.description }}</p>
-	        <p><strong>Certificate price:</strong> {{ course.price }} winston</p>
+	        <p><strong>Certificate price:</strong> {{ winstonToAr(course.price) }} AR</p>
 	        <p><strong>Students:</strong> {{ course.numUsers }}</p>
 	        <p><strong>Rated:</strong> {{ course.rating }} by {{ course.evaluators }} students</p>
 	        <p><strong>Created by:</strong> {{ course.createdBy }} </p>
@@ -89,6 +94,14 @@
 						</a>
 					</div>
 				</mat-card>
+			</div>
+			<div 
+				style="margin-top: 20px"
+				class="col-12 text-center" 
+	  		*ngIf="filteredCourses.length !== 0">
+				<button mat-raised-button color="accent" (click)="showSubjects()">
+					<mat-icon>navigate_before</mat-icon> Go back
+				</button>
 			</div>
 		</div>
 	</div>

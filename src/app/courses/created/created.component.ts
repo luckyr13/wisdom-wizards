@@ -102,5 +102,12 @@ export class CreatedComponent implements OnInit, OnDestroy {
     });
   }
 
+  /*
+  *  @dev
+  */
+  winstonToAr(_v: string) {
+    return this._arweave.winstonToAr(_v);
+  }
+
   
 }

@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Arweave File Manager</h2>
+<mat-dialog-content class="mat-typography">
+	<mat-tab-group mat-align-tabs="end">
+	  <mat-tab label="Upload file">
+	  	<div class="container">
+	  		<div class="row">
+	  			<div class="col mt20">
+	  				<h3>Upload file:</h3>
+  					<p>
+  						--
+  					</p>
+		  		</div>
+		  	</div>
+	  	</div>
+
+	  	
+	  </mat-tab>
+	  <mat-tab label="My files">
+	  	<ng-template matTabContent>
+		    Content 1 - Loaded: {{getTimeLoaded() | date:'full'}}
+		  </ng-template>
+	  </mat-tab>
+	</mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

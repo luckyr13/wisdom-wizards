@@ -7,6 +7,10 @@ import { Observable } from 'rxjs';
 import { ArweaveService } from '../../auth/arweave.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  ModalFileManagerComponent 
+} from '../../shared/modal-file-manager/modal-file-manager.component';
 
 @Component({
   selector: 'app-new',
@@ -26,6 +30,10 @@ export class NewComponent implements OnInit {
 	});
 	subjects: Observable<any[]> = this._wisdomWizards
 		.getSubjectsLocalCopy();
+
+  langCodes: Observable<any[]> = this._wisdomWizards
+    .getLangsLocalCopy();
+
   txmessage: string = '';
   previewImgUrl: string = '';
 
@@ -53,7 +61,8 @@ export class NewComponent implements OnInit {
   	private _wisdomWizards: WisdomWizardsContract,
   	private _arweave: ArweaveService,
   	private _snackBar: MatSnackBar,
-  	private _router: Router
+  	private _router: Router,
+    public _dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -138,5 +147,22 @@ export class NewComponent implements OnInit {
 
   previewImage(imgUrl: string) {
     this.previewImgUrl = imgUrl;
+  }
+
+  /*
+  *  @dev 
+  */
+  openFileManager() {
+    this._dialog.open(ModalFileManagerComponent, {
+      width: '720px',
+      data: {}
+    });
+  }
+
+  /*
+  *  @dev
+  */
+  winstonToAr(_v: string) {
+    return this._arweave.winstonToAr(_v);
   }
 }

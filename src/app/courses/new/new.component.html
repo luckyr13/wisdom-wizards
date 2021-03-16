@@ -19,9 +19,9 @@
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
 
-<div class="container new-container-parent" >
+<div class="container new-container-parent fadeIn" >
 	<div class="row justify-content-center" *ngIf="!loading">
-  	<div class="col-6 new-container">
+  	<div class="col-12 col-md-6 new-container">
 			<form class="frmNew" [formGroup]="frmNew" (ngSubmit)="onSubmit()">
 				<mat-card>
 					<h1 class="text-center">Create new course</h1>
@@ -29,37 +29,42 @@
 					  <mat-label>Course name</mat-label>
 					  <input matInput 
 					 		type="text" 
-					 		maxlength="60" 
+					 		maxlength="80" 
 					 		required
 				    	formControlName="name">
-    				<mat-hint>*Max 60 characters</mat-hint>
+    				<mat-hint>*Max 80 characters</mat-hint>
 					</mat-form-field>
 					<mat-form-field appearance="fill" color="accent">
 					  <mat-label>Description</mat-label>
 				    <textarea matInput 
 					 		type="text" 
-					 		maxlength="200" 
+					 		maxlength="2400" 
 					 		required
 					 		rows="4"
 				    	formControlName="description"></textarea>
-    				<mat-hint>*Max 200 characters</mat-hint>
+    				<mat-hint>*Max 2400 characters</mat-hint>
 					</mat-form-field>
 					<div class="row">
-						<mat-form-field appearance="fill" color="accent" class="col-10">
+						<mat-form-field 
+							appearance="fill" 
+							color="accent" 
+							class="col-10 no-padding-right">
 						  <mat-label>Image url</mat-label>
 					    <input matInput 
 						 		type="text" 
-						 		maxlength="200" 
+						 		maxlength="2048" 
 						 		required
 						 		(change)="previewImage(imgUrl!.value)"
 					    	formControlName="imgUrl">
-	    				<mat-hint>*Max 200 characters</mat-hint>
+	    				<mat-hint>*Max 2048 characters</mat-hint>
 						</mat-form-field>
-						<div class="col-2">
+						<div class="col-2 no-padding-left">
 							<button 
+								class="btn-full"
 					    	mat-flat-button
 					    	[disabled]="loadingFrm"
 					    	type="button"
+					    	(click)="openFileManager()"
 					    	color="primary">
 					    	<mat-icon>upload</mat-icon>
 					    </button>
@@ -77,8 +82,9 @@
 					    </mat-option>
 					  </mat-select>
 					</mat-form-field>
-					<mat-form-field appearance="fill" color="accent">
-					  <mat-label>Price in winston</mat-label>
+
+					<mat-form-field style="margin-bottom: -15px" appearance="fill" color="accent">
+					  <mat-label>Certificate of Completion price (in winston)</mat-label>
 				    <input matInput 
 					 		type="number"
 					 		min="0"
@@ -86,15 +92,22 @@
 					 		required
 				    	formControlName="price">
 					</mat-form-field>
+					<div class="text-right" style="margin-bottom: 15px">
+						<span>{{ winstonToAr(price!.value) }}</span> AR 
+					</div>
+
 					<mat-form-field appearance="fill" color="accent">
-					  <mat-label>Language code</mat-label>
-					  <input matInput 
-					 		type="text" 
-					 		maxlength="2" 
-					 		required
-					 		[value]="langCode!.value | uppercase"
-				    	formControlName="langCode">
-    				<mat-hint>*Max 2 characters</mat-hint>
+					  <mat-label>Language</mat-label>
+					  <mat-select
+						 		required
+					    	formControlName="langCode">
+					    <mat-option 
+					    	*ngFor="let lang of langCodes | async"
+					    	[value]="lang.code | uppercase">
+					    	{{ lang.label | uppercase }} ({{ lang.code | uppercase }})
+					    	<span *ngIf="lang.icon">{{lang.icon}}</span>
+					    </mat-option>
+					  </mat-select>
 					</mat-form-field>
 					<div class="text-center">
 				    <button 
@@ -106,7 +119,7 @@
 				</mat-card>
 			</form>
 		</div>
-		<div class="col new-container">
+		<div class="col-12 col-md-6 new-container">
 			<mat-card>
 					<h1 class="text-center">Image preview</h1>
 					<div class="img-preview text-center">

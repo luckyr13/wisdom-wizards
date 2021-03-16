@@ -1,5 +1,10 @@
 <mat-nav-list>
   <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <mat-list-item (click)="login('arconnect')">
+    <img matListAvatar src="./assets/img/arconnect.jpg">
+    <span mat-line>ArConnect (Beta)</span>
+    <span mat-line>*Recommended</span>
+  </mat-list-item>
   <mat-list-item (click)="uploadFileListener(fileUploader)" >
     <div style="visibility: hidden">
       <input type="file" 
@@ -10,11 +15,6 @@
   	<mat-icon matListIcon color="primary">upload</mat-icon>
     <span mat-line>Upload your private key file</span>
     <span mat-line>*The key will always remain on your browser</span>
-  </mat-list-item>
-  <mat-list-item (click)="login('arconnect')">
-    <img matListAvatar src="./assets/img/arconnect.jpg">
-    <span mat-line>ArConnect (Beta)</span>
-    <span mat-line>*Recommended</span>
   </mat-list-item>
   <mat-list-item (click)="login('waveid')">
   	<img matListAvatar src="./assets/img/weaveid_logo.png">

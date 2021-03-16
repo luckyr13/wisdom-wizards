@@ -109,4 +109,11 @@ export class ListComponent implements OnInit {
     });
   }
 
+  /*
+  *  @dev
+  */
+  winstonToAr(_v: string) {
+    return this._arweave.winstonToAr(_v);
+  }
+
 }
