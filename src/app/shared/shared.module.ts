@@ -19,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ModalFileManagerComponent } from './modal-file-manager/modal-file-manager.component';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatFormFieldModule,
     MatDialogModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatToolbarModule,
@@ -50,7 +53,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [
     ModalLoginOptionsComponent,

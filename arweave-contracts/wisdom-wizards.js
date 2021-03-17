@@ -34,8 +34,8 @@ export function handle(state, action)
 
 		// Validate inputs that must be strings
 		_modifier_validateInputString(action.input.name, 'name', 80);
-		_modifier_validateInputString(action.input.description, 'description', 2400);
-		_modifier_validateInputString(action.input.imgUrl, 'imgUrl', 2048);
+		_modifier_validateInputString(action.input.description, 'description', 1200);
+		_modifier_validateInputString(action.input.imgUrl, 'imgUrl', 1200);
 		_modifier_validateInputString(action.input.langCode, 'langCode', 2);
 		// Validate inputs that must be numbers
 		_modifier_validateInputNumber(action.input.subject, 'subject');
@@ -105,8 +105,8 @@ export function handle(state, action)
 		_modifier_onlyOwnerCanUpdateCourse(state.courses[action.input.courseId], _msgSender);
 		// Validate inputs that must be strings
 		_modifier_validateInputString(action.input.name, 'name', 80);
-		_modifier_validateInputString(action.input.description, 'description', 2400);
-		_modifier_validateInputString(action.input.imgUrl, 'imgUrl', 2048);
+		_modifier_validateInputString(action.input.description, 'description', 1200);
+		_modifier_validateInputString(action.input.imgUrl, 'imgUrl', 1200);
 		_modifier_validateInputString(action.input.langCode, 'langCode', 2);
 
 		// Validate inputs that must be numbers

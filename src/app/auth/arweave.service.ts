@@ -197,4 +197,57 @@ export class ArweaveService {
     );
   }
 
+  fileToArrayBuffer(file: any): Observable<any> {
+    let method = new Observable<any>((subscriber) => {
+    // Transform .json file into key
+    try {
+        const freader = new FileReader();
+        freader.onload = async () => {
+          const data = freader.result;
+          try {
+            subscriber.next(data);
+            subscriber.complete();
+          } catch (error) {
+            throw Error('Error loading file');
+          }
+        }
+
+        freader.onerror = () => {
+          throw Error('Error reading file');
+        }
+
+        freader.readAsArrayBuffer(file);
+
+       } catch (error) {
+         subscriber.error(error);
+       }
+      
+    });
+    return method;
+  }
+
+  async uploadFileToArweave(fileBin: any, contentType: string): Promise<any> {
+    const key = this.getPrivateKey();
+    // Create transaction
+    let transaction = await this.arweave.createTransaction({
+        data: fileBin,
+    }, key);
+
+    transaction.addTag('Content-Type', contentType);
+    transaction.addTag('WISDOM_WIZARDS', 'file');
+
+    // Sign transaction
+    await this.arweave.transactions.sign(transaction, key);
+
+    // Submit transaction 
+    let uploader = await this.arweave.transactions.getUploader(transaction);
+
+    while (!uploader.isComplete) {
+      await uploader.uploadChunk();
+      console.log(`${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}`);
+    }
+
+    return transaction;
+  }
+
 }

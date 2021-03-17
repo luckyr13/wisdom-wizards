@@ -153,9 +153,13 @@ export class NewComponent implements OnInit {
   *  @dev 
   */
   openFileManager() {
-    this._dialog.open(ModalFileManagerComponent, {
+    const refFileManager = this._dialog.open(ModalFileManagerComponent, {
       width: '720px',
       data: {}
+    });
+    refFileManager.afterClosed().subscribe(result => {
+      this.imgUrl!.setValue(result);
+      this.previewImage(result);
     });
   }
 

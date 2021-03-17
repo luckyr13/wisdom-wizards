@@ -38,11 +38,11 @@
 					  <mat-label>Description</mat-label>
 				    <textarea matInput 
 					 		type="text" 
-					 		maxlength="2400" 
+					 		maxlength="1200" 
 					 		required
 					 		rows="4"
 				    	formControlName="description"></textarea>
-    				<mat-hint>*Max 2400 characters</mat-hint>
+    				<mat-hint>*Max 1200 characters</mat-hint>
 					</mat-form-field>
 					<div class="row">
 						<mat-form-field 
@@ -52,11 +52,11 @@
 						  <mat-label>Image url</mat-label>
 					    <input matInput 
 						 		type="text" 
-						 		maxlength="2048" 
+						 		maxlength="1200" 
 						 		required
 						 		(change)="previewImage(imgUrl!.value)"
 					    	formControlName="imgUrl">
-	    				<mat-hint>*Max 2048 characters</mat-hint>
+	    				<mat-hint>*Max 1200 characters</mat-hint>
 						</mat-form-field>
 						<div class="col-2 no-padding-left">
 							<button 
