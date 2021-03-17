@@ -12,6 +12,9 @@ Follow the next link to visit Wisdom Wizards platform: https://bafzbeiauq5muzh3s
 ## Our Permaweb Community
 Follow the next link to visit Wisdom Wizards Permaweb Community: https://community.xyz/#eCUK6Jrt30GKy_EKkbgExt1G0Qf_AhNAvzu4977E5sw
 
+## About our Profit Sharing Token
+You can learn everything about Wisdom Wizards from our whitepaper: https://bafzbeiauq5muzh3somknp2uuximmzj3swu5topixgz2z6gryn4dbbp2zli.textile.space/whitepaper
+
 ## How to install?
 Wisdom Wizards uses Angular and a lot of libraries like Arweave-js, Smartweave, and so on. To test our platform from your localhost you need to install the dependencies using the Node Manage Packager as usual:
 
