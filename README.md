@@ -1,11 +1,26 @@
 # WisdomWizards
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+Wisdom Wizards is a Decentralized Learning Management System.
 
-## Demo
-You can find a little demo here: https://bafzbeiauq5muzh3somknp2uuximmzj3swu5topixgz2z6gryn4dbbp2zli.textile.space/ 
+A LMS is a platform that helps teachers from all over the world to create and administrate online courses.
+
+Our biggest difference is that our platform is totally decentralized!
+
+## Our platform
+Follow the next link to visit Wisdom Wizards platform: https://bafzbeiauq5muzh3somknp2uuximmzj3swu5topixgz2z6gryn4dbbp2zli.textile.space/ 
+
+## How to clone?
+If you are a developer and want to take a look to our source code you can clone our repo:
+
+$ git clone 
+
+## How to install?
+
+$ npm install
 
 ## Development server
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
