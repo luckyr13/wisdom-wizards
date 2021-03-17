@@ -51,7 +51,9 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    if (this.detail$) {
+      this.detail$.unsubscribe();
+    }
   }
 
   /*
@@ -79,6 +81,13 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
   */
   winstonToAr(_v: string) {
     return this._arweave.winstonToAr(_v);
+  }
+
+  /*
+  * @dev
+  */
+  getSubjectDetail(_subjectId: number) {
+    return this._wisdomWizards.getSubjectDetailLocalCopy(_subjectId);
   }
 
 }

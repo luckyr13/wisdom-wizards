@@ -1,1 +1,144 @@
-<p>edit works!</p>
+<mat-toolbar class="fadeIn" color="accent">
+  <mat-icon 
+  	aria-hidden="false"
+  	aria-label="Courses list">school</mat-icon>
+	<span>&nbsp;Courses</span>
+	<span class="toolbar-spacer"></span>
+  <button 
+  	mat-icon-button 
+  	class="fadeIn" 
+  	(click)="goBack()"
+  	aria-label="Go back">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+
+</mat-toolbar>
+<mat-progress-bar 
+	mode="indeterminate"
+	*ngIf="loading || loadingFrm"
+	class="fadeIn"></mat-progress-bar>
+<div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
+
+<div class="container edit-container-parent" >
+	<div class="row justify-content-center fadeIn" *ngIf="!loading">
+  	<div class="col-12 col-md-6 edit-container">
+			<form class="frmEdit" [formGroup]="frmEdit" (ngSubmit)="onSubmit()">
+				<mat-card>
+					<h1 class="text-center">Edit course</h1>
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Course name</mat-label>
+					  <input matInput 
+					 		type="text" 
+					 		maxlength="80" 
+					 		required
+				    	formControlName="name">
+    				<mat-hint>*Max 80 characters</mat-hint>
+					</mat-form-field>
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Description</mat-label>
+				    <textarea matInput 
+					 		type="text" 
+					 		maxlength="1200" 
+					 		required
+					 		rows="4"
+				    	formControlName="description"></textarea>
+    				<mat-hint>*Max 1200 characters</mat-hint>
+					</mat-form-field>
+					<div class="row">
+						<mat-form-field 
+							appearance="fill" 
+							color="accent" 
+							class="col-10 no-padding-right">
+						  <mat-label>Image url</mat-label>
+					    <input matInput 
+						 		type="text" 
+						 		maxlength="1200" 
+						 		required
+						 		(change)="previewImage(imgUrl!.value)"
+					    	formControlName="imgUrl">
+	    				<mat-hint>*Max 1200 characters</mat-hint>
+						</mat-form-field>
+						<div class="col-2 no-padding-left">
+							<button 
+								class="btn-full"
+					    	mat-flat-button
+					    	[disabled]="loadingFrm"
+					    	type="button"
+					    	(click)="openFileManager()"
+					    	color="primary">
+					    	<mat-icon>upload</mat-icon>
+					    </button>
+						</div>
+					</div>
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Subject</mat-label>
+				    <mat-select
+						 		required
+					    	formControlName="subject">
+					    <mat-option 
+					    	*ngFor="let sub of subjects | async"
+					    	[value]="sub.id">
+					    	{{ sub.label }}
+					    </mat-option>
+					  </mat-select>
+					</mat-form-field>
+
+					<mat-form-field style="margin-bottom: -15px" appearance="fill" color="accent">
+					  <mat-label>Certificate of Completion price (in winston)</mat-label>
+				    <input matInput 
+					 		type="number"
+					 		min="0"
+					 		step="1" 
+					 		required
+				    	formControlName="price">
+					</mat-form-field>
+					<div class="text-right" style="margin-bottom: 15px">
+						<span>{{ winstonToAr(price!.value) }}</span> AR 
+					</div>
+
+					<mat-form-field appearance="fill" color="accent">
+					  <mat-label>Language</mat-label>
+					  <mat-select
+						 		required
+					    	formControlName="langCode">
+					    <mat-option 
+					    	*ngFor="let lang of langCodes | async"
+					    	[value]="lang.code | uppercase">
+					    	{{ lang.label | uppercase }} ({{ lang.code | uppercase }})
+					    	<span *ngIf="lang.icon">{{lang.icon}}</span>
+					    </mat-option>
+					  </mat-select>
+					</mat-form-field>
+
+					<mat-slide-toggle 
+						formControlName="status">Status
+					</mat-slide-toggle>
+
+					<div class="text-center">
+				    <button 
+				    	mat-flat-button
+				    	type="submit"
+				    	[disabled]="!frmEdit.valid ||  loadingFrm"
+				    	color="accent">Update</button>
+					</div>
+				</mat-card>
+			</form>
+		</div>
+		<div class="col-12 col-md-6 edit-container">
+			<mat-card>
+					<h1 class="text-center">Image preview</h1>
+					<div class="img-preview text-center">
+						<img width="200px" *ngIf="previewImgUrl" [src]="previewImgUrl" title="Preview">
+					</div>
+			</mat-card>
+		</div>
+	</div>
+
+	<div class="text-center fadeIn" *ngIf="loading && txmessage" >
+		Your transaction is being processed... <br>
+		Please copy the next link to follow your transaction:
+		<a [href]="txmessage" target="_blank">{{txmessage}}</a>
+		<br><br> Redirecting to dashboard in 10 seconds ...
+	</div>
+
+</div>

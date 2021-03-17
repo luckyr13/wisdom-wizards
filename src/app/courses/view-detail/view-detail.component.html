@@ -24,33 +24,34 @@
 	<div class="row fadeIn" *ngIf="detail && detail.active">
   	<div class="col-12 col-md-6 detail-container">
   		<mat-card>
-				<h1 class="course-title text-left">{{ detail.name }}</h1>
-				<p class="text-left">
-					Description: {{ detail.description }}
-				</p>
-        <p class="text-left">
-          Subject: {{ detail.subject }}
+				<h1 class="course-title text-center">{{ detail.name }}</h1>
+				
+        <p class="text-right">
+          <mat-icon>{{ getSubjectDetail(detail.subject).icon }}</mat-icon> {{ getSubjectDetail(detail.subject).label }}
         </p>
         <p class="text-left">
-          Created by {{ detail.createdBy }}
+          {{ detail.description }}
+        </p>
+        <p class="text-left">
+          <strong>Created by</strong> {{ detail.createdBy }}
         </p>
         <p class="text-left" *ngIf="verification">
-          Trust score is: {{ verification.percentage }} %
+          <strong>Trust score:</strong> {{ verification.percentage }} %
         </p>
-        <p class="text-left green" *ngIf="verification && verification.verified">
+        <p class="text-center green" *ngIf="verification && verification.verified">
           Verified address!
         </p>
-        <p class="text-left red" *ngIf="verification && !verification.verified">
+        <p class="text-center red" *ngIf="verification && !verification.verified">
           Address not verified!
         </p>
         <p class="text-left">
-          Rated: {{ detail.rating }}
+          <strong>Rated:</strong> {{ detail.rating }}
         </p>
         <p class="text-left">
-          Lang: {{ detail.langCode }}
+          <strong>Lang:</strong> {{ detail.langCode }}
         </p>
         <p class="text-left">
-          Certificate price: {{ winstonToAr(detail.price) }} AR
+          <strong>Certificate price:</strong> {{ winstonToAr(detail.price) }} AR
         </p>
 			</mat-card>
 		</div>

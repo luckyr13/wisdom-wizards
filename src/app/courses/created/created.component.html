@@ -5,9 +5,18 @@
 	<span>&nbsp;Courses</span>
 	<span class="toolbar-spacer"></span>
   <button 
+    mat-icon-button 
+    class="fadeIn" 
+    routerLink="/courses/new"
+    matTooltip="Create new"
+    aria-label="Create new">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button 
   	mat-icon-button 
   	class="fadeIn" 
   	(click)="goBack()"
+    matTooltip="Go back"
   	aria-label="Go back">
     <mat-icon>navigate_before</mat-icon>
   </button>

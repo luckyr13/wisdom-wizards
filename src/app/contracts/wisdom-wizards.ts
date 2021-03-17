@@ -166,6 +166,13 @@ export class WisdomWizardsContract
 	}
 
 	/*
+	*	@dev Get subject name
+	*/
+	getSubjectDetailLocalCopy(_subjectId: number) {
+		return this._subjectsLocal[_subjectId];
+	}
+
+	/*
 	*	@dev Get courses list as Observable
 	*/
 	getCourses(arweave: any, walletJWK: any): Observable<any> {
@@ -293,6 +300,46 @@ export class WisdomWizardsContract
 			interactRead(arweave, walletJWK, this._contractAddress, input)
 				.then((subjects) => {
 					subscriber.next(subjects);
+					subscriber.complete();
+				}).catch((error) => {
+					subscriber.error(error);
+				});
+		});
+
+		return obs;
+	}
+
+	/*
+	*	@dev Update course
+	*/
+	updateCourse(
+		arweave: any,
+		walletJWK: any,
+		name: string,
+		description: string,
+		imgUrl: string,
+		subject: number,
+		price: number,
+		langCode: string,
+		active: boolean,
+		courseId: number
+	): Observable<any> {
+		const obs = new Observable((subscriber) => {
+			const input = {
+				function: 'updateCourseInfo',
+	  		name: name,
+	  		description: description,
+	  		imgUrl: imgUrl,
+	  		subject: subject,
+	  		price: price,
+	  		langCode: langCode,
+	  		active: active,
+	  		courseId: courseId
+			};
+
+			interactWrite(arweave, walletJWK, this._contractAddress, input)
+				.then((result) => {
+					subscriber.next(result);
 					subscriber.complete();
 				}).catch((error) => {
 					subscriber.error(error);
