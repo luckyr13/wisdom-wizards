@@ -1,5 +1,9 @@
 # WisdomWizards
 
+<p align="center">
+  <img src="./src/assets/img/wizard.png" width="200">
+</p>
+
 Wisdom Wizards is a Decentralized Learning Management System.
 
 A LMS is a platform that helps teachers from all over the world to create and administrate online courses.
