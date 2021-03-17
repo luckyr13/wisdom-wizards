@@ -11,10 +11,10 @@ A LMS is a platform that helps teachers from all over the world to create and ad
 Our biggest difference is that our platform is totally decentralized!
 
 ## Our platform
-Follow the next link to visit Wisdom Wizards platform: https://bafzbeiauq5muzh3somknp2uuximmzj3swu5topixgz2z6gryn4dbbp2zli.textile.space/ 
+Wisdom Wizards platform: https://bafzbeiauq5muzh3somknp2uuximmzj3swu5topixgz2z6gryn4dbbp2zli.textile.space/ 
 
 ## Our Permaweb Community
-Follow the next link to visit Wisdom Wizards Permaweb Community: https://community.xyz/#eCUK6Jrt30GKy_EKkbgExt1G0Qf_AhNAvzu4977E5sw
+Wisdom Wizards Permaweb Community: https://community.xyz/#eCUK6Jrt30GKy_EKkbgExt1G0Qf_AhNAvzu4977E5sw
 
 ## About our Profit Sharing Token
 You can learn everything about Wisdom Wizards from our whitepaper: https://bafzbeiauq5muzh3somknp2uuximmzj3swu5topixgz2z6gryn4dbbp2zli.textile.space/whitepaper
