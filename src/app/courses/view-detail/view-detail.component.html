@@ -34,6 +34,15 @@
         <p class="text-left">
           Created by {{ detail.createdBy }}
         </p>
+        <p class="text-left" *ngIf="verification">
+          Trust score is: {{ verification.percentage }} %
+        </p>
+        <p class="text-left green" *ngIf="verification && verification.verified">
+          Verified address!
+        </p>
+        <p class="text-left red" *ngIf="verification && !verification.verified">
+          Address not verified!
+        </p>
         <p class="text-left">
           Rated: {{ detail.rating }}
         </p>
@@ -41,7 +50,7 @@
           Lang: {{ detail.langCode }}
         </p>
         <p class="text-left">
-          Certificate price: {{ detail.price }}
+          Certificate price: {{ winstonToAr(detail.price) }} AR
         </p>
 			</mat-card>
 		</div>

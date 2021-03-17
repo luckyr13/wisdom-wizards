@@ -5,6 +5,7 @@ import {  WisdomWizardsContract } from '../../contracts/wisdom-wizards';
 import { Subscription, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { getVerification } from "arverify";
 
 @Component({
   selector: 'app-view-detail',
@@ -15,6 +16,7 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
   detail: any = null;
   detail$: Subscription = Subscription.EMPTY;
   loading: boolean = false;
+  verification: any = null;
 
   constructor(
     private _location: Location,
@@ -31,9 +33,11 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
     this.detail$ = this._wisdomWizards.getCourseDetail( 
       this._arweave.arweave, this._arweave.getPrivateKey(), courseId
     ).subscribe({
-      next: (data) => {
+      next: async (data) => {
         this.detail = data;
         if (this.detail.active) {
+          this.verification = await getVerification(this.detail.createdBy);
+
         } else {
           this.message('Course not found', 'error');
         }
@@ -68,6 +72,13 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
       verticalPosition: verticalPosition,
       panelClass: panelClass
     });
+  }
+
+  /*
+  * @dev
+  */
+  winstonToAr(_v: string) {
+    return this._arweave.winstonToAr(_v);
   }
 
 }
