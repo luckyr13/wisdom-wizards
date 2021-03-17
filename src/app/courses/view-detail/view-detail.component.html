@@ -2,7 +2,9 @@
   <mat-icon 
   	aria-hidden="false"
   	aria-label="Course">school</mat-icon>
-	<span>&nbsp;Courses : Info</span>
+	<span>&nbsp;Courses
+    <span class="fadeIn" *ngIf="detail && detail.name && detail.active">>&nbsp;{{ detail.name }}</span>
+  </span>
 	<span class="toolbar-spacer"></span>
   <button 
   	mat-icon-button 
@@ -13,16 +15,40 @@
     <mat-icon>navigate_before</mat-icon>
   </button>
 </mat-toolbar>
-
+<mat-progress-bar 
+  mode="indeterminate"
+  *ngIf="loading"
+  class="fadeIn"></mat-progress-bar>
+<div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
 <div class="container detail-container-parent" >
-	<div class="row fadeIn" >
-  	<div class="col-12 detail-container">
+	<div class="row fadeIn" *ngIf="detail && detail.active">
+  	<div class="col-12 col-md-6 detail-container">
   		<mat-card>
-				<h1 class="text-center">Title</h1>
-				<p class="text-center">
-					Info
+				<h1 class="course-title text-left">{{ detail.name }}</h1>
+				<p class="text-left">
+					Description: {{ detail.description }}
 				</p>
+        <p class="text-left">
+          Subject: {{ detail.subject }}
+        </p>
+        <p class="text-left">
+          Created by {{ detail.createdBy }}
+        </p>
+        <p class="text-left">
+          Rated: {{ detail.rating }}
+        </p>
+        <p class="text-left">
+          Lang: {{ detail.langCode }}
+        </p>
+        <p class="text-left">
+          Certificate price: {{ detail.price }}
+        </p>
 			</mat-card>
 		</div>
+    <div class="col-12 col-md-6 detail-container">
+      <mat-card class="text-center">
+        <img width="60%" [src]="detail.imgUrl">
+      </mat-card>
+    </div>
 	</div> 
 </div>

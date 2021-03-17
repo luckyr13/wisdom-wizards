@@ -280,4 +280,25 @@ export class WisdomWizardsContract
 
 		return obs;
 	}
+
+	/*
+	*	@dev Get course detail
+	*/
+	getCourseDetail(arweave: any, walletJWK: any, courseId: number): Observable<any> {
+		const obs = new Observable((subscriber) => {
+			const input = { 
+				function: 'getCourseDetail',
+				courseId: courseId
+			};
+			interactRead(arweave, walletJWK, this._contractAddress, input)
+				.then((subjects) => {
+					subscriber.next(subjects);
+					subscriber.complete();
+				}).catch((error) => {
+					subscriber.error(error);
+				});
+		});
+
+		return obs;
+	}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ArweaveService } from '../../auth/arweave.service';
 import { Observable, Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ declare const window: any;
   templateUrl: './modal-file-manager.component.html',
   styleUrls: ['./modal-file-manager.component.scss']
 })
-export class ModalFileManagerComponent implements OnInit {
+export class ModalFileManagerComponent implements OnInit, OnDestroy {
   tabLoadTimes: Date|null = null;
   uploadFile$: Subscription = Subscription.EMPTY;
   transactionUpload: any = null;
@@ -26,6 +26,12 @@ export class ModalFileManagerComponent implements OnInit {
   	) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    if (this.uploadFile$) {
+      this.uploadFile$.unsubscribe();
+    }
   }
 
   getTimeLoaded() {
