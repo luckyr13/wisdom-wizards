@@ -56,6 +56,24 @@
         <p class="text-left">
           <strong>Certificate price:</strong> {{ winstonToAr(detail.price) }} AR
         </p>
+        <p class="text-left" *ngIf="searchMeInUsersEnrolled(detail.users)">
+          <strong class="green">You are already enrolled!</strong>
+        </p>
+        <div class="row">
+          <div class="col" *ngIf="!searchMeInUsersEnrolled(detail.users)">
+            <button mat-raised-button color="primary">ENROLL ME</button>
+          </div>
+          <div class="col text-right">
+            <button mat-raised-button color="accent">AUDIT COURSE</button>
+          </div>
+  
+        </div>
+
+        
+        <p class="text-center">
+          <button mat-raised-button color="accent">DONATE!</button>
+        </p>
+
 			</mat-card>
 		</div>
     <div class="col-12 col-md-6 detail-container">

@@ -90,4 +90,10 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
     return this._wisdomWizards.getSubjectDetailLocalCopy(_subjectId);
   }
 
+  /*
+  * #dev
+  */
+  searchMeInUsersEnrolled(_users: string[]) {
+    return _users.find(el => el === this._arweave.getMainAddress());
+  }
 }
