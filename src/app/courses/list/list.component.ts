@@ -116,4 +116,18 @@ export class ListComponent implements OnInit {
     return this._arweave.winstonToAr(_v);
   }
 
+  /*
+  *  @dev
+  */
+  getNumCourses(_courses: any) {
+    const subjects = Object.keys(_courses);
+    const numSubjects = subjects.length;
+    let res = 0;
+
+    for (let i = 0; i < numSubjects; i++) {
+      res += _courses[subjects[i]].length;
+    }
+
+    return res;
+  }
 }

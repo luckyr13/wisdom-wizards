@@ -94,8 +94,8 @@ export class WisdomWizardsContract
 		const obs = new Observable((subscriber) => {
 			const input = { function: 'registerUser' };
 			interactWrite(arweave, walletJWK, this._contractAddress, input)
-				.then((state) => {
-					subscriber.next(state);
+				.then((tx) => {
+					subscriber.next(tx);
 					subscriber.complete();
 				}).catch((error) => {
 					subscriber.error(error);

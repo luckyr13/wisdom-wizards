@@ -1,0 +1,31 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loadingTransaction || loadingState"></mat-progress-bar>
+<mat-dialog-content class="mat-typography fadeIn" *ngIf="!loadingTransaction && !loadingState">
+	<h2 mat-dialog-title>Welcome to Wisdom Wizards!</h2>
+	<p>
+		The only requirement to be part of our community is the registration process. Unlock new features such as the Certificates of Completion, rewards in our faucet and more.
+	</p>
+	<p>
+		A fee of <strong>{{ registerFee }}</strong> AR is about to be charged. This fee is distributed to our WWT holders and it is a great way to help us to keep growing. Please click the confirmation button if you agree to proceed.
+	</p>
+	<p>
+		Do you want to proceed?
+	</p>
+	<p class="text-center">
+		<button mat-flat-button color="primary" (click)="register(registerFee)">
+			I agree, lets rock!
+		</button>
+	</p>
+</mat-dialog-content>
+<mat-dialog-content class="mat-typography fadeIn text-center" *ngIf="loadingTransaction && !txmessage">
+	<h1 style="margin-top: 20px">Hang on ... your transaction is processing ...</h1>
+</mat-dialog-content>
+<mat-dialog-content class="mat-typography fadeIn text-center" *ngIf="txmessage">
+	Your transaction is on its way! This could take some minutes ... please check out our courses while waiting and comeback later to your Dashboard ;)
+	<br>
+	Redirecting in 10 seconds ...
+	<br>
+	You can follow your transaction status here: <a mat-button [href]="txmessage" target="_blank">txmessage</a>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [disabled]="loadingTransaction">Close</button>
+</mat-dialog-actions>

@@ -4,6 +4,10 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { ArweaveService } from '../auth/arweave.service';
 import { Observable, Subscription, EMPTY } from 'rxjs';
 import { WisdomWizardsContract } from '../contracts/wisdom-wizards';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  ModalRegisterComponent
+} from '../shared/modal-register/modal-register.component';
 declare const window: any;
 
 @Component({
@@ -29,7 +33,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   	private _router: Router,
   	private _snackBar: MatSnackBar,
   	private _arweave: ArweaveService,
-  	private _wisdomWizards: WisdomWizardsContract
+  	private _wisdomWizards: WisdomWizardsContract,
+    private _dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -70,23 +75,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
   *	 Register user in platform
   */
   register() {
+    
     this.disableRegisterButton = true;
-  	this.register$ = this._wisdomWizards.register(
-  		this._arweave.arweave,
-  		this._arweave.getPrivateKey()
-  	).subscribe({
-  		next: (res) => {
-        this.disableRegisterButton = false;
-  			this.message(`Success! TXID: ${res}`, 'success');
-        this.txmessage = `https://viewblock.io/arweave/tx/${res}`;
 
-        
-  		},
-  		error: (error) => {
-  			console.log('error', error);
-  			this.message('Error!', 'error');
-  		}
-  	});
+    this.openModalRegister();
+
+  }
+
+  /*
+  *  @dev Open modal
+  */
+  openModalRegister() {
+    const refFileManager = this._dialog.open(ModalRegisterComponent, {
+      width: '720px',
+      data: {},
+      disableClose: true
+    });
+    refFileManager.afterClosed().subscribe(result => {
+      // alert(result);
+      this.disableRegisterButton = false;
+    });
   }
 
   /*

@@ -21,10 +21,15 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/di
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { ModalRegisterComponent } from './modal-register/modal-register.component';
 
 
 @NgModule({
-  declarations: [ModalLoginOptionsComponent, ModalFileManagerComponent],
+  declarations: [
+    ModalLoginOptionsComponent,
+    ModalFileManagerComponent,
+    ModalRegisterComponent
+  ],
   imports: [
     CommonModule,
     MatListModule,
@@ -60,7 +65,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   ],
   entryComponents: [
     ModalLoginOptionsComponent,
-    ModalFileManagerComponent
+    ModalFileManagerComponent,
+    ModalRegisterComponent
   ],
   providers: [
     

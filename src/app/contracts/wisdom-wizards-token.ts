@@ -32,42 +32,6 @@ export class WisdomWizardsTokenContract
 		return obs;
 	}
 
-	/*
-	*	@dev Register main address in contract as user
-	*/
-	register(arweave: any, walletJWK: any): Observable<any>  {
-		const obs = new Observable((subscriber) => {
-			const input = { function: 'registerUser' };
-			interactWrite(arweave, walletJWK, this._contractAddress, input)
-				.then((state) => {
-					subscriber.next(state);
-					subscriber.complete();
-				}).catch((error) => {
-					subscriber.error(error);
-				});
-
-		});
-
-		return obs;
-	}
-
-	/*
-	*	@dev Get user info as Observable
-	*/
-	getUserInfo(arweave: any, walletJWK: any): Observable<any> {
-		const obs = new Observable((subscriber) => {
-			const input = { function: 'getMyUserData' };
-			interactRead(arweave, walletJWK, this._contractAddress, input)
-				.then((userInfo) => {
-					subscriber.next(userInfo);
-					subscriber.complete();
-				}).catch((error) => {
-					subscriber.error(error);
-				});
-		});
-
-		return obs;
-	}
 
 	/*
 	*	Returns arweave address

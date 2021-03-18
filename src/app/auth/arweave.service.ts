@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { INetworkResponse } from './INetworkResponse';
+import { selectWeightedPstHolder } from 'smartweave';
 import Arweave from 'arweave';
 declare const window: any;
 
@@ -249,5 +250,16 @@ export class ArweaveService {
 
     return transaction;
   }
+
+
+  async sendFee(_contractState: any, _fee: string, jwk: any): Promise<any> {
+    const holder = selectWeightedPstHolder(_contractState.balances)
+    // send a fee. You should inform the user about this fee and amount.
+    const tx = await this.arweave.createTransaction({ target: holder, quantity: _fee }, jwk)
+    await this.arweave.transactions.sign(tx, jwk)
+    await this.arweave.transactions.post(tx)
+    return tx;
+  }
+
 
 }

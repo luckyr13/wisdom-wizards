@@ -128,7 +128,7 @@
 			<mat-card>
 					<h1 class="text-center">Image preview</h1>
 					<div class="img-preview text-center">
-						<img width="200px" *ngIf="previewImgUrl" [src]="previewImgUrl" title="Preview">
+						<img width="80%" *ngIf="previewImgUrl" [src]="previewImgUrl" title="Preview">
 					</div>
 			</mat-card>
 		</div>
@@ -136,7 +136,7 @@
 
 	<div class="text-center fadeIn" *ngIf="loading && txmessage" >
 		Your transaction is being processed... <br>
-		Please copy the next link to follow your transaction:
+		Please copy the next link to follow your transaction status:
 		<a [href]="txmessage" target="_blank">{{txmessage}}</a>
 		<br><br> Redirecting to dashboard in 10 seconds ...
 	</div>
