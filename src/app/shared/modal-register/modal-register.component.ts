@@ -17,7 +17,7 @@ declare const window: any;
 export class ModalRegisterComponent implements OnInit, OnDestroy {
 	loadingState: boolean = false;
   loadingTransaction: boolean = false;
-  registerFee: string = this._arweave.winstonToAr('90000000');
+  registerFee: string = this._arweave.winstonToAr('10000000000');
   register$: Subscription = Subscription.EMPTY;
   txmessage: string = '';
   wisdomWizardsTokenContractState: any = null; 
