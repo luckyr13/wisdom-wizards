@@ -86,9 +86,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   *  @dev Open modal
   */
   openModalRegister() {
+    
     const refFileManager = this._dialog.open(ModalRegisterComponent, {
       width: '720px',
-      data: {},
+      data: { },
       disableClose: true
     });
     refFileManager.afterClosed().subscribe(result => {

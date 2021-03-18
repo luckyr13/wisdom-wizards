@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,11 +17,12 @@ declare const window: any;
 export class ModalRegisterComponent implements OnInit, OnDestroy {
 	loadingState: boolean = false;
   loadingTransaction: boolean = false;
-  registerFee: string = this._arweave.winstonToAr('900000');
+  registerFee: string = this._arweave.winstonToAr('90000000');
   register$: Subscription = Subscription.EMPTY;
   txmessage: string = '';
   wisdomWizardsTokenContractState: any = null; 
   state$: Subscription = Subscription.EMPTY;
+  balance: string = '0';
 
   constructor(
   		private _selfDialog: MatDialogRef<ModalRegisterComponent>,
@@ -34,6 +35,14 @@ export class ModalRegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
   	this.loadingState = true;
+
+  	this._arweave.getAccountBalance(this._arweave.getMainAddress()).subscribe({
+  		next: (balance) => {
+  			this.balance = balance;
+  		}, error: (error) => {
+  			this.message(error, 'error');
+  		}
+  	});
 
   	this.state$ = this._wisdomWizadsToken
   		.getState(this._arweave.arweave)

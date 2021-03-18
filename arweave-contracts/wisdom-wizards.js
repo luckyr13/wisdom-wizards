@@ -1,6 +1,6 @@
 /*
-*	Version 11
-*	God bless this mess :)
+*	Version 12
+*	Thanks God!
 */
 export function handle(state, action)
 {	

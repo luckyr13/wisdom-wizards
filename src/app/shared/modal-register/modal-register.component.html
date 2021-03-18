@@ -10,10 +10,13 @@
 	<p>
 		Do you want to proceed?
 	</p>
-	<p class="text-center">
+	<p class="text-center" *ngIf="balance >= registerFee">
 		<button mat-flat-button color="primary" (click)="register(registerFee)">
 			I agree, lets rock!
 		</button>
+	</p>
+	<p class="text-center red" *ngIf="!(balance >= registerFee)">
+		You don't have enough balance!. Your balance is {{ balance }} AR
 	</p>
 </mat-dialog-content>
 <mat-dialog-content class="mat-typography fadeIn text-center" *ngIf="loadingTransaction && !txmessage">
@@ -24,7 +27,7 @@
 	<br>
 	Redirecting in 10 seconds ...
 	<br>
-	You can follow your transaction status here: <a mat-button [href]="txmessage" target="_blank">txmessage</a>
+	You can follow your transaction status here: <a mat-button [href]="txmessage" target="_blank">{{txmessage}}</a>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close [disabled]="loadingTransaction">Close</button>

@@ -253,9 +253,11 @@ export class ArweaveService {
 
 
   async sendFee(_contractState: any, _fee: string, jwk: any): Promise<any> {
-    const holder = selectWeightedPstHolder(_contractState.balances)
+    const holder = selectWeightedPstHolder(_contractState.balances);
     // send a fee. You should inform the user about this fee and amount.
-    const tx = await this.arweave.createTransaction({ target: holder, quantity: _fee }, jwk)
+    const tx = await this.arweave.createTransaction({ 
+      target: holder, quantity: this.arweave.ar.arToWinston(_fee) 
+    }, jwk)
     await this.arweave.transactions.sign(tx, jwk)
     await this.arweave.transactions.post(tx)
     return tx;
