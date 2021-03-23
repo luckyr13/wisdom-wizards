@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 	private _sliderImages: string[] = [
-		'./../assets/img/slider1.jpg',
-		'./../assets/img/slider2.jpg',
-		'./../assets/img/slider3.jpg',
-		'./../assets/img/slider4.jpg'
+		'./assets/img/slider1.jpg',
+		'./assets/img/slider2.jpg',
+		'./assets/img/slider3.jpg',
+		'./assets/img/slider4.jpg'
 	];
 	sliderImage: string = '';
 
