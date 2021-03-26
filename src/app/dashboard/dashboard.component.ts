@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {
   ModalRegisterComponent
 } from '../shared/modal-register/modal-register.component';
+import { AuthService } from '../auth/auth.service';
 declare const window: any;
 
 @Component({
@@ -16,7 +17,7 @@ declare const window: any;
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-	mainAddress: string = this._arweave.getMainAddress();
+	mainAddress: string = this._auth.getMainAddressSnapshot();
 	balance: Observable<string> = this._arweave.getAccountBalance(this.mainAddress);
 	state: any = null;
 	state$: Subscription = Subscription.EMPTY;
@@ -34,17 +35,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   	private _snackBar: MatSnackBar,
   	private _arweave: ArweaveService,
   	private _wisdomWizards: WisdomWizardsContract,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _auth: AuthService
   ) { }
 
   ngOnInit(): void {
   	this.loading = true;
-  	
-  	if (!this.mainAddress) {
-  		this.message('Please login first!', 'error');
-  		this._router.navigate(['/home']);
-      return;
-  	}
 
   	// Fetch data to display
   	// this.loading is updated to false on success
@@ -104,7 +100,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getUserInfo() {
   	this.userInfo$ = this._wisdomWizards.getUserInfo(
   		this._arweave.arweave,
-  		this._arweave.getPrivateKey()
+  		this._auth.getPrivateKey()
   	).subscribe({
   		next: (res) => {
         
@@ -113,7 +109,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   		},
   		error: (error) => {
-  			console.log('error', error);
+  			console.log('error getUserInfo', error);
   			this.message('Error!', 'error');
   		}
   	});

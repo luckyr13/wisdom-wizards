@@ -11,8 +11,6 @@ declare const window: any;
 })
 export class ArweaveService {
   arweave: any = null;
-  private _key: any = null;
-  private _mainAddress: string = '';
 
   constructor() {
   	this.arweave = Arweave.init({
@@ -20,14 +18,7 @@ export class ArweaveService {
       port: 443,
       protocol: "https",
     });
-    const arkey = window.sessionStorage.getItem('ARKEY');
-    const mainAddress = window.sessionStorage.getItem('MAINADDRESS');
-    if (arkey) {
-      this._key = JSON.parse(arkey);
-    }
-    if (mainAddress) {
-      this._mainAddress = mainAddress;
-    }
+
   }
 
   getNetworkInfo(): Observable<INetworkResponse> {
@@ -67,9 +58,6 @@ export class ArweaveService {
       // Get main account
       // very similar to window.ethereum.enable
       this.arweave.wallets.getAddress().then((res: any) => {
-        // Save main address for convenience 
-        this._mainAddress = res.toString();
-        window.sessionStorage.setItem('MAINADDRESS', this._mainAddress);
         
         subscriber.next(res);
         subscriber.complete();
@@ -102,17 +90,14 @@ export class ArweaveService {
         const freader = new FileReader();
         freader.onload = async (_keyFile) => {
           const key = JSON.parse(freader.result + '');
-          // Save key in global property for convenience :)
-          this._key = key;
-          window.sessionStorage.setItem('ARKEY', JSON.stringify(this._key));
-
           try {
             const address = await this.arweave.wallets.jwkToAddress(key);
-            // Save main address for convenience 
-            this._mainAddress = address;
-            window.sessionStorage.setItem('MAINADDRESS', this._mainAddress);
-
-            subscriber.next(address);
+            const tmp_res = {
+              address: address,
+              key: key
+            };
+            
+            subscriber.next(tmp_res);
             subscriber.complete();
           } catch (error) {
             throw Error('Error loading key');
@@ -164,20 +149,6 @@ export class ArweaveService {
     );
   }
 
-  getMainAddress() {
-    return this._mainAddress;
-  }
-
-  getPrivateKey() {
-    let res = null;
-    if (this._key) {
-      res = this._key;
-    } else {
-      res = 'use_wallet';
-    }
-    return res;
-  }
-
   logout() {
     window.sessionStorage.removeItem('ARKEY');
     window.sessionStorage.removeItem('MAINADDRESS');
@@ -227,8 +198,7 @@ export class ArweaveService {
     return method;
   }
 
-  async uploadFileToArweave(fileBin: any, contentType: string): Promise<any> {
-    const key = this.getPrivateKey();
+  async uploadFileToArweave(fileBin: any, contentType: string, key: any): Promise<any> {
     // Create transaction
     let transaction = await this.arweave.createTransaction({
         data: fileBin,

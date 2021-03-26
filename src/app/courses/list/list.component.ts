@@ -3,6 +3,7 @@ import { WisdomWizardsContract } from '../../contracts/wisdom-wizards';
 import { ArweaveService } from '../../auth/arweave.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +11,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  mainAddress: string = this._arweave.getMainAddress();
+  mainAddress: string = this._auth.getMainAddressSnapshot();
 	loading: boolean = false;
 	subjects: any[] = [];
   hideSubjects: boolean = false;
@@ -22,7 +23,8 @@ export class ListComponent implements OnInit {
   	private _wisdomWizards: WisdomWizardsContract,
   	private _arweave: ArweaveService,
   	private _snackBar: MatSnackBar,
-    private _router: Router
+    private _router: Router,
+    private _auth: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +59,7 @@ export class ListComponent implements OnInit {
   getCourses() {
     this._wisdomWizards.getCourses(
       this._arweave.arweave,
-      this._arweave.getPrivateKey()
+      this._auth.getPrivateKey()
     ).subscribe({
       next: (courses) => {
         this.courses = courses;

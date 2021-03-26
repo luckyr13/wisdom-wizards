@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {
   ModalFileManagerComponent 
 } from '../../shared/modal-file-manager/modal-file-manager.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-new',
@@ -62,7 +63,8 @@ export class NewComponent implements OnInit {
   	private _arweave: ArweaveService,
   	private _snackBar: MatSnackBar,
   	private _router: Router,
-    public _dialog: MatDialog
+    public _dialog: MatDialog,
+    private _auth: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -85,7 +87,7 @@ export class NewComponent implements OnInit {
   	// Save data 
   	this._wisdomWizards.createCourse(
   		this._arweave.arweave,
-  		this._arweave.getPrivateKey(),
+  		this._auth.getPrivateKey(),
   		name,
   		description,
   		imgUrl,

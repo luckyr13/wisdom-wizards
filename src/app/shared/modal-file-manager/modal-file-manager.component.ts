@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ArweaveService } from '../../auth/arweave.service';
 import { Observable, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../../auth/auth.service';
 declare const window: any;
 
 @Component({
@@ -22,7 +23,8 @@ export class ModalFileManagerComponent implements OnInit, OnDestroy {
   constructor(
   		private _selfDialog: MatDialogRef<ModalFileManagerComponent>,
       private _arweave: ArweaveService,
-      private _snackBar: MatSnackBar
+      private _snackBar: MatSnackBar,
+      private _auth: AuthService
   	) { }
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class ModalFileManagerComponent implements OnInit, OnDestroy {
       .subscribe({
         next: async (data) => {
           this.transactionUpload = await this._arweave.uploadFileToArweave(
-            data, file.type
+            data, file.type, this._auth.getPrivateKey()
            );
 
           this.transactionId = this.transactionUpload.id;

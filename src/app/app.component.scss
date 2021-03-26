@@ -9,3 +9,13 @@
 mat-sidenav {
   width: 240px;
 }
+
+.mat-drawer-container {
+  top: 64px;
+}
+
+@media (max-width: 600px) {
+	.mat-drawer-container {
+	  top: 56px;
+	}
+}

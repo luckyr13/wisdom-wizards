@@ -6,6 +6,7 @@ import { Subscription, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { getVerification } from "arverify";
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-view-detail',
@@ -24,6 +25,7 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
     private _wisdomWizards: WisdomWizardsContract,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
+    private _auth: AuthService
    ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     this.detail$ = this._wisdomWizards.getCourseDetail( 
-      this._arweave.arweave, this._arweave.getPrivateKey(), courseId
+      this._arweave.arweave, this._auth.getPrivateKey(), courseId
     ).subscribe({
       next: async (data) => {
         this.detail = data;
@@ -94,6 +96,6 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
   * #dev
   */
   searchMeInUsersEnrolled(_users: string[]) {
-    return _users.find(el => el === this._arweave.getMainAddress());
+    return _users.find(el => el === this._auth.getMainAddressSnapshot());
   }
 }

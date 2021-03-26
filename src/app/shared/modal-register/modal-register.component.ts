@@ -6,7 +6,7 @@ import { WisdomWizardsContract } from '../../contracts/wisdom-wizards';
 import { Router } from '@angular/router';
 import { ArweaveService } from '../../auth/arweave.service';
 import { WisdomWizardsTokenContract } from '../../contracts/wisdom-wizards-token';
-
+import {AuthService} from '../../auth/auth.service';
 declare const window: any;
 
 @Component({
@@ -30,13 +30,14 @@ export class ModalRegisterComponent implements OnInit, OnDestroy {
       private _snackBar: MatSnackBar,
       private _wisdomWizards: WisdomWizardsContract,
       private _router: Router,
-      private _wisdomWizadsToken: WisdomWizardsTokenContract
+      private _wisdomWizadsToken: WisdomWizardsTokenContract,
+      private _auth: AuthService
   	) { }
 
   ngOnInit(): void {
   	this.loadingState = true;
 
-  	this._arweave.getAccountBalance(this._arweave.getMainAddress()).subscribe({
+  	this._arweave.getAccountBalance(this._auth.getMainAddressSnapshot()).subscribe({
   		next: (balance) => {
   			this.balance = balance;
   		}, error: (error) => {
@@ -89,7 +90,7 @@ export class ModalRegisterComponent implements OnInit, OnDestroy {
 
   	this.register$ = this._wisdomWizards.register(
   		this._arweave.arweave,
-  		this._arweave.getPrivateKey()
+  		this._auth.getPrivateKey()
   	).subscribe({
   		next: async (res) => {
   			this.message(`Success! TXID: ${res}`, 'success');
@@ -98,7 +99,7 @@ export class ModalRegisterComponent implements OnInit, OnDestroy {
         	const txFee = await this._arweave.sendFee(
         		this.wisdomWizardsTokenContractState,
         		_fee,
-        		this._arweave.getPrivateKey()
+        		this._auth.getPrivateKey()
         	);
         	this.message(`Tx fee successful!`, 'success');
 

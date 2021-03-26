@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="fadeIn">
+<mat-toolbar color="primary" class="fadeIn" class="toolbar-shadow app-toolbar">
   <button 
     mat-icon-button 
     class="menu-icon" 
@@ -7,8 +7,6 @@
     aria-label="Menu">
     <mat-icon>menu</mat-icon>
   </button>
-
-  <img class="logo" src="assets/img/wizard.png" width="40px">
   <span class="logo-text">Wisdom Wizards</span>
   <span class="menu-spacer"></span>
   <button 
@@ -52,17 +50,3 @@
 	</mat-menu>
 
 </mat-toolbar>
-<div class="status-toolbar container-fluid fadeIn">
-  <div class="row">
-    <div class="col">
-      <span class="yellow">Account:</span>
-      &nbsp;
-      <span class="fadeIn">{{account | async}}</span>
-    </div>
-    <div class="col">
-      <span class="yellow">Network:</span>
-      &nbsp;
-      <span class="fadeIn">{{ network | async}}</span>
-    </div>
-  </div>
-</div>

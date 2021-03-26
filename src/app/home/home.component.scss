@@ -11,24 +11,22 @@
 }
 
 .main-title {
-	margin-top: 300px;
+	margin-top: 20px;
 	font-size: 42px;
 	font-weight: bold;
-	color: #FFF;
 	text-shadow: 2px 2px 8px #000;
 }
 
 @media (min-width: 768px) {
 
 	.main-title {
-		margin-top: 360px;
 		font-size: 62px;
 	}
 
 }
 
 .main-title span {
-	text-shadow: 2px 2px 8px #ffd800;
+	text-shadow: 2px 2px 8px #FAFAFA;
 }
 
 .secondary-title {
@@ -37,10 +35,9 @@
 }
 
 .how-title {
-	font-size: 42px;
+	font-size: 32px;
 	font-weight: bold;
-	margin-bottom: 28px;
-	margin-top: 60px;
+	text-shadow: 2px 2px 8px #FAFAFA;
 
 }
 
@@ -49,8 +46,22 @@
 	text-align: center;
 }
 
+.how-card mat-card {
+	min-height: 300px;
+}
+
+.how-card p {
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.how-card button {
+	margin-top: 20px;
+	font-size: 22px;
+}
+
 .how-card-icon {
-	font-size: 82px;
+	font-size: 102px;
 	margin-bottom: 20px;
 
 	line-height: 82px;

@@ -4,6 +4,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { ArweaveService } from '../../auth/arweave.service';
 import { Observable, Subscription, EMPTY } from 'rxjs';
 import { WisdomWizardsContract } from '../../contracts/wisdom-wizards';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-created',
@@ -21,7 +22,8 @@ export class CreatedComponent implements OnInit, OnDestroy {
   	private _location: Location,
     private _snackBar: MatSnackBar,
     private _arweave: ArweaveService,
-    private _wisdomWizards: WisdomWizardsContract
+    private _wisdomWizards: WisdomWizardsContract,
+    private _auth: AuthService
   ) { }
 
 
@@ -61,7 +63,7 @@ export class CreatedComponent implements OnInit, OnDestroy {
   getMyCreatedCourses() {
     this.createdCourses$ = this._wisdomWizards.getMyCreatedCourses(
       this._arweave.arweave,
-      this._arweave.getPrivateKey()
+      this._auth.getPrivateKey()
     ).subscribe({
       next: (res) => {
         this.coursesCreatedById = res;
@@ -80,7 +82,7 @@ export class CreatedComponent implements OnInit, OnDestroy {
     // Save data 
     this._wisdomWizards.activateDeactivateCourse(
       this._arweave.arweave,
-      this._arweave.getPrivateKey(),
+      this._auth.getPrivateKey(),
       courseId,
       active
     ).subscribe({

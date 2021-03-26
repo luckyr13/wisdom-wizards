@@ -2,97 +2,122 @@
 	class="home-parent-container fadeIn"
 	style="background: url({{sliderImage}}) no-repeat center center fixed; background-size: cover;">
 	<div class="home-container container">
-		<h1 class="main-title text-center">Welcome <span>wizards</span>!</h1>
-		<h1 class="secondary-title text-center">Decentralized learning for everybody</h1>
+		
 	</div>
 </div>
-<mat-toolbar class="fadeIn" color="primary" >
-  <mat-icon 
-  	aria-hidden="false"
-  	aria-label="Home">home</mat-icon>
-	<span>&nbsp;Home</span>
-</mat-toolbar>
+<div class="home-container container">
+	<h1 class="main-title text-center"><span>Welcome wizards!</span></h1>
+	<h1 class="secondary-title text-center">Decentralized learning platform</h1>
+</div>
 <div class="container">
-		<h1 class="how-title text-center">How it works?</h1>
+	<h3 class="how-title text-center">How it works?</h3>
 	<div class="row">
-		<div class="col how-card">
+		<div class="col-12 col-lg-4 how-card">
 			<mat-card>
-				<div>
+				<mat-card-content>
+					<p>
 						<mat-icon 
 							class="how-card-icon blue-happy"
 							aria-hidden="false" 
-							aria-label="Wisdom">school</mat-icon>
-				</div>
-				<p>	
-					Create an online course in the permaweb and share your wisdom with the rest of the world.
-				</p>
-				<p>
-					You earn AR for each student that buys a Certificate of Completion.
-				</p>
-				<button 
-						mat-button
-						color="accent"
-    				(click)="login()">Start now</button>
-				
-			</mat-card>
-		</div>
-		<div class="col how-card">
-			<mat-card>
-				<div>
-						<mat-icon 
-							class="how-card-icon"
-							aria-hidden="false" 
-							aria-label="Wizards">psychology</mat-icon>
-				</div>
-				<p>	
-					Join us and start learning from instructors from all over the world.
-				</p>
-				<p>	
-					All our courses are free! You only have to pay if you want a Certificate of Completion.
-				</p>
-				<button 
-					mat-button
+							aria-label="Wizards">school</mat-icon>
+					</p>	
+					<p>	
+						Create an online course in the permaweb and share your wisdom with the rest of the world.
+					</p>
+				</mat-card-content>
+				<mat-card-actions>
+			    <button 
+					mat-flat-button
 					color="accent"
   				(click)="login()">Start now</button>
+			  </mat-card-actions>
 			</mat-card>
 		</div>
-		<div class="col how-card">
+		<div class="col-12 col-lg-4 how-card">
 			<mat-card>
-				<div>
+				<mat-card-content>
+					<p>
+						<mat-icon 
+							class="how-card-icon "
+							aria-hidden="false" 
+							aria-label="Wizards">psychology</mat-icon>
+					</p>	
+					<p>	
+						Join us and start learning from instructors from all over the world.
+					</p>
+				</mat-card-content>
+				<mat-card-actions>
+			    <button 
+					mat-flat-button
+					color="accent"
+  				(click)="login()">Start now</button>
+			  </mat-card-actions>
+			</mat-card>
+		</div>
+		<div class="col-12 col-lg-4 how-card">
+			<mat-card>
+				<mat-card-content>
+					<p>
 						<mat-icon 
 							class="how-card-icon pink"
 							aria-hidden="false" 
 							aria-label="Wizards">savings</mat-icon>
-				</div>
-				<div>
-					Support the community and earn passive income by buying/earning our PST tokens.
-					<br>
-					<a mat-button routerLink="/whitepaper" color="accent">Learn more</a>
-				</div>
+					</p>	
+					<p>	
+						Support the community and earn passive income by buying/earning our PST tokens.
+					</p>
+				</mat-card-content>
+				<mat-card-actions>
+			    <button 
+					mat-flat-button
+					color="accent"
+  				routerLink="/whitepaper">Learn more</button>
+			  </mat-card-actions>
 			</mat-card>
 		</div>
-	</div>
 
-
-	<h1 class="how-title text-center">How to start?</h1>
-	<h2 class="text-center">You only need an Arweave wallet</h2>
-	
-	<div class="row">
-		<div class="col">
-			<h3 class="bold text-center">Recommended wallets</h3>
-			<p>
-				+ Arweave wallet: <a mat-button target="_blank" href="https://www.arweave.org/wallet">https://www.arweave.org/wallet</a>
-			</p>
-			<p>
-				+ Arconnect wallet: <a mat-button target="_blank" href="https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap">https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap</a>
-			</p>
+		<div class="col-12 how-card">
+			<iframe width="100%" height="315" src="https://www.youtube.com/embed/lP9Y6ZADLcU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 	</div>
+	<h1 class="how-title text-center">How to start?</h1>
+	<h2 class="text-center">You only need an Arweave wallet</h2>
+	<h3 class="bold text-center">Recommended wallets</h3>
+	<div class="row justify-content-md-center">
+		<div class="col-12 col-md-6 how-card">
+			<mat-card>
+				<mat-card-content>
+					<p>
+						<img src="./assets/img/arweaveLogo.jpg" alt="arweave">
+					</p>	
+					<p>
+						<strong>Arweave wallet</strong>
+					</p>
+				</mat-card-content>
+				<mat-card-actions>
+			    <a mat-button color="accent" target="_blank" href="https://www.arweave.org/wallet">Visit website</a>
+			  </mat-card-actions>
+			</mat-card>
+		</div>
+		<div class="col-12 col-md-6 how-card">
+			<mat-card>
+				<mat-card-content>
+					<p>
+						<img src="./assets/img/arconnect.jpg" alt="arconnect">
+					</p>	
+					<p>
+						<strong>ArConnect wallet</strong>
+					</p>
+				</mat-card-content>
+				<mat-card-actions>
+			    <a mat-button color="accent" target="_blank" href="https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap">Visit website</a>
+			  </mat-card-actions>
+			</mat-card>
+		</div>
+		
+	</div>
 
-	<h1 class="how-title text-center">About our Profit Sharing Community</h1>
-	<p class="text-center">
-		You can start earning passive AR just by holding our PST. Please join our community if you are interested in our token and want to be part of Wisdom Wizards Community.
-	</p>
+	<h1 class="how-title text-center">Join our Profit Sharing Community</h1>
 	
 	<div class="text-center">
 		<a href="https://community.xyz/#eCUK6Jrt30GKy_EKkbgExt1G0Qf_AhNAvzu4977E5sw" 
@@ -108,5 +133,7 @@
 				<img width="50px" src="./assets/img/twitter.png">
 		</a>
 	</p>
+
+
 	
 </div>

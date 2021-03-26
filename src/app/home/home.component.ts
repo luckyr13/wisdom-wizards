@@ -3,6 +3,7 @@ import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet'
 import { ModalLoginOptionsComponent } from '../shared/modal-login-options/modal-login-options.component'
 import { ArweaveService } from '../auth/arweave.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private _bottomSheet: MatBottomSheet,
     private _arweave: ArweaveService,
-    private _router: Router
+    private _router: Router,
+    private _auth: AuthService
   ) {
   	this.sliderImage = this.getRandomImg();
   }
@@ -44,7 +46,7 @@ export class HomeComponent implements OnInit {
   *  @dev Modal login (or bottom sheet)
   */
   login() {
-    const mainAccount = this._arweave.getMainAddress();
+    const mainAccount = this._auth.getMainAddressSnapshot();
     if (mainAccount) {
       this._router.navigate(['/dashboard']);
     } else {

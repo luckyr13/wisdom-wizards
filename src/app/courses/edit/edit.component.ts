@@ -13,6 +13,7 @@ import {
 } from '../../shared/modal-file-manager/modal-file-manager.component';
 
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-edit',
@@ -72,7 +73,8 @@ export class EditComponent implements OnInit, OnDestroy {
   	private _snackBar: MatSnackBar,
   	private _router: Router,
     public _dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _auth: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -80,12 +82,12 @@ export class EditComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     this.detail$ = this._wisdomWizards.getCourseDetail( 
-      this._arweave.arweave, this._arweave.getPrivateKey(), this.courseId
+      this._arweave.arweave, this._auth.getPrivateKey(), this.courseId
     ).subscribe({
       next: async (data) => {
         this.detail = data;
         // If not the owner
-        if (this.detail.createdBy != this._arweave.getMainAddress()) {
+        if (this.detail.createdBy != this._auth.getMainAddressSnapshot()) {
         	this.message('Error', 'error');
         	return;
         }
@@ -131,7 +133,7 @@ export class EditComponent implements OnInit, OnDestroy {
   	// Save data 
   	this._wisdomWizards.updateCourse(
   		this._arweave.arweave,
-  		this._arweave.getPrivateKey(),
+  		this._auth.getPrivateKey(),
   		name,
   		description,
   		imgUrl,

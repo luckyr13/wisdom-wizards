@@ -1,3 +1,17 @@
+<div class="status-toolbar container-fluid fadeIn">
+  <div class="row">
+    <div class="col">
+      <span class="blue">Connected Account:</span>
+      &nbsp;
+      <span class="fadeIn">{{account | async}}</span>
+    </div>
+    <div class="col">
+      <span class="purple">Network:</span>
+      &nbsp;
+      <span class="fadeIn">{{ network | async}}</span>
+    </div>
+  </div>
+</div>
 <div class="footer">
 	<div class="text-center">
 		Wisdom Wizards. <strong>D</strong>ecentralized <strong>L</strong>earning <strong>M</strong>anagement <strong>S</strong>ystem

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { ArweaveService } from './arweave.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	constructor(
     private _arweave: ArweaveService,
     private _snackBar: MatSnackBar,
-    private _router: Router
+    private _router: Router,
+    private _auth: AuthService
    ) {
 
 	}
@@ -36,7 +38,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   isLoggedIn(): boolean {
-  	const mainAddress = this._arweave.getMainAddress();
+  	const mainAddress = this._auth.getMainAddressSnapshot();
     const isLoggedIn = (mainAddress !== '');
     if (!isLoggedIn) {
       this.message('Please login first!', 'error');

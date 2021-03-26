@@ -19,8 +19,6 @@ declare const window: any;
   styleUrls: ['./main-toolbar.component.scss']
 })
 export class MainToolbarComponent implements OnInit, OnDestroy {
-  account: Observable<string> = this._auth.account$;
-	network: Observable<string> = this._arweave.getNetworkName();
   @Input() opened!: boolean;
   @Output() openedChange = new EventEmitter<boolean>();
   isLoggedIn: boolean = false;
@@ -39,14 +37,6 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
         this.isLoggedIn = true;
       }
     });
-
-    // Check for account on sessionStorage
-    window.setTimeout(() => {
-      const mainAddress = window.sessionStorage.getItem('MAINADDRESS');
-      if (mainAddress) {
-        this._auth.setAccount(mainAddress);
-      }
-    }, 500);
 
   }
 
