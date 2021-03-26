@@ -1,6 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0; 
+  font-family: 'New Tegomin', serif;
+}
+
+p, div, span, .tegomin_font {
+  font-family: 'New Tegomin', serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, a, button {
+  font-family: 'Dela Gothic One', cursive !important;
+}
+
+.superBtn_font, .superBtn_font span {
+  font-family: 'Dela Gothic One', cursive !important;
+}
 
 .text-center {
 	text-align: center;

@@ -6,7 +6,7 @@
 	</div>
 </div>
 <div class="home-container container">
-	<h1 class="main-title text-center"><span>Welcome wizards!</span></h1>
+	<h1 class="main-title text-center">Welcome wizards!</h1>
 	<h1 class="secondary-title text-center">Decentralized learning platform</h1>
 </div>
 <div class="container">
@@ -29,6 +29,7 @@
 			    <button 
 					mat-flat-button
 					color="accent"
+					class="superBtn_font"
   				(click)="login()">Start now</button>
 			  </mat-card-actions>
 			</mat-card>
@@ -50,6 +51,7 @@
 			    <button 
 					mat-flat-button
 					color="accent"
+					class="superBtn_font"
   				(click)="login()">Start now</button>
 			  </mat-card-actions>
 			</mat-card>
@@ -71,6 +73,7 @@
 			    <button 
 					mat-flat-button
 					color="accent"
+					class="superBtn_font"
   				routerLink="/whitepaper">Learn more</button>
 			  </mat-card-actions>
 			</mat-card>
@@ -88,21 +91,6 @@
 			<mat-card>
 				<mat-card-content>
 					<p>
-						<img src="./assets/img/arweaveLogo.jpg" alt="arweave">
-					</p>	
-					<p>
-						<strong>Arweave wallet</strong>
-					</p>
-				</mat-card-content>
-				<mat-card-actions>
-			    <a mat-button color="accent" target="_blank" href="https://www.arweave.org/wallet">Visit website</a>
-			  </mat-card-actions>
-			</mat-card>
-		</div>
-		<div class="col-12 col-md-6 how-card">
-			<mat-card>
-				<mat-card-content>
-					<p>
 						<img src="./assets/img/arconnect.jpg" alt="arconnect">
 					</p>	
 					<p>
@@ -110,7 +98,12 @@
 					</p>
 				</mat-card-content>
 				<mat-card-actions>
-			    <a mat-button color="accent" target="_blank" href="https://chrome.google.com/webstore/detail/arconnect/einnioafmpimabjcddiinlhmijaionap">Visit website</a>
+			    <a 
+			    	mat-flat-button 
+			    	color="accent" 
+			    	target="_blank"
+			    	class="superBtn_font"
+			    	href="https://arconnect.io">Visit arconnect.io</a>
 			  </mat-card-actions>
 			</mat-card>
 		</div>

@@ -13,8 +13,10 @@
 .main-title {
 	margin-top: 20px;
 	font-size: 42px;
+	margin-bottom: 24px;
 	font-weight: bold;
 	text-shadow: 2px 2px 8px #000;
+	text-shadow: 2px 2px 8px #FAFAFA;
 }
 
 @media (min-width: 768px) {
@@ -25,9 +27,6 @@
 
 }
 
-.main-title span {
-	text-shadow: 2px 2px 8px #FAFAFA;
-}
 
 .secondary-title {
 	color: #FFF;
@@ -58,6 +57,7 @@
 .how-card button {
 	margin-top: 20px;
 	font-size: 22px;
+	padding: 6px;
 }
 
 .how-card-icon {
