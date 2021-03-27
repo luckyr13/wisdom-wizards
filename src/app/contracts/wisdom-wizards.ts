@@ -4,7 +4,7 @@ import {
 } from 'smartweave';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { switchMap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -348,5 +348,58 @@ export class WisdomWizardsContract
 		});
 
 		return obs;
+	}
+
+	/*
+	*	@dev Get full contract state as Observable
+	* and filter active courses
+	*/
+	getActiveCoursesFromState(arweave: any): Observable<any> {
+		return this.getState(arweave).pipe(
+			switchMap((state) => {
+				return new Observable((subscriber) => {
+					const courses = state.courses;
+					const activeCoursesBySubject: any = {};
+
+					for (let courseId in courses) {
+						// Save course
+						if (!Object.prototype.hasOwnProperty.call(
+							activeCoursesBySubject, courses[courseId].subject
+						)) {
+							activeCoursesBySubject[courses[courseId].subject] = [];
+						}
+						if (courses[courseId].active) {
+							courses[courseId].id = courseId;
+							activeCoursesBySubject[courses[courseId].subject].push(courses[courseId]);
+						}
+					}
+					subscriber.next(activeCoursesBySubject);
+					subscriber.complete();
+					// subscriber.error(error);
+				});
+			})
+		);
+	}
+
+	/*
+	*	@dev Get full contract state as Observable
+	* and return course by courseId
+	*/
+	getCourseDetailFromState(arweave: any, courseId: number): Observable<any> {
+		return this.getState(arweave).pipe(
+			switchMap((state) => {
+				return new Observable((subscriber) => {
+					const courses = state.courses;
+					// On error
+					if (!Object.prototype.hasOwnProperty.call(courses, courseId)) {
+						subscriber.error('Course not found: Invalid courseId');
+					}
+					// On success
+					subscriber.next(courses[courseId]);
+					subscriber.complete();
+					
+				});
+			})
+		);
 	}
 }

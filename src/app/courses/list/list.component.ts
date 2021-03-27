@@ -30,12 +30,6 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
   	this.loading = true;
 
-    if (!this.mainAddress) {
-      this.message('Please login first!', 'error');
-      this._router.navigate(['/home']);
-      return;
-    }
-
     // Update loading inside
   	this.getSubjects();
   }
@@ -57,15 +51,14 @@ export class ListComponent implements OnInit {
   }
 
   getCourses() {
-    this._wisdomWizards.getCourses(
-      this._arweave.arweave,
-      this._auth.getPrivateKey()
+    this._wisdomWizards.getActiveCoursesFromState(
+      this._arweave.arweave
     ).subscribe({
       next: (courses) => {
         this.courses = courses;
         this.loading = false;
 
-        console.log(this.courses);
+        console.log('courses', this.courses);
       },
       error: (error) => {
         console.log('error', error);

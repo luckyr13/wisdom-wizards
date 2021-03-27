@@ -32,8 +32,8 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
     const courseId = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.loading = true;
 
-    this.detail$ = this._wisdomWizards.getCourseDetail( 
-      this._arweave.arweave, this._auth.getPrivateKey(), courseId
+    this.detail$ = this._wisdomWizards.getCourseDetailFromState( 
+      this._arweave.arweave, courseId
     ).subscribe({
       next: async (data) => {
         this.detail = data;

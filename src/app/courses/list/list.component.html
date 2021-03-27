@@ -79,7 +79,7 @@
 		</div>
 		<div class="row fadeIn">
 	  	<div 
-	  		class="col-6 course-card" 
+	  		class="col-12 course-card" 
 	  		*ngFor="let course of filteredCourses">
 	  		<mat-card>
 	  			<h2 class="bold">{{ course.name }}</h2>
@@ -90,7 +90,7 @@
 	        <p><strong>Created by:</strong> {{ course.createdBy }} </p>
 	        <p><strong>Language:</strong> {{ course.langCode }} </p>
 					<div class="text-right course-card-title">
-						<a mat-button color="accent" [routerLink]="['/courses', course.id]">
+						<a mat-flat-button color="primary" [routerLink]="['/courses', course.id]">
 							View course
 						</a>
 					</div>

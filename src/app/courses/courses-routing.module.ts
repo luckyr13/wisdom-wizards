@@ -10,22 +10,30 @@ import { CreatedComponent } from './created/created.component';
 const routes: Routes = [
 	{ 
 		path: 'courses',
-		canActivateChild: [AuthGuard],
 		children: [
 			{
-				path: 'new', component: NewComponent
+				path: 'new',
+				component: NewComponent,
+				canActivate: [AuthGuard],
 			},
 			{
-				path: 'created', component: CreatedComponent
+				path: 'created',
+				component: CreatedComponent,
+				canActivate: [AuthGuard],
 			},
 			{
-				path: ':id', component: ViewDetailComponent
+				path: ':id',
+				component: ViewDetailComponent
 			},
 			{
-				path: ':id/edit', component: EditComponent
+				path: ':id/edit',
+				component: EditComponent,
+				canActivate: [AuthGuard],
 			},
 			{
-				path: '', component: ListComponent, pathMatch: 'full'
+				path: '',
+				component: ListComponent,
+				pathMatch: 'full',
 			}
 		]
 	}

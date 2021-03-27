@@ -22,6 +22,11 @@
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
 <div class="container detail-container-parent" >
 	<div class="row fadeIn" *ngIf="detail && detail.active">
+    <div class="col-12 col-md-6 detail-container">
+      <mat-card class="text-center">
+        <img width="100%" [src]="detail.imgUrl">
+      </mat-card>
+    </div>
   	<div class="col-12 col-md-6 detail-container">
   		<mat-card>
 				<h1 class="course-title text-center">{{ detail.name }}</h1>
@@ -76,10 +81,5 @@
 
 			</mat-card>
 		</div>
-    <div class="col-12 col-md-6 detail-container">
-      <mat-card class="text-center">
-        <img width="100%" [src]="detail.imgUrl">
-      </mat-card>
-    </div>
 	</div> 
 </div>
