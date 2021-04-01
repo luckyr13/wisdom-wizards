@@ -74,7 +74,7 @@ export class NewComponent implements OnInit {
   	this._location.back();
   }
 
-  onSubmit() {
+  async onSubmit() {
   	const name = this.name!.value;
   	const description = this.description!.value;
   	const imgUrl = this.imgUrl!.value;
@@ -84,7 +84,33 @@ export class NewComponent implements OnInit {
 
   	this.disableForm(true);
 
+    try {
+      const txid = await this._arweave.createNFT(
+        name, name, description, 10000,
+        this._auth.getMainAddressSnapshot(), 
+        this._auth.getPrivateKey(),
+        'hola!',
+        'text/plain'
+      );
+
+      this.loading = true;
+      this.message(`Success! TXID: ${txid}`, 'success');
+      this.txmessage = `https://viewblock.io/arweave/tx/${txid}`;
+
+      window.setTimeout(() => {
+        this._router.navigate(['/dashboard']);
+      }, 10000);
+    } catch (error) {
+      this.message(`Error ${error}`, 'error');
+    }
+    
+
+
+
+    this.disableForm(false);
+
   	// Save data 
+    /*
   	this._wisdomWizards.createCourse(
   		this._arweave.arweave,
   		this._auth.getPrivateKey(),
@@ -111,7 +137,7 @@ export class NewComponent implements OnInit {
   			// this.disableForm(false);
   		}
   	});
-
+    */
   	
   }
 

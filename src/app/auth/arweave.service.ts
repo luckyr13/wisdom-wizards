@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { INetworkResponse } from './INetworkResponse';
 import { selectWeightedPstHolder } from 'smartweave';
 import Arweave from 'arweave';
+import { contractTemplateNFT, INFTStateTemplate, ArweaveContractCreateNFT } from './arweave-contract-create-nft';
 declare const window: any;
 
 @Injectable({
@@ -11,6 +12,7 @@ declare const window: any;
 })
 export class ArweaveService {
   arweave: any = null;
+  arweaveNFT: ArweaveContractCreateNFT = new ArweaveContractCreateNFT();
 
   constructor() {
   	this.arweave = Arweave.init({
@@ -204,8 +206,10 @@ export class ArweaveService {
         data: fileBin,
     }, key);
 
+    // https://github.com/ArweaveTeam/arweave-standards/blob/master/best-practices/BP-105.md
+    transaction.addTag('App-Name', 'Wisdom Wizards');
+    transaction.addTag('App-Version', '1.0.0');
     transaction.addTag('Content-Type', contentType);
-    transaction.addTag('WISDOM_WIZARDS', 'file');
 
     // Sign transaction
     await this.arweave.transactions.sign(transaction, key);
@@ -229,8 +233,54 @@ export class ArweaveService {
       target: holder, quantity: this.arweave.ar.arToWinston(_fee) 
     }, jwk)
     await this.arweave.transactions.sign(tx, jwk)
-    await this.arweave.transactions.post(tx)
-    return tx;
+    const response = await this.arweave.transactions.post(tx)
+    return {tx: tx, status: response};
+  }
+
+  async createNFT(
+    name: string,
+    ticker: string,
+    description: string,
+    balance: number,
+    owner: string,
+    key: any,
+    fileData: string,
+    fileContentType: string,
+    target: string = '',
+    winstonQty: string = ''
+   ) {
+    let txid = '';
+    try {
+      const contractSrc = contractTemplateNFT;
+      const fbalance: any= {};
+      fbalance[owner] = balance;
+      const initState = this.arweaveNFT.stateToString({
+        name: name,
+        ticker: ticker,
+        description: description,
+        balance: fbalance
+      })
+      txid = await this.arweaveNFT.createNFTContract(
+        this.arweave,
+        key,
+        contractSrc,
+        initState,
+        fileData,
+        fileContentType,
+        target,
+        winstonQty
+      );
+
+    } catch (error) {
+      throw Error(error);
+    }
+
+    return txid;
+  }
+
+
+  async getTxStatus(_tx: string) {
+    return await this.arweave.transactions.getStatus(_tx);
   }
 
 
