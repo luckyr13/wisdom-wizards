@@ -32,7 +32,7 @@
 	</div>
 	<div class="row fadeIn" *ngIf="!loading && !hideSubjects">
   	<div 
-  		class="col-3 subject-card" 
+  		class="col-6 col-md-3 subject-card" 
   		*ngFor="let subject of subjects">
   		<mat-card (click)="searchCoursesBySubject(subject.id)">
 				<div class="text-center subject-card-title">

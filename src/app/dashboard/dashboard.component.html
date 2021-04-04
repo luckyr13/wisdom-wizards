@@ -14,8 +14,16 @@
 	<div class="row">
 		<div class="col-12 col-md-6 scoreboard">
 			<mat-card>
-				<div class="text-center"><span class="bn2">{{ balance | async }}</span> AR</div>
-				<div class="text-center">Account balance</div>
+				<div class="text-center">
+					<a 
+						mat-button
+						target="_blank"
+						href="https://viewblock.io/arweave/tx/{{lastTransactionID | async}}"
+						class="bn3 txurl">
+						<span class="bn2">{{ balance | async }} AR</span> 
+					</a>
+				</div>
+				<div class="text-center"><strong>Account balance</strong></div>
 			</mat-card>
 		</div>
 		<div class="col-12 col-md-6 scoreboard">
@@ -25,9 +33,23 @@
 						mat-button
 						target="_blank"
 						href="https://viewblock.io/arweave/tx/{{lastTransactionID | async}}"
-						class="bn3 txurl">{{ lastTransactionID | async }}</a>
+						class="bn3 txurl">
+						<span class="bn2">{{ lastTransactionID | async }}</span>
+					</a>
 				</div>
-				<div class="text-center">Last TXID processed</div>
+				<div class="text-center"><strong>Last TXID processed</strong></div>
+			</mat-card>
+		</div>
+		<div class="col-12 col-md-6 scoreboard">
+			<mat-card>
+				<div class="text-center"><span class="bn2">{{ balance | async }}</span> WWT</div>
+				<div class="text-center"><strong>WWT balance</strong></div>
+			</mat-card>
+		</div>
+		<div class="col-12 col-md-6 scoreboard">
+			<mat-card>
+				<div class="text-center"><span class="bn2">{{ balance | async }}</span> WWT</div>
+				<div class="text-center"><strong>Probability of reward</strong></div>
 			</mat-card>
 		</div>
 	</div>

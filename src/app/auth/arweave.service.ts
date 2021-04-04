@@ -258,7 +258,8 @@ export class ArweaveService {
         name: name,
         ticker: ticker,
         description: description,
-        balance: fbalance
+        balance: fbalance,
+        owner: owner
       })
       txid = await this.arweaveNFT.createNFTContract(
         this.arweave,

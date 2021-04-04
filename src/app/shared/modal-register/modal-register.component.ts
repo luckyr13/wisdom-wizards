@@ -37,6 +37,7 @@ export class ModalRegisterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   	this.loadingState = true;
 
+/*
   	this._arweave.getAccountBalance(this._auth.getMainAddressSnapshot()).subscribe({
   		next: (balance) => {
   			this.balance = balance;
@@ -44,13 +45,15 @@ export class ModalRegisterComponent implements OnInit, OnDestroy {
   			this.message(error, 'error');
   		}
   	});
-
+*/
   	this.state$ = this._wisdomWizadsToken
-  		.getState(this._arweave.arweave)
+  		.getCommunityState()
   		.subscribe({
   			next: (data) => {
   				this.wisdomWizardsTokenContractState = data;
   				this.loadingState = false;
+
+          console.log('token data', this.wisdomWizardsTokenContractState)
   			},
   			error: (error) => {
   				this.message(error, 'error');

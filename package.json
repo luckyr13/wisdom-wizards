@@ -24,6 +24,7 @@
     "arverify": "0.0.10",
     "arweave": "^1.10.11",
     "bootstrap": "^4.6.0",
+    "community-js": "^1.1.36",
     "rxjs": "~6.6.0",
     "smartweave": "^0.4.27",
     "tslib": "^2.0.0",

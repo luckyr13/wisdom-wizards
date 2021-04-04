@@ -128,6 +128,7 @@ export interface INFTStateTemplate {
 	name: string,
 	description: string,
   ticker: string,
+  owner: string,
   balance: any
 };
 
