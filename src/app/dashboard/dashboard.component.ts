@@ -4,11 +4,13 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { ArweaveService } from '../auth/arweave.service';
 import { Observable, Subscription, EMPTY } from 'rxjs';
 import { WisdomWizardsContract } from '../contracts/wisdom-wizards';
+import { WisdomWizardsTokenContract } from '../contracts/wisdom-wizards-token';
 import { MatDialog } from '@angular/material/dialog';
 import {
   ModalRegisterComponent
 } from '../shared/modal-register/modal-register.component';
 import { AuthService } from '../auth/auth.service';
+import { selectWeightedPstHolder } from 'smartweave';
 declare const window: any;
 
 @Component({
@@ -19,6 +21,7 @@ declare const window: any;
 export class DashboardComponent implements OnInit, OnDestroy {
 	mainAddress: string = this._auth.getMainAddressSnapshot();
 	balance: Observable<string> = this._arweave.getAccountBalance(this.mainAddress);
+  balancePST: string = '';
 	state: any = null;
 	state$: Subscription = Subscription.EMPTY;
 	register$: Subscription = Subscription.EMPTY;
@@ -29,6 +32,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   txmessage: string = '';
   lastTransactionID: Observable<string> = this._arweave.getLastTransactionID(this.mainAddress);
   otherDataInterval: any = null;
+  probReward: string = '';
 
   constructor(
   	private _router: Router,
@@ -36,22 +40,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
   	private _arweave: ArweaveService,
   	private _wisdomWizards: WisdomWizardsContract,
     private _dialog: MatDialog,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _wisdomWizardsToken: WisdomWizardsTokenContract
   ) { }
 
   ngOnInit(): void {
   	this.loading = true;
-
+  
   	// Fetch data to display
   	// this.loading is updated to false on success
   	this.getUserInfo();
 
-    // Update last transaction every 15 seconds
-    this.otherDataInterval = window.setInterval(() => {
-      this.lastTransactionID = this._arweave.getLastTransactionID(this.mainAddress);
-      this.balance = this._arweave.getAccountBalance(this.mainAddress);
-      // this.getUserInfo();
-    }, 30000);
+    // init community
+    this._wisdomWizardsToken.initCommunity( 
+      this._arweave.arweave,
+      this._auth.getPrivateKey()
+    );
+
+    // get pst balance
+    this._wisdomWizardsToken.getPSTBalance(this.mainAddress).subscribe({
+      next: (balance: any) => {
+        this.balancePST = balance;
+      },
+      error: (error) => {
+        this.message(`Error: ${error}`, error);
+      }
+    });
+    
 
   }
 
