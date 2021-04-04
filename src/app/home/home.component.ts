@@ -15,7 +15,10 @@ export class HomeComponent implements OnInit {
 		'./assets/img/slider1.jpg',
 		'./assets/img/slider2.jpg',
 		'./assets/img/slider3.jpg',
-		'./assets/img/slider4.jpg'
+    './assets/img/slider4.jpg',
+    './assets/img/slider5.jpg',
+    './assets/img/slider6.jpg',
+    './assets/img/slider8.jpg'
 	];
 	sliderImage: string = '';
 
