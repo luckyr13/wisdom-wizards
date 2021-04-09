@@ -22,17 +22,8 @@
 			</mat-card>
 		</div>
 		
-		<div class="col-12 col-md-6 scoreboard">
-			<mat-card>
-				<div class="text-center">
-					
-					<span class="bn">{{ balancePST }}</span> WWT
-				</div>
-				<div class="text-center"><strong>Wisdom Wizards Tokens</strong></div>
-			</mat-card>
-		</div>
 
-		<div class="col-12 col-md-12 scoreboard">
+		<div class="col-12 col-md-6 scoreboard">
 			<mat-card>
 				<div class="text-center">
 					<a 
@@ -51,53 +42,34 @@
 </div>
 
 <div class="container dashboard-container">
-	<div *ngIf="userInfo && userInfo.coursesEnrolled && !loading" class="fadeIn">
+	<div *ngIf="!loading" class="fadeIn">
 		<h1>Welcome back!</h1>
 		<div class="row">
 			<div class="col-12 col-md-3 scoreboard">
 				<mat-card>
-					<div class="bn text-center">{{ userInfo.coursesEnrolled.length }}</div>
-					<div class="text-center">Enrolled courses</div>
-				</mat-card>
-			</div>
-			<div class="col-12 col-md-3 scoreboard">
-				<mat-card>
-					<div class="bn text-center">{{ userInfo.completedCourses.length }}</div>
-					<div class="text-center">Completed courses</div>
-					
-				</mat-card>
-			</div>
-			<div class="col-12 col-md-3 scoreboard">
-				<mat-card>
-					<div class="bn text-center">{{ userInfo.coursesEvaluated.length }}</div>
-					<div class="text-center">Evaluated courses</div>
-				</mat-card>
-			</div>
-			<div class="col-12 col-md-3 scoreboard">
-				<mat-card>
-					<div class="bn text-center">{{ userInfo.coursesCreated.length }}</div>
-					<div class="text-center">Created courses</div>
+					<div class="bn text-center">0</div>
+					<div class="text-center">courses enrolled</div>
 				</mat-card>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-6 scoreboard">
+			<div class="col-12 col-md-6 scoreboard">
 				<mat-card>
 					<button 
 						color="primary"
 						style="float: right; margin-right: 10px"
 						mat-mini-fab 
 						routerLink="/courses/new"
-        		matTooltip="Create a new course"
-						aria-label="Create a new course">
+        		matTooltip="Create new course"
+						aria-label="Create new course">
 	          <mat-icon>add</mat-icon>
 	        </button>
 					<h1 class="text-left" style="margin-top: 4px">
-						Create a new course
+						Create new course
 					</h1>
 				</mat-card>
 			</div>
-			<div class="col-6 scoreboard">
+			<div class="col-12 col-md-6 scoreboard">
 				<mat-card>
 					<button 
 						color="primary"
@@ -109,54 +81,11 @@
 	          <mat-icon>list</mat-icon>
 	        </button>
 					<h1 class="text-left" style="margin-top: 4px">
-						View created courses list
+						View courses created
 					</h1>
 				</mat-card>
 			</div>
 		</div>
 	</div>
 
-	<div *ngIf="(!userInfo || !userInfo.coursesEnrolled) && !loading"
-		class="container fadeIn">
-		<mat-card>
-			<h1 class="text-center">Create an account</h1>
-				<p class="text-center">You need to register in our platform in order to start using it.</p>
-				<p class="text-center">Please click on the "Register" button and wait until your transaction gets processed.</p>
-			<div class="row">
-				<div class="col-12 text-center" >
-		    	<button 
-		    		[disabled]="disableRegisterButton"
-			    	mat-flat-button 
-			    	(click)="register()" 
-			    	color="primary">REGISTER NOW</button>
-			    &nbsp;
-			    <button 
-		    		[disabled]="disableRegisterButton"
-			    	mat-flat-button 
-			    	(click)="reload()" 
-			    	color="accent">RELOAD PAGE</button>
-				</div>
-				<div class="col-12 text-center" style="margin-top: 20px;" >
-					<strong class="red">*</strong> If you already pressed the "REGISTER NOW" button, then you don't have to do it again. You only have to wait a few minutes until the transaction is processed by the Arweave network. (Unless that your transaction fails! ;)
-					<br>
-					<strong class="red">Hint:</strong> Do you have enough AR?
-				</div>
-
-			</div>
-			<div class="row" *ngIf="txmessage">
-				<div class="col" >
-					<h2>Processing transaction ... </h2>
-					<p>
-						Please come back again in a few minutes while the job is finished:)
-					</p>
-					<br>
-					Transaction status:&nbsp;
-					<a target="_blank" class="purple" [href]="txmessage">{{ txmessage }}</a>
-					<br>
-					Meanwhile you can browse our courses list: 
-					<a class="purple" routerLink="/courses">View courses</a>
-				</div>
-			</div>
-		</mat-card>
-	</div>
 </div>

@@ -11,9 +11,10 @@ import { MatDialog } from '@angular/material/dialog';
 import {
   ModalFileManagerComponent 
 } from '../../shared/modal-file-manager/modal-file-manager.component';
-
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { SubjectService } from '../../core/subject.service';
+import { LanguageService } from '../../core/language.service';
 
 @Component({
   selector: 'app-edit',
@@ -34,10 +35,10 @@ export class EditComponent implements OnInit, OnDestroy {
     langCode: new FormControl(''),
     status: new FormControl(false)
 	});
-	subjects: Observable<any[]> = this._wisdomWizards
+	subjects: Observable<any[]> = this._subject
 		.getSubjectsLocalCopy();
 
-  langCodes: Observable<any[]> = this._wisdomWizards
+  langCodes: Observable<any[]> = this._language
     .getLangsLocalCopy();
   courseId: number = 0;
 
@@ -68,19 +69,21 @@ export class EditComponent implements OnInit, OnDestroy {
 
   constructor(
   	private _location: Location,
-  	private _wisdomWizards: WisdomWizardsContract,
   	private _arweave: ArweaveService,
   	private _snackBar: MatSnackBar,
   	private _router: Router,
     public _dialog: MatDialog,
     private route: ActivatedRoute,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _language: LanguageService,
+    private _subject: SubjectService
   ) { }
 
   ngOnInit(): void {
     this.courseId = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.loading = true;
 
+    /*
     this.detail$ = this._wisdomWizards.getCourseDetail( 
       this._arweave.arweave, this._auth.getPrivateKey(), this.courseId
     ).subscribe({
@@ -106,6 +109,7 @@ export class EditComponent implements OnInit, OnDestroy {
         this.message(error, 'error');
       }
     });
+    */
 
   }
 
@@ -131,6 +135,7 @@ export class EditComponent implements OnInit, OnDestroy {
   	this.disableForm(true);
 
   	// Save data 
+    /*
   	this._wisdomWizards.updateCourse(
   		this._arweave.arweave,
   		this._auth.getPrivateKey(),
@@ -159,7 +164,7 @@ export class EditComponent implements OnInit, OnDestroy {
   			// this.disableForm(false);
   		}
   	});
-
+    */
   	
   }
 

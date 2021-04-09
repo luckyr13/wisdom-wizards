@@ -12,6 +12,9 @@ import {
   ModalFileManagerComponent 
 } from '../../shared/modal-file-manager/modal-file-manager.component';
 import { AuthService } from '../../auth/auth.service';
+import { SubjectService } from '../../core/subject.service';
+import { LanguageService } from '../../core/language.service';
+
 
 @Component({
   selector: 'app-new',
@@ -29,10 +32,10 @@ export class NewComponent implements OnInit {
 		price: new FormControl('0'),
     langCode: new FormControl('')
 	});
-	subjects: Observable<any[]> = this._wisdomWizards
+	subjects: Observable<any[]> = this._subject
 		.getSubjectsLocalCopy();
 
-  langCodes: Observable<any[]> = this._wisdomWizards
+  langCodes: Observable<any[]> = this._language
     .getLangsLocalCopy();
 
   txmessage: string = '';
@@ -64,7 +67,9 @@ export class NewComponent implements OnInit {
   	private _snackBar: MatSnackBar,
   	private _router: Router,
     public _dialog: MatDialog,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _subject: SubjectService,
+    private _language: LanguageService
   ) { }
 
   ngOnInit(): void {

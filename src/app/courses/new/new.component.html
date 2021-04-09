@@ -1,4 +1,4 @@
-<mat-toolbar class="fadeIn" color="accent">
+<mat-toolbar class="fadeIn" color="primary">
   <mat-icon 
   	aria-hidden="false"
   	aria-label="Courses list">school</mat-icon>
@@ -49,10 +49,11 @@
 							appearance="fill" 
 							color="accent" 
 							class="col-10 no-padding-right">
-						  <mat-label>Image url</mat-label>
+						  <mat-label>Image ID</mat-label>
 					    <input matInput 
 						 		type="text" 
 						 		maxlength="1200" 
+						 		readonly="true" 
 						 		required
 						 		(change)="previewImage(imgUrl!.value)"
 					    	formControlName="imgUrl">

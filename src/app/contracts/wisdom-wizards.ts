@@ -22,55 +22,12 @@ export class WisdomWizardsContract
 	// private _contractAddress: string = 'lmOgf5O5wNiFi45rL5QMkB-bAEF5c-Yc0IZyoSCV-eU';
 	//private _contractAddress: string = 'yowLo9OICoqnUJNwt55a0uZ_zrnV01laKReWUJWZyjA';
 	private _contractAddress: string = '7Dp5r-UpZLDvHqsDbZbqWhCBwbYdJMKBuC3tFC-FF7U';
-
-	private _subjectsLocal: any[] = [
-		{ id: 0, label: "Architecture", icon: "architecture"},
-		{ id: 1, label: "Art & Culture", icon: "palette"},
-		{ id: 2, label: "Biology & Life Sciences", icon: "biotech"},
-		{ id: 3, label: "Business & Management", icon: "business"},
-		{ id: 4, label: "Chemistry", icon: "science"},
-		{ id: 5, label: "Communication", icon: "campaign"},
-		{ id: 6, label: "Computer Science", icon: "computer"},
-		{ id: 7, label: "Data Analysis & Statistics", icon: "query_stats"},
-		{ id: 8, label: "Design", icon: "design_services"},
-		{ id: 9, label: "Economics & Finance", icon: "attach_money"},
-		{ id: 10, label: "Education & Teacher Training", icon: "cast_for_education"},
-		{ id: 11, label: "Electronics", icon: "memory"},
-		{ id: 12, label: "Energy & Earth Sciences", icon: "battery_charging_full"},
-		{ id: 13, label: "Engineering", icon: "engineering"},
-		{ id: 14, label: "Environmental Studies", icon: "eco"},
-		{ id: 15, label: "Ethics", icon: "extension"},
-		{ id: 16, label: "Food & Nutrition", icon: "dinner_dining"},
-		{ id: 17, label: "Health & Safety", icon: "health_and_safety"},
-		{ id: 18, label: "History", icon: "travel_explore"},
-		{ id: 19, label: "Humanities", icon: "group_work"},
-		{ id: 20, label: "Language", icon: "language"},
-		{ id: 21, label: "Law", icon: "gavel"},
-		{ id: 22, label: "Literature", icon: "book"},
-		{ id: 23, label: "Math", icon: "calculate"},
-		{ id: 24, label: "Medicine", icon: "medication"},
-		{ id: 25, label: "Music", icon: "music_note"},
-		{ id: 26, label: "Philanthropy", icon: "volunteer_activism"},
-		{ id: 27, label: "Philosophy & Ethics", icon: "psychology"},
-		{ id: 28, label: "Physics", icon: "straighten"},
-		{ id: 29, label: "Science", icon: "precision_manufacturing"},
-		{ id: 30, label: "Social Sciences", icon: "people"},
-		{ id: 31, label: "Other", icon: "auto_fix_high"},
-	];
-
-	private _langCodes: any[] = [
-		{ code: 'EN', label: 'English', icon: '' },
-		{ code: 'FR', label: 'French', icon: '' },
-		{ code: 'DE', label: 'German', icon: '' },
-		{ code: 'HI', label: 'Hindi', icon: '' },
-		{ code: 'ES', label: 'Spanish', icon: '' },
-
-	];
 	
 
 	constructor() {
 
 	}
+
 	/*
 	*	@dev Get full contract state as Observable
 	*/
@@ -150,28 +107,6 @@ export class WisdomWizardsContract
 		return obs;
 	}
 
-	/*
-	*	@dev Alternative to getSubjects
-	*/
-	getSubjectsLocalCopy() {
-		const obs = new Observable<any[]>((subscriber) => {
-			try {
-				subscriber.next(this._subjectsLocal);
-				subscriber.complete();
-			} catch (error) {
-				subscriber.error(error);
-			}
-		});
-
-		return obs;
-	}
-
-	/*
-	*	@dev Get subject name
-	*/
-	getSubjectDetailLocalCopy(_subjectId: number) {
-		return this._subjectsLocal[_subjectId];
-	}
 
 	/*
 	*	@dev Get courses list as Observable
@@ -273,21 +208,6 @@ export class WisdomWizardsContract
 		return obs;
 	}
 
-	/*
-	*	@dev Get languages list
-	*/
-	getLangsLocalCopy() {
-		const obs = new Observable<any[]>((subscriber) => {
-			try {
-				subscriber.next(this._langCodes);
-				subscriber.complete();
-			} catch (error) {
-				subscriber.error(error);
-			}
-		});
-
-		return obs;
-	}
 
 	/*
 	*	@dev Get course detail

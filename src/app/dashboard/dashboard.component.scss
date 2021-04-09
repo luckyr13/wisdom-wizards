@@ -11,6 +11,12 @@
 	padding: 10px;
 }
 
+.scoreboard a {
+	  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
 .bn {
 	font-size: 40px;
 	padding-bottom: 10px;
@@ -23,7 +29,6 @@
 
 .txurl {
 	text-decoration: none;
-  font-family: 'New Tegomin', serif !important;
   width: 100%;
 }
 
@@ -37,4 +42,12 @@
 .scoreboards-container {
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+.card-register-msg {
+
+}
+
+.card-register-msg p {
+	font-size: 16px;
 }

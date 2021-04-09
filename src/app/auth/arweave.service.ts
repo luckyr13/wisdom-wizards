@@ -132,6 +132,14 @@ export class ArweaveService {
   /*
   * @dev
   */
+  arToWinston(balance: string) {
+    return this.arweave.ar.arToWinston(balance);
+  }
+
+
+  /*
+  * @dev
+  */
   getAccountBalance(_address: string): Observable<any> {
     const obs = new Observable<any>((subscriber) => {
       // Get balance

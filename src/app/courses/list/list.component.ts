@@ -4,6 +4,7 @@ import { ArweaveService } from '../../auth/arweave.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { SubjectService } from '../../core/subject.service';
 
 @Component({
   selector: 'app-list',
@@ -24,7 +25,8 @@ export class ListComponent implements OnInit {
   	private _arweave: ArweaveService,
   	private _snackBar: MatSnackBar,
     private _router: Router,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _subject: SubjectService
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class ListComponent implements OnInit {
 
   getSubjects() {
     // Get the local copy instead of the state's copy
-  	this._wisdomWizards.getSubjectsLocalCopy().subscribe({
+  	this._subject.getSubjectsLocalCopy().subscribe({
   		next: (subjects) => {
   			this.subjects = subjects;
         // Get courses data
