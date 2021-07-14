@@ -28,6 +28,7 @@
     "rxjs": "^6.6.7",
     "smartweave": "^0.4.38",
     "tslib": "^2.3.0",
+    "util": "^0.12.4",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
