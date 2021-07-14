@@ -32,7 +32,7 @@
 	</div>
 	<div class="row fadeIn" *ngIf="!loading && !hideSubjects">
   	<div 
-  		class="col-6 col-md-3 subject-card" 
+  		class="col-6 col-md-4 subject-card" 
   		*ngFor="let subject of subjects">
   		<mat-card (click)="searchCoursesBySubject(subject.id)">
 				<div class="text-center subject-card-title">
@@ -40,7 +40,7 @@
 						*ngIf="subject.icon"
 						class="subject-card-icon">{{ subject.icon }}</mat-icon>
 					{{ subject.label }} <span class="text-center" *ngIf="courses[subject.id]">
-					(<span class="green">{{ courses[subject.id].length }}</span>)
+					(<span class="bnum green">{{ courses[subject.id].length }}</span>)
 				</span>
 				</div>
 			</mat-card>
