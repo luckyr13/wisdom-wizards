@@ -11,7 +11,7 @@ A LMS is a platform that helps teachers from all over the world to create and ad
 Our biggest difference is that our platform is totally decentralized!
 
 ## Our platform
-Wisdom Wizards platform (BETA VERSION): https://arweave.net/zlUvwJkr4bbsqW0rmch4MB7cF-TnlOuFYtHrvC5bw64
+Wisdom Wizards platform (BETA VERSION): https://wisdomwizards.school
 
 ## Our Permaweb Community
 Wisdom Wizards Permaweb Community: https://community.xyz/#eCUK6Jrt30GKy_EKkbgExt1G0Qf_AhNAvzu4977E5sw
