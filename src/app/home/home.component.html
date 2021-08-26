@@ -3,16 +3,15 @@
 	*ngIf="sliderImage"
 	style="background: url({{sliderImage}}) no-repeat center center fixed; background-size: cover;"
 	>
-	<div class="home-container container">
-		
+	<div class="slider-text container">
+		<h1 class="main-title text-right ">Wisdom Wizards</h1>
+		<h1 class="secondary-title text-right"><strong>FREE</strong> online education</h1>
 	</div>
 </div>
 <div class="home-container container">
-	<h1 class="main-title text-center">Welcome wizards!</h1>
-	<h1 class="secondary-title text-center">Your FREE and decentralized learning platform</h1>
-</div>
-<div class="container">
-	<h3 class="how-title text-center">How it works?</h3>
+	<h3 class="how-title text-center">
+		<img class="mini-wizard" src="./assets/img/wizard.png"> How it works?
+	</h3>
 	<div class="row">
 		<div class="col-12 col-lg-6 how-card">
 			<mat-card>
@@ -32,7 +31,9 @@
 					mat-flat-button
 					color="accent"
 					class="superBtn_font"
-					routerLink="/courses">Start learning</button>
+					routerLink="/courses">
+						<mat-icon >school</mat-icon> Start learning
+					</button>
 			  </mat-card-actions>
 			</mat-card>
 		</div>
@@ -54,7 +55,7 @@
 					mat-flat-button
 					color="accent"
 					class="superBtn_font"
-  				(click)="login()">Start now</button>
+  				(click)="login()"><mat-icon >psychology</mat-icon> Start now</button>
 			  </mat-card-actions>
 			</mat-card>
 		</div>

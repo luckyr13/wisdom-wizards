@@ -1,8 +1,3 @@
-.list-container {
-	margin-top: 20px;
-	margin-bottom: 10px;
-}
-
 .subject-card {
 	padding: 10px;
 }
@@ -52,4 +47,24 @@
 
 .bnum {
 	font-size: 28px;
+}
+
+.title-sel-subject {
+	padding: 0;
+	margin-bottom: 20px;
+}
+
+.title-sel-subject h1 {
+	font-size: 32px;
+	font-weight: bold;
+
+}
+
+.title-sel-subject h3 {
+	font-size: 16px;
+	
+}
+
+.mini-wizard {
+	width: 50px;
 }

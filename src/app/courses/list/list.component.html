@@ -20,16 +20,19 @@
 	*ngIf="loading"
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
-
-<div class="container list-container-parent" >
+<div class="container-fluid" >
 	<div class="row" *ngIf="!loading && !hideSubjects">
-  	<div class="col list-container">
+  	<div class="col title-sel-subject">
   		<mat-card>
-				<h1 class="text-center bold">Select a subject</h1>
+				<h1 class="text-center bold">
+					<img class="mini-wizard" src="./assets/img/wizard.png"> Select a subject
+				</h1>
 				<h3 class="text-center bold">Total courses: {{ getNumCourses(courses) }}</h3>
 			</mat-card>
 		</div>
 	</div>
+</div>
+<div class="container list-container-parent" >
 	<div class="row fadeIn" *ngIf="!loading && !hideSubjects">
   	<div 
   		class="col-6 col-md-4 subject-card" 
@@ -40,7 +43,7 @@
 						*ngIf="subject.icon"
 						class="subject-card-icon">{{ subject.icon }}</mat-icon>
 					{{ subject.label }} <span class="text-center" *ngIf="courses[subject.id]">
-					(<span class="bnum green">{{ courses[subject.id].length }}</span>)
+					(<span class="bnum">{{ courses[subject.id].length }}</span>)
 				</span>
 				</div>
 			</mat-card>
@@ -49,9 +52,12 @@
 
 	<div class="container" *ngIf="!loading && hideSubjects">
 		<div class="row">
-	  	<div class="col list-container">
+	  	<div class="col">
 	  		<mat-card>
-					<h1 class="text-center">Select a course</h1>
+					<h1 class="text-center">
+							<img class="mini-wizard" src="./assets/img/wizard.png">
+							Select a course
+				</h1>
 				</mat-card>
 			</div>
 		</div>
