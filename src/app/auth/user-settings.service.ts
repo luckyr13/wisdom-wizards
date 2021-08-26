@@ -16,7 +16,7 @@ export class UserSettingsService {
   	if (dtheme) {
   		this.setTheme(dtheme);
   	} else {
-  		this.setTheme('indigo-pink');
+  		this.setTheme('light-theme');
   	}
   	if (dlang) {
   		this.setDefaultLang(dlang);
@@ -49,8 +49,8 @@ export class UserSettingsService {
   }
 
   resetUserSettings() {
-  	this._defaultLang = 'ES';
-  	this._defaultTheme = 'indigo-pink';
+  	this._defaultLang = 'EN';
+  	this._defaultTheme = 'light-theme';
   	window.sessionStorage.removeItem('defaultTheme');
   	window.sessionStorage.removeItem('defaultLang');
 
@@ -61,16 +61,15 @@ export class UserSettingsService {
   */
   setTheme(theme: string) {
     const _ts: any = document.getElementById('LINK_MAIN_TEMPLATE');
-
     if (!_ts) {
       throw Error('Error updating theme');
     }
     switch (theme) {
-      case 'indigo-pink':
+      case 'light-theme':
         _ts.href = `./assets/css/${theme}.css`;
         this.setDefaultTheme(theme);
       break;
-      case 'pink-bluegrey':
+      case 'dark-theme':
         _ts.href = `./assets/css/${theme}.css`;
         this.setDefaultTheme(theme);
       break;
