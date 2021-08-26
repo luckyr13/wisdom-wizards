@@ -83,11 +83,6 @@ export class AuthService {
             })
           );
   		break;
-
-  		case 'waveid':
-        return throwError('Not implemented yet :)');
-  		break;
-
   		case 'arconnect':
   			method = this._arweave.getAccount().pipe(
             tap( (_account) => {

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { ArweaveService } from '../../auth/arweave.service';
-import {  WisdomWizardsContract } from '../../contracts/wisdom-wizards';
+import {  WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { Subscription, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';

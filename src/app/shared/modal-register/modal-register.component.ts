@@ -2,10 +2,10 @@ import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { WisdomWizardsContract } from '../../contracts/wisdom-wizards';
+import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { Router } from '@angular/router';
 import { ArweaveService } from '../../auth/arweave.service';
-import { WisdomWizardsTokenContract } from '../../contracts/wisdom-wizards-token';
+import { WisdomWizardsTokenContract } from '../../core/contracts/wisdom-wizards-token';
 import {AuthService} from '../../auth/auth.service';
 declare const window: any;
 

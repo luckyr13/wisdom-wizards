@@ -10,16 +10,9 @@
 	font-weight: bold;
     cursor: pointer;
   font-family: 'Allison', cursive;
-  font-size: 42px;
+  font-size: 32px;
 }
 
-.translate-icon {
-	color: #FFF;
-}
-
-.theme-icon {
-	color: #FFF;
-}
 
 mat-toolbar.app-toolbar {
     position: fixed;
@@ -27,4 +20,11 @@ mat-toolbar.app-toolbar {
     right: 0;
     left: 0;
     z-index: 10;
+}
+
+
+@media (min-width: 600px) {
+  .logo-text {
+    font-size: 42px;
+  }
 }

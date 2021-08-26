@@ -22,6 +22,7 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
   @Input() opened!: boolean;
   @Output() openedChange = new EventEmitter<boolean>();
   isLoggedIn: boolean = false;
+  defaultTheme: string = '';
 
   constructor(
   	private _bottomSheet: MatBottomSheet,
@@ -37,6 +38,7 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
         this.isLoggedIn = true;
       }
     });
+    this.defaultTheme = this._userSettings.getDefaultTheme();
 
   }
 
@@ -78,6 +80,7 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
   *  Set default theme (Updates the href property)
   */
   setMainTheme(theme: string) {
+    this.defaultTheme = theme;
     try {
       this._userSettings.setTheme(theme);
     } catch (err) {

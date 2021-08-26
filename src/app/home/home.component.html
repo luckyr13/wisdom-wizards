@@ -3,9 +3,16 @@
 	*ngIf="sliderImage"
 	style="background: url({{sliderImage}}) no-repeat center center fixed; background-size: cover;"
 	>
-	<div class="slider-text container">
+	<div class="slider-text container text-right">
 		<h1 class="main-title text-right ">Wisdom Wizards</h1>
 		<h1 class="secondary-title text-right"><strong>FREE</strong> online education</h1>
+		<button 
+			mat-flat-button
+			color="accent"
+			class=""
+			routerLink="/courses">
+				<mat-icon >school</mat-icon> Start learning
+			</button>
 	</div>
 </div>
 <div class="home-container container">

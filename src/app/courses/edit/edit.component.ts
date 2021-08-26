@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { WisdomWizardsContract } from '../../contracts/wisdom-wizards';
+import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { Observable, Subscription } from 'rxjs';
 import { ArweaveService } from '../../auth/arweave.service';
 import { MatSnackBar } from '@angular/material/snack-bar';

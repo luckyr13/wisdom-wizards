@@ -13,6 +13,32 @@
     Wisdom Wizards
   </span>
   <span class="menu-spacer"></span>
+  
+  <button 
+    *ngIf="defaultTheme === 'light-theme'"
+      mat-icon-button 
+      (click)="setMainTheme('dark-theme')"
+      matTooltip="Dark mode">
+    <mat-icon>dark_mode</mat-icon>
+  </button>
+  <button 
+    *ngIf="defaultTheme === 'dark-theme'"
+      mat-icon-button 
+      (click)="setMainTheme('light-theme')"
+      matTooltip="Light mode">
+    <mat-icon>light_mode</mat-icon>
+  </button>
+  <button 
+      [matMenuTriggerFor]="langMenu"
+      mat-icon-button 
+      class="translate-icon"
+      matTooltip="Select language"
+      aria-label="Select language">
+    <mat-icon>language</mat-icon>
+  </button>
+  <mat-menu #langMenu="matMenu">
+    <button mat-menu-item>English</button>
+  </mat-menu>
   <button 
     mat-icon-button 
     (click)="login()"
@@ -22,35 +48,19 @@
     <mat-icon>login</mat-icon>
   </button>
   <button 
-    mat-icon-button 
-    (click)="logout()"
-    aria-label="Logout"
-    matTooltip="Logout"
-    *ngIf="isLoggedIn">
-    <mat-icon>logout</mat-icon>
+      [matMenuTriggerFor]="userMenu"
+      mat-icon-button 
+      *ngIf="isLoggedIn"
+      matTooltip="User menu">
+    <mat-icon>account_circle</mat-icon>
   </button>
-  <button 
-  		[matMenuTriggerFor]="langMenu"
-  		mat-icon-button 
-      class="translate-icon"
-      matTooltip="Select language"
-  		aria-label="Select language">
-    <mat-icon>language</mat-icon>
-  </button>
-  <mat-menu #langMenu="matMenu">
-	  <button mat-menu-item>English</button>
-	</mat-menu>
-	<button 
-  		[matMenuTriggerFor]="themeMenu"
-  		mat-icon-button 
-      class="theme-icon"
-      matTooltip="Select theme"
-  		aria-label="Select theme">
-    <mat-icon>format_color_fill</mat-icon>
-  </button>
-  <mat-menu #themeMenu="matMenu">
-	  <button mat-menu-item (click)="setMainTheme('light-theme')">Light theme</button>
-	  <button mat-menu-item (click)="setMainTheme('dark-theme')">Dark theme</button>
-	</mat-menu>
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dashboard</mat-icon> Dashboard
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout
+    </button>
+  </mat-menu>
 
 </mat-toolbar>

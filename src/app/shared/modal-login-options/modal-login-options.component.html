@@ -6,14 +6,9 @@
     <span mat-line>*Recommended</span>
   </mat-list-item>
   <mat-list-item (click)="uploadFileListener(fileUploader)" >
-  	<mat-icon matListIcon color="primary">upload</mat-icon>
+  	<mat-icon matListIcon color="accent">upload</mat-icon>
     <span mat-line>Upload private key</span>
     <span mat-line>*Less secure but cheaper (no fees)</span>
-  </mat-list-item>
-  <mat-list-item (click)="login('waveid')">
-  	<img matListAvatar src="./assets/img/weaveid_logo.png">
-    <span mat-line>WaveID</span>
-    <span mat-line>*Use your email address to generate a key</span>
   </mat-list-item>
 </mat-nav-list>
 

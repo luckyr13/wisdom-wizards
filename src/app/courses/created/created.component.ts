@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ArweaveService } from '../../auth/arweave.service';
 import { Observable, Subscription, EMPTY } from 'rxjs';
-import { WisdomWizardsContract } from '../../contracts/wisdom-wizards';
+import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
