@@ -65,6 +65,7 @@ export class ListComponent implements OnInit {
       error: (error) => {
         console.log('error', error);
         this.message(`Error: ${error}`, 'error');
+        this.loading = false;
       }
     });
   }

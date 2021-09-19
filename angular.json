@@ -34,6 +34,11 @@
               "src/styles.scss"
             ],
             "scripts": [],
+            "allowedCommonJsDependencies": [
+              "smartweave",
+              "arweave",
+              "ar-gql",
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,

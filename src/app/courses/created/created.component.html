@@ -7,7 +7,7 @@
   <button 
     mat-icon-button 
     class="fadeIn" 
-    routerLink="/courses/new"
+    routerLink="/learn/new"
     matTooltip="Create new"
     aria-label="Create new">
     <mat-icon>add</mat-icon>
@@ -88,7 +88,7 @@
           <button 
             mat-flat-button 
             [disabled]="loadingActivate"
-            routerLink="/courses/{{course.id}}/edit"
+            routerLink="/learn/{{course.id}}/edit"
             color="accent"><mat-icon>edit</mat-icon> Edit
           </button>
           &nbsp;

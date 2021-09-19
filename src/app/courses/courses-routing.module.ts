@@ -9,7 +9,7 @@ import { CreatedComponent } from './created/created.component';
 
 const routes: Routes = [
 	{ 
-		path: 'courses',
+		path: 'learn',
 		children: [
 			{
 				path: 'new',

@@ -11,18 +11,10 @@ import { switchMap, map } from 'rxjs/operators';
 })
 export class WisdomWizardsContract
 {
-	// private _contractAddress: string = 'Bg2yem2w0dWkTHbO9xpCtXnC9BV2ptLZ5BiZVjFcDC8';
-//	private _contractAddress: string = '-KUy-Gv2sD1BZHhUBwsNO075PVYX6NLudK73D2SH_5Y';
-	//private _contractAddress: string = 'KeOt45twVd0UwSmiY7SteZXuvwBiixb8XaAkXVs3ePE';
-	//private _contractAddress: string = 'kcE9B_T3H8zNHWghiSi5HLx6JnF5-znizCecIRWiy64';
-	// Very buggy
-	// private _contractAddress: string = 'sdOMIHnYrrco6rnl_yJGZirqO54SMhxhdGV9RC8xyyY';
-	//private _contractAddress: string = 'WJd5hDNlEVaDCBF6wuau1S1HEqNgzgnVlXMPNK1psXU';
-	// private _contractAddress: string = 'kHbA2BJCkX2jj1RGpVohp8ihzk6kKlCYoxaZOIPhL14';
-	// private _contractAddress: string = 'lmOgf5O5wNiFi45rL5QMkB-bAEF5c-Yc0IZyoSCV-eU';
+
 	//private _contractAddress: string = 'yowLo9OICoqnUJNwt55a0uZ_zrnV01laKReWUJWZyjA';
-	private _contractAddress: string = '7Dp5r-UpZLDvHqsDbZbqWhCBwbYdJMKBuC3tFC-FF7U';
-	
+	// private _contractAddress: string = '7Dp5r-UpZLDvHqsDbZbqWhCBwbYdJMKBuC3tFC-FF7U';
+	private _contractAddress: string = 'do4251s7TxGCZVKCbP8OoB0acFO7FnaTxh-0BiK4tms';	
 
 	constructor() {
 
