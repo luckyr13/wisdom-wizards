@@ -1,6 +1,6 @@
 .home-container {
 	padding: 20px;
-	padding-top: 60px;
+	padding-top: 50px;
 }
 
 .home-parent-container {
@@ -12,13 +12,13 @@
 }
 
 .main-title {
+	color: #e5c4ff;
 	margin-top: 20px;
-	font-size: 62px;
-	line-height: 62px;
-	margin-bottom: 24px;
+	font-size: 72px;
+	line-height: 72px;
+	margin-bottom: 12px;
 	font-weight: bold;
-	text-shadow: 2px 2px 4px #000;
-	text-shadow: 2px 2px 4px #FAFAFA;
+	text-shadow: 2px 2px 6px #000;
 	font-family: 'Allison', cursive !important;
 }
 .secondary-title {
@@ -48,16 +48,17 @@
 	font-size: 42px;
 	font-weight: bold;
 	text-shadow: 2px 2px 8px #FAFAFA;
-
+	margin-bottom: 50px;
+	color: inherit;
 }
 
 .how-card {
-	padding: 20px;
+	padding: 10px;
 	text-align: center;
 }
 
 .how-card mat-card {
-	min-height: 300px;
+	padding: 40px;
 }
 
 .how-card p {
@@ -95,4 +96,8 @@
 
 .mini-wizard {
 	width: 50px;
+}
+.promo_video {
+	margin-top: 40px;
+	margin-bottom: 40px;
 }

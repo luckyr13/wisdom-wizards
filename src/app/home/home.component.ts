@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { ModalLoginOptionsComponent } from '../shared/modal-login-options/modal-login-options.component'
 import { ArweaveService } from '../auth/arweave.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import anime from 'animejs';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 	private _sliderImages: string[] = [
 		'./assets/img/slider1.jpg',
 		'./assets/img/slider2.jpg',
@@ -32,6 +34,25 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+  }
+
+  ngAfterViewInit() {
+    anime({
+      targets: '.txt-color-anime',
+      color: this.randomColor,
+      duration: 2000,
+      direction: 'alternate',
+      easing: 'linear',
+      loop: true,
+    });
+  }
+
+  randomColor() {
+    const colors = ['59f273', 'b058f4', 'ef585d', 'ef58e8'];
+    const randomIndex = Math.floor( (Math.random() * 100) % colors.length );
+    const res = `#${colors[randomIndex]}`;
+    return res;
   }
 
   /*

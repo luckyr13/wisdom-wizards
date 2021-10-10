@@ -11,10 +11,7 @@ import { switchMap, map } from 'rxjs/operators';
 })
 export class WisdomWizardsContract
 {
-
-	//private _contractAddress: string = 'yowLo9OICoqnUJNwt55a0uZ_zrnV01laKReWUJWZyjA';
-	// private _contractAddress: string = '7Dp5r-UpZLDvHqsDbZbqWhCBwbYdJMKBuC3tFC-FF7U';
-	private _contractAddress: string = 'do4251s7TxGCZVKCbP8OoB0acFO7FnaTxh-0BiK4tms';	
+	private _contractAddress: string = 'QBR8RtXdBbsAwQILIhF3PclOvFMGWdS_pT-ZuQNldWo';	
 
 	constructor() {
 
