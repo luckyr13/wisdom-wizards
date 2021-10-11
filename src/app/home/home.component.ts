@@ -38,18 +38,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.animateWisdomTxt();
+  }
+
+  animateWisdomTxt() {
     anime({
       targets: '.txt-color-anime',
       color: this.randomColor,
       duration: 2000,
       direction: 'alternate',
       easing: 'linear',
-      loop: true,
+      complete: () => {
+        this.animateWisdomTxt();
+      }
     });
   }
 
   randomColor() {
-    const colors = ['59f273', 'b058f4', 'ef585d', 'ef58e8'];
+    const colors = ['59f273', 'b058f4', 'ef585d', 'ef58e8', 'fff53a', 'b5fffd'];
     const randomIndex = Math.floor( (Math.random() * 100) % colors.length );
     const res = `#${colors[randomIndex]}`;
     return res;

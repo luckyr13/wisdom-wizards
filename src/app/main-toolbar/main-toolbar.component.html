@@ -32,12 +32,20 @@
       [matMenuTriggerFor]="langMenu"
       mat-icon-button 
       class="translate-icon"
-      matTooltip="Select language"
-      aria-label="Select language">
-    <mat-icon>language</mat-icon>
+      matTooltip="Settings"
+      aria-label="Settings">
+    <mat-icon>settings</mat-icon>
   </button>
   <mat-menu #langMenu="matMenu">
+    <button 
+      mat-menu-item
+      [matMenuTriggerFor]="subLangMenu">
+      <mat-icon>language</mat-icon> Select language
+    </button>
+  </mat-menu>
+  <mat-menu #subLangMenu="matMenu">
     <button mat-menu-item>English</button>
+    <button mat-menu-item>Spanish</button>
   </mat-menu>
   <button 
     mat-icon-button 
