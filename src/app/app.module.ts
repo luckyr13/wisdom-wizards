@@ -14,6 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { CoursesModule } from './courses/courses.module';
 import { WhitepaperComponent } from './whitepaper/whitepaper.component';
 import { FooterComponent } from './footer/footer.component';
+import { SubjectsModule } from './subjects/subjects.module';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,10 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     BrowserModule,
     CoursesModule,
+    SubjectsModule,
     SharedModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

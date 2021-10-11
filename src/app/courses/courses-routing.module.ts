@@ -11,7 +11,7 @@ import { CreatedComponent } from './created/created.component';
 const routes: Routes = [
 	{ 
 		path: 'learn',
-		canActivate: [InitPlatformGuard],
+		canActivateChild: [InitPlatformGuard],
 		children: [
 			{
 				path: 'new',

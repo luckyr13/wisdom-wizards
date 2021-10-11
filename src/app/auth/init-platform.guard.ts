@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UserSettingsService } from '../core/user-settings.service';
 declare const document: any;
 
 @Injectable({
   providedIn: 'root'
 })
-export class InitPlatformGuard implements CanActivate {
+export class InitPlatformGuard implements CanActivate, CanActivateChild {
+  constructor(private _userSettings: UserSettingsService) {
+
+  }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.scrollToTop();
+    
+    console.log('canActivate')
     return true;
   }
 
-  
-	scrollToTop() {
-    const container = document.getElementById('ww-mat-sidenav-main-content');
-    if (container) {
-    	container.scrollTop = 0;
-    }
+  canActivateChild(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    this._userSettings.scrollPageToTop();
+    return true;
   }
+
+	
   
 }

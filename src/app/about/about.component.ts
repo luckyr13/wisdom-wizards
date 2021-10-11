@@ -57,6 +57,9 @@ export class AboutComponent implements OnInit {
   }
 
   getNumElements(obj: any) {
+    if (typeof(obj) !== 'object') {
+      return 0;
+    }
     return Object.keys(obj).length;
   }
 

@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     anime({
       targets: '.txt-color-anime',
       color: this.randomColor,
-      duration: 2000,
+      duration: 3000,
       direction: 'alternate',
       easing: 'linear',
       complete: () => {
