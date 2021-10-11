@@ -5,11 +5,11 @@ import {
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import { ModalLoginOptionsComponent } from '../shared/modal-login-options/modal-login-options.component';
 import { AuthService } from '../auth/auth.service';
-import { ArweaveService } from '../auth/arweave.service';
+import { ArweaveService } from '../core/arweave.service';
 import { Subscription, EMPTY, Observable } from 'rxjs';
-import { INetworkResponse } from '../auth/INetworkResponse';
+import { INetworkResponse } from '../core/interfaces/INetworkResponse';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { UserSettingsService } from '../auth/user-settings.service';
+import { UserSettingsService } from '../core/user-settings.service';
 declare const document: any;
 declare const window: any;
 

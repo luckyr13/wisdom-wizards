@@ -1,4 +1,5 @@
 <div 
+	id="home-main-slider"
 	class="home-parent-container fadeIn mat-elevation-z6"
 	*ngIf="sliderImage"
 	style="background: url({{sliderImage}}) no-repeat center center fixed; background-size: cover;"
@@ -39,7 +40,7 @@
 					color="accent"
 					class="superBtn_font"
 					routerLink="/learn">
-						<mat-icon >school</mat-icon> Start learning
+						Start learning
 					</button>
 			  </mat-card-actions>
 			</mat-card>
@@ -49,9 +50,9 @@
 				<mat-card-content>
 					<p>
 						<mat-icon 
-							class="how-card-icon "
+							class="how-card-icon"
 							aria-hidden="false" 
-							aria-label="Wizards">psychology</mat-icon>
+							aria-label="Wizards">co_present</mat-icon>
 					</p>	
 					<p>	
 						Create an online course on the permaweb and share your wisdom with the world.
@@ -62,7 +63,7 @@
 					mat-flat-button
 					color="accent"
 					class="superBtn_font"
-  				(click)="login()"><mat-icon >psychology</mat-icon> Start now</button>
+  				(click)="login()">Start now</button>
 			  </mat-card-actions>
 			</mat-card>
 		</div>

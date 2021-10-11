@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
-import { ArweaveService } from '../../auth/arweave.service';
+import { ArweaveService } from '../../core/arweave.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import { AuthService } from '../../auth/auth.service';

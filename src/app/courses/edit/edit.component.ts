@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { Observable, Subscription } from 'rxjs';
-import { ArweaveService } from '../../auth/arweave.service';
+import { ArweaveService } from '../../core/arweave.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';

@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { Router } from '@angular/router';
-import { ArweaveService } from '../../auth/arweave.service';
+import { ArweaveService } from '../../core/arweave.service';
 import { WisdomWizardsTokenContract } from '../../core/contracts/wisdom-wizards-token';
 import {AuthService} from '../../auth/auth.service';
 declare const window: any;

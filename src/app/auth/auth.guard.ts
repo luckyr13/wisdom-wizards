@@ -5,7 +5,7 @@ import {
 	RouterStateSnapshot, UrlTree 
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ArweaveService } from './arweave.service';
+import { ArweaveService } from '../core/arweave.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';

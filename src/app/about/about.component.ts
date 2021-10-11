@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WisdomWizardsContract } from '../core/contracts/wisdom-wizards';
 import { Observable, Subscription, EMPTY } from 'rxjs';
-import { ArweaveService } from '../auth/arweave.service';
+import { ArweaveService } from '../core/arweave.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({

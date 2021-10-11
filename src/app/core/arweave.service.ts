@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { INetworkResponse } from './INetworkResponse';
+import { INetworkResponse } from './interfaces/INetworkResponse';
 import { selectWeightedPstHolder } from 'smartweave';
 import Arweave from 'arweave';
 import { contractTemplateNFT, INFTStateTemplate, ArweaveContractCreateNFT } from './arweave-contract-create-nft';

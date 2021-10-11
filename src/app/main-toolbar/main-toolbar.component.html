@@ -63,8 +63,14 @@
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #userMenu="matMenu">
+    <button mat-menu-item [routerLink]="['dashboard']">
+      <mat-icon>dashboard</mat-icon> General dashboard
+    </button>
     <button mat-menu-item>
-      <mat-icon>dashboard</mat-icon> Dashboard
+      <mat-icon>school</mat-icon> My learning
+    </button>
+    <button mat-menu-item>
+      <mat-icon>co_present</mat-icon> Instructor dashboard
     </button>
     <button mat-menu-item (click)="logout()">
       <mat-icon>logout</mat-icon> Logout

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { ModalLoginOptionsComponent } from '../shared/modal-login-options/modal-login-options.component'
-import { ArweaveService } from '../auth/arweave.service';
+import { ArweaveService } from '../core/arweave.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import anime from 'animejs';
@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const res = `#${colors[randomIndex]}`;
     return res;
   }
+
 
   /*
   *  @dev Select a random image from sliders array
