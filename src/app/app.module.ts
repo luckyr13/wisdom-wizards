@@ -15,6 +15,7 @@ import { CoursesModule } from './courses/courses.module';
 import { WhitepaperComponent } from './whitepaper/whitepaper.component';
 import { FooterComponent } from './footer/footer.component';
 import { SubjectsModule } from './subjects/subjects.module';
+import { LangRedirectComponent } from './lang-redirect/lang-redirect.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SubjectsModule } from './subjects/subjects.module';
     MainMenuComponent,
     AboutComponent,
     WhitepaperComponent,
-    FooterComponent
+    FooterComponent,
+    LangRedirectComponent
   ],
   imports: [
     BrowserModule,

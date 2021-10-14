@@ -34,7 +34,7 @@ export class FooterComponent implements OnInit {
 
   animateTxt() {
     anime({
-      targets: '#footer-wisdom-txt .txt-color-anime',
+      targets: '#footer-wisdom-txt ',
       color: this.randomColor,
       duration: 2000,
       direction: 'alternate',

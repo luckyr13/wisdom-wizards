@@ -7,7 +7,6 @@ import { ModalLoginOptionsComponent } from '../shared/modal-login-options/modal-
 import { AuthService } from '../auth/auth.service';
 import { ArweaveService } from '../core/arweave.service';
 import { Subscription, EMPTY, Observable } from 'rxjs';
-import { INetworkResponse } from '../core/interfaces/INetworkResponse';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { UserSettingsService } from '../core/user-settings.service';
 declare const document: any;
@@ -39,7 +38,6 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
       }
     });
     this.defaultTheme = this._userSettings.getDefaultTheme();
-
   }
 
   ngOnDestroy(): void {

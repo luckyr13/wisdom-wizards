@@ -10,7 +10,7 @@ import { CreatedComponent } from './created/created.component';
 
 const routes: Routes = [
 	{ 
-		path: 'learn',
+		path: ':lang/learn',
 		canActivateChild: [InitPlatformGuard],
 		children: [
 			{

@@ -38,6 +38,7 @@
               "smartweave",
               "arweave",
               "ar-gql",
+              "crypto"
             ],
             "vendorChunk": true,
             "extractLicenses": false,

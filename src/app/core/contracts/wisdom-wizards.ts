@@ -1,10 +1,11 @@
 import { 
-	readContract, interactWrite,
-	createContract, interactRead
+	readContract, interactWrite, interactRead
 } from 'smartweave';
+import { SmartWeaveWebFactory, ArWallet, Contract, SmartWeave } from 'redstone-smartweave';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
+import { ArweaveService } from '../arweave.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,70 +13,50 @@ import { switchMap, map } from 'rxjs/operators';
 export class WisdomWizardsContract
 {
 	private _contractAddress: string = 'QBR8RtXdBbsAwQILIhF3PclOvFMGWdS_pT-ZuQNldWo';	
+	private _smartweave: SmartWeave;
+	private _contract: Contract;
 
-	constructor() {
+	constructor(private _arweave: ArweaveService) {
+		this._smartweave = SmartWeaveWebFactory.memCached(this._arweave.arweave);
+		this._contract = this._smartweave.contract(this._contractAddress);
+	}
 
+	getConnectedContract(wallet: ArWallet) {
+		const contract = this._smartweave.contract(
+				this._contractAddress
+			).connect(
+				wallet
+			).setEvaluationOptions({
+		    // with this flag set to true, 
+		    // the write will wait for the transaction to be confirmed
+		    waitForConfirmation: true,
+		  });
+		return contract;
 	}
 
 	/*
 	*	@dev Get full contract state as Observable
 	*/
-	getState(arweave: any): Observable<any> {
-		const obs = new Observable((subscriber) => {
-			readContract(arweave, this._contractAddress).then((state) => {
-				subscriber.next(state);
-				subscriber.complete();
-			}).catch((error) => {
-				subscriber.error(error);
-			});
-
-		});
-
-		return obs;
+	getState(blockHeight?: number): Observable<any> {
+		return from(this._contract.readState(blockHeight));
 	}
 
-	/*
-	*	@dev Register main address in contract as user
-	*/
-	register(arweave: any, walletJWK: any): Observable<any>  {
-		const obs = new Observable((subscriber) => {
-			const input = { function: 'registerUser' };
-			interactWrite(arweave, walletJWK, this._contractAddress, input)
-				.then((tx) => {
-					subscriber.next(tx);
-					subscriber.complete();
-				}).catch((error) => {
-					subscriber.error(error);
-				});
-
-		});
-
-		return obs;
-	}
-
-	/*
-	*	@dev Get user info as Observable
-	*/
-	getUserInfo(arweave: any, walletJWK: any): Observable<any> {
-		const obs = new Observable((subscriber) => {
-			const input = { function: 'getMyUserData' };
-			interactRead(arweave, walletJWK, this._contractAddress, input)
-				.then((userInfo) => {
-					subscriber.next(userInfo);
-					subscriber.complete();
-				}).catch((error) => {
-					subscriber.error(error);
-				});
-		});
-
-		return obs;
-	}
-
+	
 	/*
 	*	Returns arweave address
 	*/
 	getContractAddres(): string {
 		return this._contractAddress;
+	}
+
+	getLanguages() {
+		return this.getState().pipe(
+				map((res) => {
+					const { state, validity } = res;
+					const langs = state.languages;
+					return langs;
+				})
+			);
 	}
 
 	/*

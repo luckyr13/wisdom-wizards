@@ -1,5 +1,5 @@
 /*
-*	Version 15
+*	Version 16
 *	Thanks God!
 */
 export function handle(state, action)
@@ -28,14 +28,14 @@ export function handle(state, action)
 		// Check if new admin is already registered
 		_modifier_validateIfAdminExists(admins, newAdmin);
 		// Validate new langs array
-		const approvedLangs = Object.prototype.hasOwnProperty.call(input, 'approvedLangs') &&
+		const approvedLangs = _hasOwnProperty(input, 'approvedLangs') &&
 			input.approvedLangs ? input.approvedLangs : ["*"];
 		if (!Array.isArray(approvedLangs)) {
 			throw new ContractError('Approved langs must be an array!');
 		}
 		for (const al of approvedLangs) {
 			if (typeof(al) !== 'string' ||
-				  !Object.prototype.hasOwnProperty.call(languages, al)) {
+				  !_hasOwnProperty(languages, al)) {
 				throw new ContractError(`Invalid langs array! Element: ${al}`);
 			}
 		}
@@ -53,7 +53,7 @@ export function handle(state, action)
 	/*
 	*	@dev Add a new course
 	*/
-	if (input.function === "addCourse") {
+	else if (input.function === "addCourse") {
 		// Validate inputs that must be strings
 		const courseAddress = _modifier_validateInputString(
 			input.courseAddress,
@@ -68,20 +68,20 @@ export function handle(state, action)
 		_modifier_validateAdmin(admins, caller);
 
 		// Validate `subject`
-		if (!Object.prototype.hasOwnProperty.call(subjects, subject)) {
+		if (!_hasOwnProperty(subjects, subject)) {
 			throw new ContractError(`Invalid subject: ${subject}`);
 		}
 		// Validate lang
-		if (!Object.prototype.hasOwnProperty.call(languages, langCode) &&
+		if (!_hasOwnProperty(languages, langCode) &&
 				!languages[langCode].active) {
 			throw new ContractError(`Invalid lang code ${langCode}`);
 		}
 		// Validate if lang is already on courses dict
-		if (!Object.prototype.hasOwnProperty.call(courses, langCode)) {
+		if (!_hasOwnProperty(courses, langCode)) {
 			courses[langCode] = {};
 		} else {
 			// Validate `slug`
-			if (!Object.prototype.hasOwnProperty.call(courses[langCode], slug)) {
+			if (!_hasOwnProperty(courses[langCode], slug)) {
 				throw new ContractError(`Slug already exists: ${slug}`);
 			}
 		}
@@ -99,7 +99,7 @@ export function handle(state, action)
 	/*
 	*	@dev Activate/deactivate course
 	*/
-	if (input.function === "updateCourseStatus") {
+	else if (input.function === "updateCourseStatus") {
 		const slug = _modifier_validateInputString(input.slug, 'slug', 50);
 		const langCode = _modifier_validateInputString(input.langCode, 'langCode', 2);
 
@@ -107,11 +107,11 @@ export function handle(state, action)
 		_modifier_validateAdmin(admins, caller);
 
 		// Language must be valid
-		if (Object.prototype.hasOwnProperty.call(courses, langCode)) {
+		if (_hasOwnProperty(courses, langCode)) {
 			throw new ContractError(`Invalid langCode ${langCode}`);
 		}
 		// Course must exist
-		if (Object.prototype.hasOwnProperty.call(courses[langCode], slug)) {
+		if (_hasOwnProperty(courses[langCode], slug)) {
 			throw new ContractError(`Invalid slug ${slug}`);
 		}
 
@@ -120,11 +120,10 @@ export function handle(state, action)
 
 		return {state};
 	}
-
 	/*
 	*	@dev Activate/deactivate admin status
 	*/
-	if (input.function === "updateAdminStatus") {
+	else if (input.function === "updateAdminStatus") {
 		const targetAdmin = _modifier_validateInputString(
 			input.targetAdmin, 'arAddressLen', arAddressLen
 		);
@@ -141,16 +140,15 @@ export function handle(state, action)
 
 		return {state};
 	}
-
 	/*
 	*	@dev Get the list of active courses grouped by subject
 	*/
-	if (action.input.function === "getActiveCourses") {
+	else if (action.input.function === "getActiveCourses") {
 		const res = {};
 		const langCode = _modifier_validateInputString(input.slug, 'langCode', 2);
 
 		// Language must be valid
-		if (Object.prototype.hasOwnProperty.call(courses, langCode)) {
+		if (_hasOwnProperty(courses, langCode)) {
 			throw new ContractError(`Invalid langCode ${langCode}`);
 		}
 
@@ -162,7 +160,7 @@ export function handle(state, action)
 				continue;
 			}
 			// Save course
-			if (!Object.prototype.hasOwnProperty.call(res, c.subject)) {
+			if (!_hasOwnProperty(res, c.subject)) {
 				res[c.subject] = [];
 			}
 
@@ -176,11 +174,18 @@ export function handle(state, action)
 }
 
 /*
+*	Helper function
+*/
+function _hasOwnProperty(_obj, _prop) {
+	return Object.prototype.hasOwnProperty.call(_obj, _prop);
+}
+
+/*
 *	Validates if the user is an admin
 */
 function _modifier_validateAdmin(_admins, _address)
 {
-	if (!Object.prototype.hasOwnProperty.call(_admins, _address) || 
+	if (!_hasOwnProperty(_admins, _address) || 
 		 !_admins[_address].active) {
 		throw new ContractError(`${address} is not an active admin`);
 	}
@@ -191,7 +196,7 @@ function _modifier_validateAdmin(_admins, _address)
 */
 function _modifier_validateRootAdmin(_admins, _address)
 {
-	if (!Object.prototype.hasOwnProperty.call(_admins, _address) || 
+	if (!_hasOwnProperty(_admins, _address) || 
 		 !_admins[_address].active ||
 		 (_admins[_address].approved_langs &&
 		   _admins[_address].approved_langs[0] !== '*')) {
@@ -201,14 +206,14 @@ function _modifier_validateRootAdmin(_admins, _address)
 
 function _modifier_validateIfAdminExists(_admins, _caller)
 {
-	if (Object.prototype.hasOwnProperty.call(_admins, _caller)) {
+	if (_hasOwnProperty(_admins, _caller)) {
 		throw new ContractError(`${address} is already an admin`);
 	}
 }
 
 function _modifier_validateIfAdminDoesntExists(_admins, _caller)
 {
-	if (!Object.prototype.hasOwnProperty.call(_admins, _caller)) {
+	if (!_hasOwnProperty(_admins, _caller)) {
 		throw new ContractError(`${address} is not an admin`);
 	}
 }

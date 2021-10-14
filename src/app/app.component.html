@@ -1,3 +1,7 @@
+<mat-progress-bar 
+  *ngIf="platformLoading$ | async"
+  class="main-loader" 
+  mode="indeterminate"></mat-progress-bar>
 <mat-sidenav-container class="main-container">
   <mat-sidenav 
   		mode="over" 
@@ -6,8 +10,8 @@
   	<app-main-menu [(opened)]="opened"></app-main-menu>
   </mat-sidenav>
   <mat-sidenav-content id="ww-mat-sidenav-main-content" >
-		<app-main-toolbar [(opened)]="opened"></app-main-toolbar>
+		<app-main-toolbar *ngIf="showMainToolbar$ | async" [(opened)]="opened"></app-main-toolbar>
 		<router-outlet></router-outlet>
-    <app-footer></app-footer>
+    <app-footer *ngIf="showMainToolbar$ | async"></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

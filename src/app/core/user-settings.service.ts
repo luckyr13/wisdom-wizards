@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 declare const window: any;
 declare const document: any;
 
@@ -6,12 +7,18 @@ declare const document: any;
   providedIn: 'root'
 })
 export class UserSettingsService {
-	_defaultTheme: string = '';
-	_defaultLang: string = '';
+	private _defaultTheme: string = '';
+	private _defaultLang: string = '';
+  private _loading: Subject<boolean> = new Subject<boolean>();
+  public loading$ = this._loading.asObservable();
+  private _showMainToolbar: Subject<boolean> = new Subject<boolean>();
+  public showMainToolbar$ = this._showMainToolbar.asObservable();
 
   constructor() {
   	const dtheme = window.sessionStorage.getItem('defaultTheme');
   	const dlang = window.sessionStorage.getItem('defaultLang');
+    this.setLoading(false);
+    this.setShowMainToolbar(false);
 
   	// Default settings
   	if (dtheme) {
@@ -25,6 +32,14 @@ export class UserSettingsService {
   		this.setDefaultLang('EN');
   	}
 
+  }
+
+  setLoading(_isLoading: boolean) {
+    this._loading.next(_isLoading);
+  }
+
+  setShowMainToolbar(_show: boolean) {
+    this._showMainToolbar.next(_show);
   }
 
   getDefaultTheme(): string {

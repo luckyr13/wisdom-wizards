@@ -7,26 +7,34 @@ import { AboutComponent } from './about/about.component';
 import { WhitepaperComponent } from './whitepaper/whitepaper.component';
 import { AuthGuard } from './auth/auth.guard';
 import { InitPlatformGuard } from './auth/init-platform.guard';
+import { LangRedirectComponent } from './lang-redirect/lang-redirect.component';
 
 const routes: Routes = [
-		{
-			path: '',
-			canActivateChild: [InitPlatformGuard],
-			children: [
-				{ path: 'home', component: HomeComponent },
-				{ 
-					path: 'dashboard',
-					component: DashboardComponent,
-					canActivate: [AuthGuard]
-				},
-				{ path: 'about', component: AboutComponent},
-				{ path: 'whitepaper', component: WhitepaperComponent},
-				{ path: '', redirectTo: '/home', pathMatch: 'full' },
-				{ path: '**', component: PageNotFoundComponent },
+	{
+		path: '', 
+		component: LangRedirectComponent,
+		pathMatch: 'full',
+		canActivate: [InitPlatformGuard]
+	},
+	{
+		path: ':lang',
+		canActivate: [InitPlatformGuard],
+		canActivateChild: [InitPlatformGuard],
+		children: [
+			{ path: 'home', component: HomeComponent },
+			{ 
+				path: 'dashboard',
+				component: DashboardComponent,
+				canActivate: [AuthGuard]
+			},
+			{ path: 'about', component: AboutComponent},
+			{ path: 'whitepaper', component: WhitepaperComponent},
+			{ path: '', redirectTo: 'home', pathMatch: 'full' },
+			{ path: '**', component: PageNotFoundComponent },
 
-			]
-		}
-	];
+		]
+	}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],

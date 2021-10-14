@@ -11,11 +11,22 @@ mat-sidenav {
 }
 
 .mat-drawer-container {
-  top: 64px;
+
+  padding-top: 56px;
+}
+@media (min-width: 600px) {
+	.mat-drawer-container {
+	  padding-top: 62px;
+	}
 }
 
-@media (max-width: 600px) {
-	.mat-drawer-container {
-	  top: 56px;
-	}
+.temp-body {
+  height: 100%;
+}
+
+
+.main-loader {
+  position: fixed;
+  top: 0;
+  z-index: 20;
 }

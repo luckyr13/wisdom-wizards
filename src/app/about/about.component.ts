@@ -32,9 +32,10 @@ export class AboutComponent implements OnInit {
   *	 Get contract's state
   */
   getState() {
-  	this.state$ = this._wisdomWizards.getState(this._arweave.arweave).subscribe({
-  		next: (state) => {
-  			this.state = state;
+  	this.state$ = this._wisdomWizards.getState().subscribe({
+  		next: (res) => {
+  			const { state, validity } = res;
+        this.state = state;
   			this.loading = false;
   		},
   		error: (error) => {

@@ -92,6 +92,7 @@ export class ModalRegisterComponent implements OnInit, OnDestroy {
   *	 Register user in platform and send the fee to PST
   */
   register(_fee: string) {    
+    /*
     this.loadingTransaction = true;
 
   	this.register$ = this._wisdomWizards.register(
@@ -125,6 +126,7 @@ export class ModalRegisterComponent implements OnInit, OnDestroy {
   			this.message('Error!', 'error');
   		}
   	});
+    */
   }
 
 }

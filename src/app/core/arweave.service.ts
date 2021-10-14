@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { INetworkResponse } from './interfaces/INetworkResponse';
 import { selectWeightedPstHolder } from 'smartweave';
+import { NetworkInfoInterface } from 'arweave/node/network';
 import Arweave from 'arweave';
 import { contractTemplateNFT, INFTStateTemplate, ArweaveContractCreateNFT } from './arweave-contract-create-nft';
 declare const window: any;
@@ -11,7 +11,7 @@ declare const window: any;
   providedIn: 'root'
 })
 export class ArweaveService {
-  arweave: any = null;
+  arweave: Arweave;
   arweaveNFT: ArweaveContractCreateNFT = new ArweaveContractCreateNFT();
 
   constructor() {
@@ -23,10 +23,10 @@ export class ArweaveService {
 
   }
 
-  getNetworkInfo(): Observable<INetworkResponse> {
-  	const obs = new Observable<INetworkResponse>((subscriber) => {
+  getNetworkInfo(): Observable<NetworkInfoInterface> {
+  	const obs = new Observable<NetworkInfoInterface>((subscriber) => {
   		// Get network's info
-  		this.arweave.network.getInfo().then((res: INetworkResponse) => {
+  		this.arweave.network.getInfo().then((res: NetworkInfoInterface) => {
   			subscriber.next(res);
   			subscriber.complete();
 	  	}).catch((error: any) => {
@@ -42,7 +42,7 @@ export class ArweaveService {
   getNetworkName(): Observable<string> {
     const obs = new Observable<string>((subscriber) => {
       // Get network's name
-      this.arweave.network.getInfo().then((res: INetworkResponse) => {
+      this.arweave.network.getInfo().then((res: any) => {
         subscriber.next(res.network);
         subscriber.complete();
       }).catch((error: any) => {
@@ -55,11 +55,11 @@ export class ArweaveService {
     );
   }
 
-  getAccount(): Observable<any> {
-    const obs = new Observable<any>((subscriber) => {
+  getAccount(): Observable<string> {
+    const obs = new Observable<string>((subscriber) => {
       // Get main account
       // very similar to window.ethereum.enable
-      this.arweave.wallets.getAddress().then((res: any) => {
+      this.arweave.wallets.getAddress().then((res: string) => {
         
         subscriber.next(res);
         subscriber.complete();
@@ -280,7 +280,7 @@ export class ArweaveService {
         winstonQty
       );
 
-    } catch (error) {
+    } catch (error: any) {
       throw Error(error);
     }
 

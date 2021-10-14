@@ -23,10 +23,13 @@
     "@angular/router": "^12.2.9",
     "animejs": "^3.2.1",
     "arverify": "0.0.10",
-    "arweave": "^1.10.17",
+    "arweave": "^1.10.18",
     "bootstrap": "^4.6.0",
+    "crypto-browserify": "^3.12.0",
+    "path-browserify": "^1.0.1",
+    "redstone-smartweave": "^0.3.10-alpha.13",
     "rxjs": "^6.6.7",
-    "smartweave": "^0.4.45",
+    "stream-browserify": "^3.0.0",
     "tslib": "^2.3.1",
     "util": "^0.12.4",
     "zone.js": "~0.11.4"
@@ -37,7 +40,7 @@
     "@angular/compiler-cli": "^12.2.9",
     "@types/animejs": "^3.1.4",
     "@types/jasmine": "^3.9.1",
-    "@types/node": "^12.20.28",
+    "@types/node": "^12.20.31",
     "codelyzer": "^6.0.2",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -50,5 +53,8 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.2.4"
+  },
+  "browser": {
+    "fs": false
   }
 }
