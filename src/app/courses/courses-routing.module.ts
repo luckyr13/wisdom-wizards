@@ -6,7 +6,6 @@ import { EditComponent } from './edit/edit.component';
 import { NewComponent } from './new/new.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { InitPlatformGuard } from '../auth/init-platform.guard';
-import { CreatedComponent } from './created/created.component';
 
 const routes: Routes = [
 	{ 
@@ -17,11 +16,6 @@ const routes: Routes = [
 			{
 				path: 'new',
 				component: NewComponent,
-				canActivate: [AuthGuard],
-			},
-			{
-				path: 'created',
-				component: CreatedComponent,
 				canActivate: [AuthGuard],
 			},
 			{

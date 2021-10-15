@@ -1,5 +1,5 @@
 .dashboard-container {
-	min-height: 440px;
+	height: 100%;
 }
 
 .loading-txt {
@@ -10,6 +10,9 @@
 .scoreboard {
 	padding: 10px;
 }
+.scoreboard .mat-card {
+	height: 100px;
+}
 
 .scoreboard a {
 	  white-space: nowrap; 
@@ -18,13 +21,18 @@
 }
 
 .bn {
-	font-size: 40px;
-	padding-bottom: 10px;
+	font-size: 36px;
+	margin-bottom: 10px;
 }
 
 .bn2 {
 	font-size: 20px;
 	text-overflow: ellipsis;
+}
+
+.num-container {
+	padding-top: 10px;
+	margin-bottom: 6px;
 }
 
 .txurl {

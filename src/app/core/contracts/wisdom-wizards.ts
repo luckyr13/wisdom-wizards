@@ -3,7 +3,7 @@ import {
 } from 'smartweave';
 import { SmartWeaveWebFactory, ArWallet, Contract, SmartWeave } from 'redstone-smartweave';
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { Observable, from, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { ArweaveService } from '../arweave.service';
 
@@ -63,18 +63,9 @@ export class WisdomWizardsContract
 	*	@dev Get subjects list as Observable
 	*/
 	getSubjects(arweave: any, walletJWK: any): Observable<any> {
-		const obs = new Observable((subscriber) => {
-			const input = { function: 'getSubjects' };
-			interactRead(arweave, walletJWK, this._contractAddress, input)
-				.then((subjects) => {
-					subscriber.next(subjects);
-					subscriber.complete();
-				}).catch((error) => {
-					subscriber.error(error);
-				});
-		});
+		
 
-		return obs;
+		return of(null);
 	}
 
 
@@ -82,18 +73,9 @@ export class WisdomWizardsContract
 	*	@dev Get courses list as Observable
 	*/
 	getCourses(arweave: any, walletJWK: any): Observable<any> {
-		const obs = new Observable((subscriber) => {
-			const input = { function: 'getActiveCourses' };
-			interactRead(arweave, walletJWK, this._contractAddress, input)
-				.then((courses) => {
-					subscriber.next(courses);
-					subscriber.complete();
-				}).catch((error) => {
-					subscriber.error(error);
-				});
-		});
+		
 
-		return obs;
+		return of(null);
 	}
 
 	/*
@@ -164,18 +146,9 @@ export class WisdomWizardsContract
 	*	@dev Get my list of created courses as Observable
 	*/
 	getMyCreatedCourses(arweave: any, walletJWK: any): Observable<any> {
-		const obs = new Observable((subscriber) => {
-			const input = { function: 'getAllMyCreatedCourses' };
-			interactRead(arweave, walletJWK, this._contractAddress, input)
-				.then((courses) => {
-					subscriber.next(courses);
-					subscriber.complete();
-				}).catch((error) => {
-					subscriber.error(error);
-				});
-		});
+		
 
-		return obs;
+		return of(null);
 	}
 
 
@@ -183,21 +156,8 @@ export class WisdomWizardsContract
 	*	@dev Get course detail
 	*/
 	getCourseDetail(arweave: any, walletJWK: any, courseId: number): Observable<any> {
-		const obs = new Observable((subscriber) => {
-			const input = { 
-				function: 'getCourseDetail',
-				courseId: courseId
-			};
-			interactRead(arweave, walletJWK, this._contractAddress, input)
-				.then((subjects) => {
-					subscriber.next(subjects);
-					subscriber.complete();
-				}).catch((error) => {
-					subscriber.error(error);
-				});
-		});
-
-		return obs;
+		
+		return of(null);
 	}
 
 	/*

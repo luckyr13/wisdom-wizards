@@ -9,75 +9,48 @@
 	*ngIf="loading"
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
-
-<div *ngIf="!loading" class="container scoreboards-container fadeIn">
-	<div class="row">
-		<div class="col-12 col-md-6 scoreboard">
-			<mat-card>
-				<div class="text-center">
-					
-						<span class="bn">{{ balance | async }}</span> AR
-				</div>
-				<div class="text-center"><strong>Account balance</strong></div>
-			</mat-card>
-		</div>
-		
-
-		<div class="col-12 col-md-6 scoreboard">
-			<mat-card>
-				<div class="text-center">
-					<a 
-						mat-button
-						target="_blank"
-						href="https://viewblock.io/arweave/tx/{{lastTransactionID | async}}"
-						class=" txurl">
-						<span class="bn2">{{ lastTransactionID | async }}</span>
-					</a>
-				</div>
-				<div class="text-center"><strong>Last TXID processed</strong></div>
-			</mat-card>
-		</div>
-		
-	</div>
-</div>
-
-<div class="container dashboard-container">
-	<div *ngIf="!loading" class="fadeIn">
+<div class="dashboard-container">
+	<div *ngIf="!loading" class="container scoreboards-container fadeIn">
 		<h1>Welcome back!</h1>
-		
 		<div class="row">
 			<div class="col-12 col-md-6 scoreboard">
 				<mat-card>
-					<button 
-						color="primary"
-						style="float: right; margin-right: 10px"
-						mat-mini-fab 
-						routerLink="/learn/new"
-        		matTooltip="Create new course"
-						aria-label="Create new course">
-	          <mat-icon>add</mat-icon>
-	        </button>
-					<h1 class="text-left" style="margin-top: 4px">
-						Create new course
-					</h1>
+					<div class="text-center num-container">
+						
+							<span class="bn">{{ balance | async }}</span> AR
+					</div>
+					<div class="text-center"><strong>Account balance</strong></div>
 				</mat-card>
 			</div>
 			<div class="col-12 col-md-6 scoreboard">
 				<mat-card>
-					<button 
-						color="primary"
-						style="float: right; margin-right: 10px"
-						mat-mini-fab 
-						routerLink="/learn/created"
-        		matTooltip="List of created courses"
-						aria-label="List of created courses">
-	          <mat-icon>list</mat-icon>
-	        </button>
-					<h1 class="text-left" style="margin-top: 4px">
-						View courses created
-					</h1>
+					<div class="text-center">
+						<a 
+							mat-button
+							target="_blank"
+							href="https://viewblock.io/arweave/tx/{{lastTransactionID | async}}"
+							class=" txurl">
+							<span class="bn2">{{ lastTransactionID | async }}</span>
+						</a>
+					</div>
+					<div class="text-center"><strong>Last TXID processed</strong></div>
 				</mat-card>
 			</div>
+			<div class="col-12 scoreboard">
+				<mat-card>
+					<div class="text-center">
+						<a 
+							mat-button
+							target="_blank"
+							href="https://viewblock.io/arweave/address/{{mainAddress}}"
+							class=" txurl">
+							<span class="bn2">{{ mainAddress }}</span>
+						</a>
+					</div>
+					<div class="text-center"><strong>Your Arweave address</strong></div>
+				</mat-card>
+			</div>
+			
 		</div>
 	</div>
 
