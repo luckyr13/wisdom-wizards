@@ -63,10 +63,10 @@
     <button mat-menu-item [routerLink]="[routeLang, 'dashboard']">
       <mat-icon>dashboard</mat-icon> General dashboard
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item [routerLink]="[routeLang, 'student']">
       <mat-icon>school</mat-icon> My learning
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item [routerLink]="[routeLang, 'instructor']">
       <mat-icon>co_present</mat-icon> Instructor dashboard
     </button>
     <button mat-menu-item (click)="logout()">

@@ -16,6 +16,8 @@ import { WhitepaperComponent } from './whitepaper/whitepaper.component';
 import { FooterComponent } from './footer/footer.component';
 import { SubjectsModule } from './subjects/subjects.module';
 import { LangRedirectComponent } from './lang-redirect/lang-redirect.component';
+import { StudentModule } from './student/student.module';
+import { InstructorModule } from './instructor/instructor.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { LangRedirectComponent } from './lang-redirect/lang-redirect.component';
     SubjectsModule,
     SharedModule,
     BrowserAnimationsModule,
+    StudentModule,
+    InstructorModule,
     AppRoutingModule,
   ],
   providers: [],
