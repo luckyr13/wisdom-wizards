@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
 import { ViewDetailComponent } from './view-detail/view-detail.component';
 import { EditComponent } from './edit/edit.component';
-import { NewComponent } from './new/new.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { InitPlatformGuard } from '../auth/init-platform.guard';
 
@@ -13,11 +12,6 @@ const routes: Routes = [
 		canActivate: [InitPlatformGuard],
 		canActivateChild: [InitPlatformGuard],
 		children: [
-			{
-				path: 'new',
-				component: NewComponent,
-				canActivate: [AuthGuard],
-			},
 			{
 				path: ':id',
 				component: ViewDetailComponent

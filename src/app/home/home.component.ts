@@ -142,7 +142,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   login(routeLang: string) {
     const mainAccount = this._auth.getMainAddressSnapshot();
     if (mainAccount) {
-      this._router.navigate([routeLang, 'dashboard']);
+      this._router.navigate([routeLang, 'instructor', 'create-course']);
     } else {
       this._bottomSheet.open(ModalLoginOptionsComponent, {
         data: {

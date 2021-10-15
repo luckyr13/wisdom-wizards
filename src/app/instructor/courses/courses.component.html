@@ -1,24 +1,24 @@
-<mat-toolbar class="fadeIn" color="accent">
+<mat-toolbar class="fadeIn" color="primary">
   <mat-icon 
   	aria-hidden="false"
-  	aria-label="Courses list">school</mat-icon>
-	<span>&nbsp;Courses</span>
+  	aria-label="Instructor dashboard">co_present</mat-icon>
+	<span>&nbsp;Instructor dashboard</span>
 	<span class="toolbar-spacer"></span>
   <button 
-    mat-icon-button 
+    mat-button 
     class="fadeIn" 
-    routerLink="/learn/new"
+    [routerLink]="['/', routeLang, 'instructor', 'create-course']"
     matTooltip="Create new"
     aria-label="Create new">
-    <mat-icon>add</mat-icon>
+    <mat-icon>add</mat-icon> Create Course
   </button>
   <button 
-  	mat-icon-button 
+  	mat-button 
   	class="fadeIn" 
   	(click)="goBack()"
     matTooltip="Go back"
   	aria-label="Go back">
-    <mat-icon>navigate_before</mat-icon>
+    <mat-icon>navigate_before</mat-icon> Go back
   </button>
 
 </mat-toolbar>
@@ -32,7 +32,7 @@
 	<div class="row justify-content-center fadeIn" *ngIf="!loading">
   	<div class="col-12 my-created-container">
   		<mat-card>
-				<h1 class="bold text-center">My created courses</h1>
+				<h1 class="bold text-center">My courses</h1>
 			</mat-card>
 		</div>
     <div class="col-12 my-created-container" *ngIf="!coursesCreatedById">

@@ -5,6 +5,7 @@ import { ArweaveService } from '../../core/arweave.service';
 import { Observable, Subscription, EMPTY } from 'rxjs';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { AuthService } from '../../auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -17,19 +18,25 @@ export class CoursesComponent implements OnInit, OnDestroy {
   coursesCreatedById: any[] = [];
   loadingActivate: boolean = false;
   txmessageActivate: string = '';
+  routeLang: string = '';
 
   constructor(
   	private _location: Location,
     private _snackBar: MatSnackBar,
     private _arweave: ArweaveService,
     private _wisdomWizards: WisdomWizardsContract,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _route: ActivatedRoute
   ) { }
 
 
   ngOnInit(): void {
     this.loading = true;
     this.getMyCreatedCourses();
+    this.routeLang = this._route.snapshot.paramMap.get('lang')!;
+    this._route.paramMap.subscribe((params) => {
+      this.routeLang = params.get('lang')!;
+    })
   }
 
   ngOnDestroy() {
