@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { ArweaveService } from '../core/arweave.service';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
 import anime from 'animejs';
 
 @Component({
@@ -10,21 +7,15 @@ import anime from 'animejs';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  account: Observable<string> = this._auth.account$;
-  network: Observable<string> = this._arweave.getNetworkName();
+  @Input() address: string|null = '';
+  @Input() network: string|null = '';
 
-  constructor(
-  	private _auth: AuthService,
-  	private _arweave: ArweaveService
-  ) {
+  constructor() {
 
   }
 
   ngOnInit(): void {
-  	window.setTimeout(() => {
-  		this._auth.setAccount(this._auth.getMainAddressSnapshot());
-
-  	}, 500);
+  	
   }
 
 

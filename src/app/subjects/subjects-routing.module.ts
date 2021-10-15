@@ -7,6 +7,7 @@ import { ViewDetailComponent } from './view-detail/view-detail.component';
 const routes: Routes = [
 	{
 		path: ':lang/browse',
+		canActivate: [InitPlatformGuard],
 		canActivateChild: [InitPlatformGuard],
 		children: [
 			{

@@ -9,7 +9,7 @@
     aria-label="Menu">
     <mat-icon>menu</mat-icon>
   </button>
-  <span routerLink="./" class="logo-text">
+  <span [routerLink]="[routeLang]" class="logo-text">
     Wisdom Wizards
   </span>
   <span class="menu-spacer"></span>
@@ -29,24 +29,20 @@
     <mat-icon>light_mode</mat-icon>
   </button>
   <button 
-      [matMenuTriggerFor]="langMenu"
+      [matMenuTriggerFor]="settingsMenu"
       mat-icon-button 
       class="translate-icon"
       matTooltip="Settings"
       aria-label="Settings">
     <mat-icon>settings</mat-icon>
   </button>
-  <mat-menu #langMenu="matMenu">
+  <mat-menu #settingsMenu="matMenu">
     <button 
-      mat-menu-item
-      [matMenuTriggerFor]="subLangMenu">
+      mat-menu-item>
       <mat-icon>language</mat-icon> Select language
     </button>
   </mat-menu>
-  <mat-menu #subLangMenu="matMenu">
-    <button mat-menu-item>English</button>
-    <button mat-menu-item>Spanish</button>
-  </mat-menu>
+  
   <button 
     mat-icon-button 
     (click)="login()"
@@ -63,7 +59,7 @@
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #userMenu="matMenu">
-    <button mat-menu-item [routerLink]="['dashboard']">
+    <button mat-menu-item [routerLink]="[routeLang, 'dashboard']">
       <mat-icon>dashboard</mat-icon> General dashboard
     </button>
     <button mat-menu-item>

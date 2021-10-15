@@ -52,20 +52,25 @@ export class InitPlatformGuard implements CanActivate, CanActivateChild {
           const isLangValid = Object.prototype.hasOwnProperty.call(langs, routeLang);
           this._userSettings.setLoading(false);
           if (isLangValid) {
+            this._userSettings.setRouteLang(routeLang);
             this._userSettings.setShowMainToolbar(true);
           } else {
-            this.openSnackBar('Invalid language!', 'error')
+            this.message('Invalid language!', 'error')
           }
           return isLangValid;
         })
       );
   }
 
-  openSnackBar(msg: string, cl: string= 'success') {
-    this._snackBar.open(msg, 'x', {
-      panelClass: cl,
-      verticalPosition: 'bottom',
-      duration: 2000
+  /*
+  *  Custom snackbar message
+  */
+  message(msg: string, panelClass: string = '', verticalPosition: any = undefined) {
+    this._snackBar.open(msg, 'X', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: verticalPosition,
+      panelClass: panelClass
     });
   }
 

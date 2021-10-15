@@ -18,7 +18,8 @@ declare const window: any;
   styleUrls: ['./main-toolbar.component.scss']
 })
 export class MainToolbarComponent implements OnInit, OnDestroy {
-  @Input() opened!: boolean;
+  @Input() opened: boolean = false;
+  @Input() routeLang: string = '';
   @Output() openedChange = new EventEmitter<boolean>();
   isLoggedIn: boolean = false;
   defaultTheme: string = '';
@@ -28,8 +29,10 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
   	private _auth: AuthService,
   	private _arweave: ArweaveService,
   	private _snackBar: MatSnackBar,
-    private _userSettings: UserSettingsService
-  ) {}
+    private _userSettings: UserSettingsService,
+  ) {
+
+  }
 
   ngOnInit(): void {
     this._auth.account$.subscribe((_address: string) => {
@@ -38,10 +41,10 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
       }
     });
     this.defaultTheme = this._userSettings.getDefaultTheme();
+
   }
 
   ngOnDestroy(): void {
-  	
   }
 
   /*

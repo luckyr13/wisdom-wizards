@@ -1,14 +1,24 @@
 <mat-nav-list>
   <div mat-subheader>Menu</div>
-  <a mat-list-item (click)="toggleSideMenu()" routerLink="/home" routerLinkActive="active">
+  <a 
+    mat-list-item 
+    (click)="toggleSideMenu()" 
+    [routerLink]="[routeLang, 'home']" 
+    routerLinkActive="active">
     <mat-icon mat-list-icon>home</mat-icon>
     <div mat-line>Home</div>
   </a>
-  <a mat-list-item (click)="toggleSideMenu()" routerLink="/learn" routerLinkActive="active">
+  <a mat-list-item 
+    (click)="toggleSideMenu()" 
+    [routerLink]="[routeLang, 'learn']" 
+    routerLinkActive="active">
     <mat-icon mat-list-icon>school</mat-icon>
     <div mat-line>Courses</div>
   </a>
-  <a mat-list-item (click)="toggleSideMenu()" routerLink="/about" routerLinkActive="active">
+  <a mat-list-item 
+    (click)="toggleSideMenu()" 
+    [routerLink]="[routeLang, 'about']" 
+    routerLinkActive="active">
     <mat-icon mat-list-icon>info</mat-icon>
     <div mat-line>About</div>
   </a>

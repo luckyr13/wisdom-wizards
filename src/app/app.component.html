@@ -7,11 +7,20 @@
   		mode="over" 
       autoFocus="false"
       [(opened)]="opened">
-  	<app-main-menu [(opened)]="opened"></app-main-menu>
+  	<app-main-menu 
+      [(opened)]="opened"
+      [routeLang]="routeLang"></app-main-menu>
   </mat-sidenav>
   <mat-sidenav-content id="ww-mat-sidenav-main-content" >
-		<app-main-toolbar *ngIf="showMainToolbar$ | async" [(opened)]="opened"></app-main-toolbar>
+		<app-main-toolbar 
+        *ngIf="showMainToolbar$ | async"
+        [(opened)]="opened"
+        [routeLang]="routeLang"></app-main-toolbar>
 		<router-outlet></router-outlet>
-    <app-footer *ngIf="showMainToolbar$ | async"></app-footer>
+    <app-footer 
+      *ngIf="showMainToolbar$ | async"
+      [address]="mainAddress$ | async"
+      [network]="network$ | async"
+      ></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

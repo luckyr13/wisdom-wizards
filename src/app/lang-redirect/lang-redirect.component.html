@@ -1,10 +1,24 @@
-<div class="container-fluid container-lang">
-	<h1 class="text-center">
-		Choose your language
+<div class="container container-lang">
+	
+	<h1 class="choose-lang-title text-center">
+		<img class="mini-wizard" src="./assets/img/wizard.png"> Choose your language
 	</h1>
 	<div class="row">
-		<div class="col">
-
+		<div class="col-4 col-md-3" *ngFor="let lang of languages">
+			<mat-card 
+				[routerLink]="[lang.code, 'home']"
+				class="grid-col"
+				[dir]="lang.writing_system">
+				{{ lang.native_name }}
+			</mat-card>
+			
 		</div>
 	</div>
+	<div class="row">
+		<div class="col">
+			<mat-spinner [diameter]="80" class="spinner-center" *ngIf="loading"></mat-spinner>
+		</div>
+	</div>
+
+	
 </div>

@@ -13,12 +13,15 @@ export class UserSettingsService {
   public loading$ = this._loading.asObservable();
   private _showMainToolbar: Subject<boolean> = new Subject<boolean>();
   public showMainToolbar$ = this._showMainToolbar.asObservable();
+  private _routeLang: Subject<string> = new Subject<string>();
+  public routeLang$ = this._routeLang.asObservable();
 
   constructor() {
   	const dtheme = window.sessionStorage.getItem('defaultTheme');
   	const dlang = window.sessionStorage.getItem('defaultLang');
     this.setLoading(false);
     this.setShowMainToolbar(false);
+    this.setRouteLang('');
 
   	// Default settings
   	if (dtheme) {
@@ -28,8 +31,6 @@ export class UserSettingsService {
   	}
   	if (dlang) {
   		this.setDefaultLang(dlang);
-  	} else {
-  		this.setDefaultLang('EN');
   	}
 
   }
@@ -40,6 +41,10 @@ export class UserSettingsService {
 
   setShowMainToolbar(_show: boolean) {
     this._showMainToolbar.next(_show);
+  }
+
+  setRouteLang(_lang: string) {
+    this._routeLang.next(_lang);
   }
 
   getDefaultTheme(): string {
