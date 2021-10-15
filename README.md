@@ -12,6 +12,7 @@ Our biggest difference is that our platform is totally decentralized!
 
 ## Our platform
 Wisdom Wizards platform (BETA VERSION): https://wisdomwizards.school
+
 Wisdom Wizards platform (Permaweb link - Last update: 20211015): https://arweave.net/uqFL0WatGgIcus6GXDYYwNScB43D-GiXzA3ladQfP8w
 
 ## Our Permaweb Community
