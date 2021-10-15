@@ -26,23 +26,23 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-    return this.isLoggedIn();
+    const langCode: string = route.paramMap.get('lang')!;
+    return this.isLoggedIn(langCode);
   }
 
   canActivateChild(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-    return this.isLoggedIn();
+    return this.canActivate(route, state);
   }
 
-  isLoggedIn(): boolean {
+  isLoggedIn(langCode: string): boolean {
   	const mainAddress = this._auth.getMainAddressSnapshot();
     const isLoggedIn = (mainAddress !== '');
     if (!isLoggedIn) {
       this.message('Please login first!', 'error');
-      this._router.navigate(['/home']);
+      this._router.navigate([langCode, 'home']);
     }
 
   	return isLoggedIn;

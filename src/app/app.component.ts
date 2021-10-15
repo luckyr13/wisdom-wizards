@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   platformLoading$: Observable<boolean> = this._userSettings.loading$;
   showMainToolbar$: Observable<boolean> = this._userSettings.showMainToolbar$;
   routeLang: string = '';
-  mainAddress$ = this._auth.account$;
+  mainAddress: string = '';
   network$ = this._arweave.getNetworkName();
 
 	constructor(
@@ -28,6 +28,12 @@ export class AppComponent implements OnInit {
 		this._userSettings.routeLang$.subscribe({
 			next: (lang) => {
 				this.routeLang = lang;
+			}
+		});
+
+		this._auth.account$.subscribe({
+			next: (address) => {
+				this.mainAddress = address;
 			}
 		})
 	}

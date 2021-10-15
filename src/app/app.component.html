@@ -15,11 +15,12 @@
 		<app-main-toolbar 
         *ngIf="showMainToolbar$ | async"
         [(opened)]="opened"
+        [isLoggedIn]="!!mainAddress"
         [routeLang]="routeLang"></app-main-toolbar>
 		<router-outlet></router-outlet>
     <app-footer 
       *ngIf="showMainToolbar$ | async"
-      [address]="mainAddress$ | async"
+      [address]="mainAddress"
       [network]="network$ | async"
       ></app-footer>
   </mat-sidenav-content>

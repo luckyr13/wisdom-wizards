@@ -10,8 +10,8 @@
 		<button 
 			mat-flat-button
 			color="accent"
-			class=""
-			routerLink="/learn">
+			class="home-button-special"
+			[routerLink]="[routeLang, 'learn']">
 				<mat-icon >school</mat-icon> Start learning
 			</button>
 	</div>
@@ -63,7 +63,7 @@
 					mat-flat-button
 					color="accent"
 					class="superBtn_font"
-  				(click)="login()">Start now</button>
+  				(click)="login(routeLang)">Start now</button>
 			  </mat-card-actions>
 			</mat-card>
 		</div>

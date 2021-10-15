@@ -13,16 +13,13 @@ export class AuthService {
   // Observable string streams
   public account$: Observable<string>;
   // User's private key
-  private _key: any = null;
+  private _key: string = '';
   // User's arweave public address
   private _accountAddress: string = '';
 
   constructor(private _arweave: ArweaveService) {
     this.account = new Subject<string>();
     this.account$ = this.account.asObservable();
-
-    this.loadSessionData();
-    
   }
 
   loadSessionData() {
@@ -102,8 +99,8 @@ export class AuthService {
 
   logout() {
     this.setAccount('');
-    this._arweave.logout();
+    window.sessionStorage.removeItem('ARKEY');
+    window.sessionStorage.removeItem('MAINADDRESS');
   }
-
 
 }

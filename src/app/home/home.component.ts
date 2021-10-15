@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { ModalLoginOptionsComponent } from '../shared/modal-login-options/modal-login-options.component'
 import { ArweaveService } from '../core/arweave.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import anime from 'animejs';
 declare const document: any;
@@ -23,18 +23,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
     './assets/img/slider8.jpg'
 	];
 	sliderImage: string = '';
+  routeLang: string = '';
 
   constructor(
     private _bottomSheet: MatBottomSheet,
     private _arweave: ArweaveService,
     private _router: Router,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _route: ActivatedRoute
   ) {
   	this.sliderImage = this.getRandomImg();
   }
 
   ngOnInit(): void {
-    
+    this.routeLang = this._route.snapshot.paramMap.get('lang')!;
+    this._route.paramMap.subscribe({
+      next: (_params) => {
+        this.routeLang = _params.get('lang')!;
+      }
+    })
   }
 
   ngAfterViewInit() {
@@ -43,6 +50,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.createWrapper('.secondary-title');
     this.animateWisdomTxt('.txt-color-anime');
     this.animateSubWisdomTxt('.secondary-title', false, false);
+
+    this.animateButton('.home-button-special');
   }
 
   createWrapper(_container: string) {
@@ -130,16 +139,32 @@ export class HomeComponent implements OnInit, AfterViewInit {
   /*
   *  @dev Modal login (or bottom sheet)
   */
-  login() {
+  login(routeLang: string) {
     const mainAccount = this._auth.getMainAddressSnapshot();
     if (mainAccount) {
-      this._router.navigate(['/dashboard']);
+      this._router.navigate([routeLang, 'dashboard']);
     } else {
       this._bottomSheet.open(ModalLoginOptionsComponent, {
-        
+        data: {
+          routeLang: routeLang
+        }
       });
     }
     
   }
 
+  animateButton(_container: string) {
+    anime({
+      targets: _container,
+      backgroundColor: this.randomColor,
+      duration: 2000,
+      direction: 'alternate',
+      easing: 'linear',
+      complete: () => {
+        this.animateButton(_container);
+      }
+    });
+  }
+
+  
 }

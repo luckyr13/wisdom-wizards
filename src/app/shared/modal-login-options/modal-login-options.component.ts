@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { Subscription, EMPTY } from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import {MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./modal-login-options.component.scss']
 })
 export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
-	login$: Subscription = Subscription.EMPTY;
+	loginSubscription: Subscription = Subscription.EMPTY;
   loading: boolean = false;
 
   constructor(
@@ -19,6 +21,7 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
   	private _snackBar: MatSnackBar,
     private _bottomSheetRef: MatBottomSheetRef<ModalLoginOptionsComponent>,
     private _router: Router,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
@@ -32,8 +35,8 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
   *  @dev Destroy subscriptions
   */
   ngOnDestroy(): void {
-  	if (this.login$) {
-  		this.login$.unsubscribe();
+  	if (this.loginSubscription) {
+  		this.loginSubscription.unsubscribe();
   	}
   }
 
@@ -50,11 +53,11 @@ export class ModalLoginOptionsComponent implements OnInit, OnDestroy {
   login(walletOption: string, fileInput: any = null) {
     this.loading = true;
 
-  	this.login$ = this._auth.login(walletOption, fileInput).subscribe({
+  	this.loginSubscription = this._auth.login(walletOption, fileInput).subscribe({
   		next: (res: any) => {
         this._bottomSheetRef.dismiss();
         this.loading = false;
-        this._router.navigate(['/dashboard']);
+        this._router.navigate([this.data.routeLang, 'dashboard']);
   		},
   		error: (error) => {
         this.message(`Error: ${error}`, 'error');

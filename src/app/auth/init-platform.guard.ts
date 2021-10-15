@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnaps
 import { Observable, of, from } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { UserSettingsService } from '../core/user-settings.service';
+import { AuthService } from '../auth/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { WisdomWizardsContract } from '../core/contracts/wisdom-wizards';
 declare const document: any;
@@ -14,7 +15,8 @@ export class InitPlatformGuard implements CanActivate, CanActivateChild {
   constructor(
     private _userSettings: UserSettingsService,
     private _snackBar: MatSnackBar,
-    private _wisdomWizards: WisdomWizardsContract) {
+    private _wisdomWizards: WisdomWizardsContract,
+    private _auth: AuthService) {
   }
 
   canActivate(
@@ -31,6 +33,7 @@ export class InitPlatformGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     this._userSettings.scrollPageToTop();
+    this._auth.loadSessionData();
     return true;
   }
 
