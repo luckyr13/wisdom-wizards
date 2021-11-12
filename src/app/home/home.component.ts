@@ -32,10 +32,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private _auth: AuthService,
     private _route: ActivatedRoute
   ) {
-  	this.sliderImage = this.getRandomImg();
+  	
   }
 
   ngOnInit(): void {
+    this.sliderImage = this.getRandomImg();
     this.routeLang = this._route.snapshot.paramMap.get('lang')!;
     this._route.paramMap.subscribe({
       next: (_params) => {
@@ -45,6 +46,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
     // Wrap every letter in a span
     this.createWrapper('.txt-color-anime');
     this.createWrapper('.secondary-title');
