@@ -1,44 +1,32 @@
 import { 
-	readContract, interactWrite, interactRead
+	interactWrite
 } from 'smartweave';
-import { SmartWeaveWebFactory, ArWallet, Contract, SmartWeave } from 'redstone-smartweave';
 import { Injectable } from '@angular/core';
 import { Observable, from, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { ArweaveService } from '../arweave.service';
+import { RedstoneSmartweaveService } from '../redstone-smartweave.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WisdomWizardsContract
 {
-	private _contractAddress: string = 'QBR8RtXdBbsAwQILIhF3PclOvFMGWdS_pT-ZuQNldWo';	
-	private _smartweave: SmartWeave;
-	private _contract: Contract;
+	private _contractAddress: string = 'QBR8RtXdBbsAwQILIhF3PclOvFMGWdS_pT-ZuQNldWo';
 
-	constructor(private _arweave: ArweaveService) {
-		this._smartweave = SmartWeaveWebFactory.memCached(this._arweave.arweave);
-		this._contract = this._smartweave.contract(this._contractAddress);
+	constructor(
+		private _arweave: ArweaveService,
+		private _smartweave: RedstoneSmartweaveService
+	) {
+		
 	}
 
-	getConnectedContract(wallet: ArWallet) {
-		const contract = this._smartweave.contract(
-				this._contractAddress
-			).connect(
-				wallet
-			).setEvaluationOptions({
-		    // with this flag set to true, 
-		    // the write will wait for the transaction to be confirmed
-		    waitForConfirmation: true,
-		  });
-		return contract;
-	}
 
 	/*
 	*	@dev Get full contract state as Observable
 	*/
-	getState(blockHeight?: number): Observable<any> {
-		return from(this._contract.readState(blockHeight));
+	getState(): Observable<any> {
+		return this._smartweave.readState(this._contractAddress);
 	}
 
 	
@@ -204,8 +192,8 @@ export class WisdomWizardsContract
 	*	@dev Get full contract state as Observable
 	* and filter active courses
 	*/
-	getActiveCoursesFromState(arweave: any): Observable<any> {
-		return this.getState(arweave).pipe(
+	getActiveCoursesFromState(): Observable<any> {
+		return this.getState().pipe(
 			switchMap((state) => {
 				return new Observable((subscriber) => {
 					const courses = state.courses;
@@ -236,7 +224,7 @@ export class WisdomWizardsContract
 	* and return course by courseId
 	*/
 	getCourseDetailFromState(arweave: any, courseId: number): Observable<any> {
-		return this.getState(arweave).pipe(
+		return this.getState().pipe(
 			switchMap((state) => {
 				return new Observable((subscriber) => {
 					const courses = state.courses;

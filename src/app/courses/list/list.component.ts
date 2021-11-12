@@ -53,9 +53,7 @@ export class ListComponent implements OnInit {
   }
 
   getCourses() {
-    this._wisdomWizards.getActiveCoursesFromState(
-      this._arweave.arweave
-    ).subscribe({
+    this._wisdomWizards.getActiveCoursesFromState().subscribe({
       next: (courses) => {
         this.courses = courses;
         this.loading = false;
