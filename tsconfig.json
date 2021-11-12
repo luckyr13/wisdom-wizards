@@ -31,7 +31,8 @@
       "stream": [
         "node_modules/stream-browserify"
       ]
-    }
+    },
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

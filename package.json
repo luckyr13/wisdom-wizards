@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^12.2.9",
     "@angular/router": "^12.2.9",
     "animejs": "^3.2.1",
+    "ardb": "^1.1.8",
     "arverify": "0.0.10",
     "arweave": "^1.10.18",
     "bootstrap": "^4.6.0",

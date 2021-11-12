@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -6,6 +7,8 @@ import { NetworkInfoInterface } from 'arweave/node/network';
 import Arweave from 'arweave';
 import { contractTemplateNFT, INFTStateTemplate, ArweaveContractCreateNFT } from './arweave-contract-create-nft';
 declare const window: any;
+// tslint:disable-next-line
+import ArDB from 'ardb';
 
 @Injectable({
   providedIn: 'root'

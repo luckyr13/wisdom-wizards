@@ -199,6 +199,13 @@
       "native_name": "한국어",
       "writing_system": "LTR",
       "active": true
+    },
+    "zh": {
+      "code": "zh",
+      "iso_name": "Chinese",
+      "native_name": "中文",
+      "writing_system": "LTR",
+      "active": true
     }
   },
 	"admins": {
