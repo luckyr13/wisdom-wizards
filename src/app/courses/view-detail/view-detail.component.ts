@@ -7,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { getVerification } from "arverify";
 import { AuthService } from '../../auth/auth.service';
-import { SubjectService } from '../../core/subject.service';
 
 @Component({
   selector: 'app-view-detail',
@@ -26,8 +25,7 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
     private _wisdomWizards: WisdomWizardsContract,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private _auth: AuthService,
-    private _subject: SubjectService
+    private _auth: AuthService
    ) { }
 
   ngOnInit(): void {
@@ -91,7 +89,7 @@ export class ViewDetailComponent implements OnInit, OnDestroy {
   * @dev
   */
   getSubjectDetail(_subjectId: number) {
-    return this._subject.getSubjectDetailLocalCopy(_subjectId);
+    return {};
   }
 
   /*

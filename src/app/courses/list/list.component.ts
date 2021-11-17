@@ -1,59 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { ArweaveService } from '../../core/arweave.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
-import { SubjectService } from '../../core/subject.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
   mainAddress: string = this._auth.getMainAddressSnapshot();
 	loading: boolean = false;
-	subjects: any[] = [];
-  hideSubjects: boolean = false;
   courses: any[] = [];
   filteredCourses: any[] = [];
-  selectedSubject: any = null;
+  coursesSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
   	private _wisdomWizards: WisdomWizardsContract,
   	private _arweave: ArweaveService,
   	private _snackBar: MatSnackBar,
     private _router: Router,
-    private _auth: AuthService,
-    private _subject: SubjectService
+    private _auth: AuthService
   ) { }
 
   ngOnInit(): void {
-  	this.loading = true;
-
-    // Update loading inside
-  	this.getSubjects();
+    this.getCourses();
   }
 
-  getSubjects() {
-    // Get the local copy instead of the state's copy
-  	this._subject.getSubjectsLocalCopy().subscribe({
-  		next: (subjects) => {
-  			this.subjects = subjects;
-        // Get courses data
-        // Update loading state inside
-        this.getCourses();
-  		},
-  		error: (error) => {
-  			console.log('error', error);
-  			this.message(`Error: ${error}`, 'error');
-  		}
-  	});
+  ngOnDestroy() {
+
   }
 
   getCourses() {
-    this._wisdomWizards.getActiveCoursesFromState().subscribe({
+    this.loading = true;
+    this.coursesSubscription = this._wisdomWizards.getActiveCoursesFromState().subscribe({
       next: (courses) => {
         this.courses = courses;
         this.loading = false;
@@ -66,31 +49,6 @@ export class ListComponent implements OnInit {
         this.loading = false;
       }
     });
-  }
-
-  /*
-  *  @dev Search courses
-  */
-  searchCoursesBySubject(subjectId: number) {
-    this.hideSubjects = true;
-    this.filteredCourses = [];
-    this.selectedSubject = this.subjects[subjectId];
-
-    if (!Object.prototype.hasOwnProperty.call(this.courses, subjectId)) {
-      // this.message(`There are no courses on this category`, 'error');
-      return;
-    }
-
-    for (let course of this.courses[subjectId]) {
-      this.filteredCourses.push(course);
-    }
-  }
-
-  /*
-  *  @dev Display subjects
-  */
-  showSubjects() {
-    this.hideSubjects = false;
   }
 
   /*

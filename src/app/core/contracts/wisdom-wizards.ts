@@ -50,10 +50,14 @@ export class WisdomWizardsContract
 	/*
 	*	@dev Get subjects list as Observable
 	*/
-	getSubjects(arweave: any, walletJWK: any): Observable<any> {
-		
-
-		return of(null);
+	getSubjects(): Observable<any> {
+		return this.getState().pipe(
+				map((res) => {
+					const { state, validity } = res;
+					const subjects = state.subjects;
+					return subjects;
+				})
+			);
 	}
 
 

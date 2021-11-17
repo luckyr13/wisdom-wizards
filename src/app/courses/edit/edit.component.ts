@@ -13,8 +13,8 @@ import {
 } from '../../shared/modal-file-manager/modal-file-manager.component';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
-import { SubjectService } from '../../core/subject.service';
 import { LanguageService } from '../../core/language.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
@@ -35,8 +35,7 @@ export class EditComponent implements OnInit, OnDestroy {
     langCode: new FormControl(''),
     status: new FormControl(false)
 	});
-	subjects: Observable<any[]> = this._subject
-		.getSubjectsLocalCopy();
+	subjects: Observable<any[]> = of([]);
 
   langCodes: Observable<any[]> = this._language
     .getLangsLocalCopy();
@@ -75,8 +74,7 @@ export class EditComponent implements OnInit, OnDestroy {
     public _dialog: MatDialog,
     private route: ActivatedRoute,
     private _auth: AuthService,
-    private _language: LanguageService,
-    private _subject: SubjectService
+    private _language: LanguageService
   ) { }
 
   ngOnInit(): void {

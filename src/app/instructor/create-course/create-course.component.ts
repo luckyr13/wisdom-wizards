@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
-import { Observable } from 'rxjs';
+import { Observable, of} from 'rxjs';
 import { ArweaveService } from '../../core/arweave.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,7 +12,6 @@ import {
   ModalFileManagerComponent 
 } from '../../shared/modal-file-manager/modal-file-manager.component';
 import { AuthService } from '../../auth/auth.service';
-import { SubjectService } from '../../core/subject.service';
 import { LanguageService } from '../../core/language.service';
 
 @Component({
@@ -31,8 +30,7 @@ export class CreateCourseComponent implements OnInit {
 		price: new FormControl('0'),
     langCode: new FormControl('')
 	});
-	subjects: Observable<any[]> = this._subject
-		.getSubjectsLocalCopy();
+	subjects: Observable<any[]> = of([]);
 
   langCodes: Observable<any[]> = this._language
     .getLangsLocalCopy();
@@ -68,7 +66,6 @@ export class CreateCourseComponent implements OnInit {
   	private _router: Router,
     public _dialog: MatDialog,
     private _auth: AuthService,
-    private _subject: SubjectService,
     private _language: LanguageService,
     private _route: ActivatedRoute
   ) { }

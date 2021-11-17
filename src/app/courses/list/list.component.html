@@ -2,13 +2,11 @@
   <mat-icon 
   	aria-hidden="false"
   	aria-label="Courses list">school</mat-icon>
-	<span>&nbsp;Courses</span>
+	<span>&nbsp;Browse courses</span>
 	<span class="toolbar-spacer"></span>
   <button 
-  	*ngIf="hideSubjects"
   	mat-icon-button 
   	class="fadeIn" 
-  	(click)="showSubjects()"
     matTooltip="Go back"
   	aria-label="Go back">
     <mat-icon>navigate_before</mat-icon>
@@ -21,11 +19,11 @@
 	class="fadeIn"></mat-progress-bar>
 <div class="loading-txt text-center fadeIn" *ngIf="loading" >Loading ... </div>
 <div class="container-fluid" >
-	<div class="row" *ngIf="!loading && !hideSubjects">
+	<div class="row" *ngIf="!loading">
   	<div class="col title-sel-subject">
   		<mat-card>
 				<h1 class="text-center bold">
-					<img class="mini-wizard" src="./assets/img/wizard.png"> Select a subject
+					Browse
 				</h1>
 				<h3 class="text-center bold">Total courses: {{ getNumCourses(courses) }}</h3>
 			</mat-card>
@@ -33,83 +31,11 @@
 	</div>
 </div>
 <div class="container list-container-parent" >
-	<div class="row fadeIn" *ngIf="!loading && !hideSubjects">
+	<div class="row fadeIn">
   	<div 
-  		class="col-6 col-md-4 subject-card" 
-  		*ngFor="let subject of subjects">
-  		<mat-card (click)="searchCoursesBySubject(subject.id)">
-				<div class="text-center subject-card-title">
-					<mat-icon 
-						*ngIf="subject.icon"
-						class="subject-card-icon">{{ subject.icon }}</mat-icon>
-					{{ subject.label }} <span class="text-center" *ngIf="courses[subject.id]">
-					(<span class="bnum">{{ courses[subject.id].length }}</span>)
-				</span>
-				</div>
-			</mat-card>
+  		class="col-6 col-md-4 " >
+  		hi
 		</div>
 	</div>
 
-	<div class="container" *ngIf="!loading && hideSubjects">
-		<div class="row">
-	  	<div class="col">
-	  		<mat-card>
-					<h1 class="text-center">
-							<img class="mini-wizard" src="./assets/img/wizard.png">
-							Select a course
-				</h1>
-				</mat-card>
-			</div>
-		</div>
-		<h1 class="selected-subject-bar">
-			<button mat-fab color="primary">
-				<mat-icon>{{ selectedSubject.icon }}</mat-icon>
-			</button>
-			<span> Subject: {{ selectedSubject.label }}</span>
-		</h1>
-		<div class="row">
-	  	<div 
-	  		class="col fadeIn" 
-	  		*ngIf="filteredCourses.length === 0">
-	  		<mat-card>
-					<div class="text-center ">
-						<p>
-							No results found.
-						</p>
-						<button mat-raised-button color="accent" (click)="showSubjects()">
-							<mat-icon>navigate_before</mat-icon> Go back
-						</button>
-					</div>
-				</mat-card>
-			</div>
-		</div>
-		<div class="row fadeIn">
-	  	<div 
-	  		class="col-12 course-card" 
-	  		*ngFor="let course of filteredCourses">
-	  		<mat-card>
-	  			<h2 class="bold">{{ course.name }}</h2>
-	        <p>{{ course.description }}</p>
-	        <p><strong>Certificate price:</strong> {{ winstonToAr(course.price) }} AR</p>
-	        <p><strong>Students:</strong> {{ course.numUsers }}</p>
-	        <p><strong>Rated:</strong> {{ course.rating }} by {{ course.evaluators }} students</p>
-	        <p><strong>Created by:</strong> {{ course.createdBy }} </p>
-	        <p><strong>Language:</strong> {{ course.langCode }} </p>
-					<div class="text-right course-card-title">
-						<a mat-flat-button color="primary" [routerLink]="['/learn', course.id]">
-							View course
-						</a>
-					</div>
-				</mat-card>
-			</div>
-			<div 
-				style="margin-top: 20px"
-				class="col-12 text-center" 
-	  		*ngIf="filteredCourses.length !== 0">
-				<button mat-raised-button color="accent" (click)="showSubjects()">
-					<mat-icon>navigate_before</mat-icon> Go back
-				</button>
-			</div>
-		</div>
-	</div>
 </div>
