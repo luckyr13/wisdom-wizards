@@ -81,6 +81,10 @@ export class MainToolbarComponent implements OnInit, OnDestroy {
     this.defaultTheme = theme;
     try {
       this._userSettings.setTheme(theme);
+      this._userSettings.setLoading(true);
+      window.setTimeout(() => {
+        this._userSettings.setLoading(false);
+      }, 1500);
     } catch (err) {
       this.message(`Error: ${err}`, 'error');
     }
