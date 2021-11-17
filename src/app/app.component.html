@@ -12,6 +12,11 @@
       [routeLang]="routeLang"></app-main-menu>
   </mat-sidenav>
   <mat-sidenav-content id="ww-mat-sidenav-main-content" >
+    <div class="app-loader-container" *ngIf="(platformLoading$ | async) && !(showMainToolbar$ | async)">
+      <h2 class="text-center">
+        <mat-spinner color="primary" [diameter]="22"></mat-spinner><span></span>
+    </h2>
+    </div>
 		<app-main-toolbar 
         *ngIf="showMainToolbar$ | async"
         [(opened)]="opened"

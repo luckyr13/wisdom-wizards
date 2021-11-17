@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WisdomWizardsContract } from '../core/contracts/wisdom-wizards';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserSettingsService } from '../core/user-settings.service';
 
 @Component({
   selector: 'app-lang-redirect',
@@ -13,9 +14,13 @@ export class LangRedirectComponent implements OnInit, OnDestroy {
 	langSubscription: Subscription = Subscription.EMPTY;
 	loading: boolean = false;
 	languages: any[] = [];
+  loadingMainToolbar$ = this._userSettings.loading$;
+
   constructor(
   	private _wisdomWizards: WisdomWizardsContract,
-  	private _snackBar: MatSnackBar) { }
+  	private _snackBar: MatSnackBar,
+    private _userSettings: UserSettingsService) { 
+    }
 
   ngOnInit(): void {
   	this.loading = true;

@@ -1,5 +1,4 @@
-<div class="container container-lang">
-	
+<div class="container container-lang" *ngIf="!(loadingMainToolbar$ | async)">
 	<h1 class="choose-lang-title text-center">
 		<img class="mini-wizard" src="./assets/img/wizard.png"> Choose your language
 	</h1>

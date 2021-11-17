@@ -30,3 +30,15 @@ mat-sidenav {
   top: 0;
   z-index: 20;
 }
+
+.app-loader-container {
+  margin-top: 220px;
+
+}
+.app-loader-container h2 {
+  font-size: 12px;
+}
+.app-loader-container .mat-spinner {
+  margin: 0 auto;
+
+}
