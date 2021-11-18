@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { ArweaveService } from '../../core/arweave.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -13,14 +14,15 @@ import { AuthService } from '../../auth/auth.service';
 export class ListComponent implements OnInit {
 	mainAddress: string = this._auth.getMainAddressSnapshot();
 	loading: boolean = false;
-	subjects: any[] = [];
+	subjects: any = {};
 
   constructor(
   	private _wisdomWizards: WisdomWizardsContract,
   	private _arweave: ArweaveService,
   	private _snackBar: MatSnackBar,
     private _router: Router,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _location: Location
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +76,17 @@ export class ListComponent implements OnInit {
     }
 
     return res;
+  }
+
+  getKeys(_obj: any) {
+    return Object.keys(_obj);
+  }
+
+  /*
+  *  @dev Navigate to previous page
+  */
+  goBack() {
+    this._location.back();
   }
 
 }

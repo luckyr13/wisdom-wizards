@@ -51,10 +51,114 @@ export class WisdomWizardsContract
 	*	@dev Get subjects list as Observable
 	*/
 	getSubjects(): Observable<any> {
+		const metadata: any = {
+			"architecture": {
+				icon: "architecture"
+			},
+			"art_and_culture": {
+				icon: "palette"
+			},
+			"biology_and_life_sciences": {
+				icon: "biotech"
+			},
+			"business_and_management": {
+				icon: "business"
+			},
+			"chemistry": {
+				icon: "science"
+			},
+			"communication": {
+				icon: "campaign"
+			},
+			"computer_science": {
+				icon: "computer"
+			},
+			"data_analysis_and_statistics": {
+				icon: "query_stats"
+			},
+			"design": {
+				icon: "design_services"
+			},
+			"economics_and_finance": {
+				icon: "attach_money"
+			},
+			"education_and_teacher_training": {
+				icon: "cast_for_education"
+			},
+			"electronics": {
+				icon: "memory"
+			},
+			"energy_and_earth_sciences": {
+				icon: "battery_charging_full"
+			},
+			"engineering": {
+				icon: "engineering"
+			},
+			"environmental_studies": {
+				icon: "eco"
+			},
+			"ethics": {
+				icon: "extension"
+			},
+			"food_and_nutrition": {
+				icon: "dinner_dining"
+			},
+			"health_and_safety": {
+				icon: "health_and_safety"
+			},
+			"history": {
+				icon: "travel_explore"
+			},
+			"humanities": {
+				icon: "group_work"
+			},
+			"language": {
+				icon: "language"
+			},
+			"law": {
+				icon: "gavel"
+			},
+			"literature": {
+				icon: "book"
+			},
+			"math": {
+				icon: "calculate"
+			},
+			"medicine": {
+				icon: "medication"
+			},
+			"music": {
+				icon: "music_note"
+			},
+			"philanthropy": {
+				icon: "volunteer_activism"
+			},
+			"philosophy_and_ethics": {
+				icon: "psychology"
+			},
+			"physics": {
+				icon: "straighten"
+			},
+			"science": {
+				icon: "precision_manufacturing"
+			},
+			"social_sciences": {
+				icon: "people"
+			},
+			"other": {
+				icon: "auto_fix_high"
+			}
+		};
+		
 		return this.getState().pipe(
 				map((res) => {
 					const { state, validity } = res;
 					const subjects = state.subjects;
+					for (const slug in subjects) {
+						const icon = Object.prototype.hasOwnProperty.call(metadata, slug) ?
+							metadata[slug] : '';
+						subjects[slug].icon = metadata[slug].icon;
+					}
 					return subjects;
 				})
 			);

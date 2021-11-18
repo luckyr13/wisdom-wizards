@@ -5,11 +5,12 @@
 	<span>&nbsp;Browse subjects</span>
 	<span class="toolbar-spacer"></span>
   <button 
-  	mat-icon-button 
+  	mat-button 
   	class="fadeIn" 
+  	(click)="goBack()"
     matTooltip="Go back"
   	aria-label="Go back">
-    <mat-icon>navigate_before</mat-icon>
+    <mat-icon>navigate_before</mat-icon> Go back
   </button>
 
 </mat-toolbar>
@@ -33,14 +34,13 @@
 	<div class="row fadeIn" *ngIf="!loading">
   	<div 
   		class="col-6 col-md-4 subject-card" 
-  		*ngFor="let subject of subjects">
-  		<mat-card [routerLink]="['./', subject.slug]">
+  		*ngFor="let slug of getKeys(subjects)">
+  		<mat-card [routerLink]="['./', subjects[slug].slug]">
 				<div class="text-center subject-card-title">
-					{{ subject | json }}
 					<mat-icon 
-						*ngIf="subject.icon"
-						class="subject-card-icon">{{ subject.icon }}</mat-icon>
-					{{ subject.label }} 
+						*ngIf="subjects[slug].icon"
+						class="subject-card-icon">{{ subjects[slug].icon }}</mat-icon>
+					{{ subjects[slug].label }} 
 				</div>
 			</mat-card>
 		</div>
