@@ -86,11 +86,16 @@ export function handle(state, action)
 			}
 		}
 		// Add course
+		const height = +SmartWeave.block.height;
+
 		courses[langCode][slug] = { 
 			address: courseAddress,
 			subject, 
 			active: true, 
-			approvedBy: caller
+			approvedBy: caller,
+			approvedAt: height,
+			lastUpdate: null,
+			modifiedBy: null
 		};
 		
 		return { state };
@@ -116,7 +121,10 @@ export function handle(state, action)
 		}
 
 		// Update state
+		const height = +SmartWeave.block.height;
 		courses[langCode][slug].active = !!input.active;
+		courses[langCode][slug].lastUpdate = !!input.active;
+		courses[langCode][slug].modifiedBy = caller;
 
 		return {state};
 	}

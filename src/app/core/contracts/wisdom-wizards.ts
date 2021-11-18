@@ -166,13 +166,68 @@ export class WisdomWizardsContract
 
 
 	/*
-	*	@dev Get courses list as Observable
+	*	@dev Get subjects list as Observable
 	*/
-	getCourses(arweave: any, walletJWK: any): Observable<any> {
-		
-
-		return of(null);
+	getSubject(slug: string): Observable<any> {
+		return this.getSubjects().pipe(
+				map((res) => {
+					const subjects = res;
+					let subject = null;
+					if (Object.prototype.hasOwnProperty.call(subjects, slug)) {
+						subject = subjects[slug];
+					} else {
+						throw Error('Subject not found.');
+					}
+					return subject;
+				})
+			);
 	}
+
+	getAllCourses() {
+		return this.getState().pipe(
+				map((res) => {
+					const { state, validity } = res;
+					const courses = state.courses;
+					return courses;
+				})
+			);
+	}
+
+	getCourses(lang: string, subject?: string, active: boolean = true) {
+		return this.getAllCourses().pipe(
+				map((courses) => {
+					let filteredCourses: any = {};
+					if (Object.prototype.hasOwnProperty.call(courses, lang) &&
+							subject &&
+							Object.prototype.hasOwnProperty.call(courses[lang], subject)) {
+							const tmpList = courses[lang];
+
+							for (const slug in tmpList) {
+								if (active && tmpList[slug].active && tmpList[slug].subject === subject) {
+									filteredCourses[slug] = tmpList[slug];
+								} else if (!active && tmpList[slug].subject === subject) {
+									filteredCourses[slug] = tmpList[slug];
+								}
+							}
+						}
+					else if (Object.prototype.hasOwnProperty.call(courses, lang)) {
+						const tmpList = courses[lang];
+						if (active) {
+							for (const slug in tmpList) {
+								if (tmpList[slug].active) {
+									filteredCourses[slug] = tmpList[slug];
+								}
+							}
+						} else {
+							filteredCourses = courses[lang];
+						}
+
+					}
+					return filteredCourses;
+				})
+			);
+	}
+
 
 	/*
 	*	@dev Create a new course

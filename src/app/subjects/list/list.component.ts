@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { ArweaveService } from '../../core/arweave.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
 	mainAddress: string = this._auth.getMainAddressSnapshot();
 	loading: boolean = false;
 	subjects: any = {};
+  subjectsSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
   	private _wisdomWizards: WisdomWizardsContract,
@@ -26,23 +28,27 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  	
-
     // Update loading inside
   	this.getSubjects();
   }
 
+  ngOnDestroy() {
+    if (this.subjectsSubscription) {
+      this.subjectsSubscription.unsubscribe();
+    }
+  }
+
+
+
   getSubjects() {
     this.loading = true;
-
     // Get the local copy instead of the state's copy
-  	this._wisdomWizards.getSubjects().subscribe({
+  	this.subjectsSubscription = this._wisdomWizards.getSubjects().subscribe({
   		next: (subjects) => {
   			this.subjects = subjects;
         this.loading = false;
   		},
   		error: (error) => {
-  			console.log('error', error);
   			this.message(`Error: ${error}`, 'error');
         this.loading = false;
   		}
