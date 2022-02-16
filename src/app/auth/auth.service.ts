@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ArweaveService } from '../core/arweave.service';
-// import { ArweaveWalletConnectorService } from '../core/arweave-wallet-connector.service';
+import { ArweaveWalletConnectorService } from '../core/arweave-wallet-connector.service';
 import { Observable, EMPTY, of, throwError, Subject} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor(
     private _arweave: ArweaveService,
-    // private _arWalletConnector: ArweaveWalletConnectorService
+    private _arWalletConnector: ArweaveWalletConnectorService
   ) {
     this.account = new Subject<string>();
     this.account$ = this.account.asObservable();
@@ -93,15 +93,13 @@ export class AuthService {
           );
       break;
       case 'arweaveApp':
-        /*
+        
         method = new Observable<any>((subscriber) => {
-          // this._arWalletConnector.connect();
+          this._arWalletConnector.connect();
           subscriber.next();
           subscriber.complete();
           // subscriber.error();
         });
-        */
-        method = throwError('Coming soon!');
 
   		break;
 

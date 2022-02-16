@@ -38,7 +38,8 @@
               "smartweave",
               "arweave",
               "ar-gql",
-              "crypto"
+              "crypto",
+              "typescript-is",
             ],
             "vendorChunk": true,
             "extractLicenses": false,
