@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { Observable, of} from 'rxjs';
@@ -22,13 +22,13 @@ import { LanguageService } from '../../core/language.service';
 export class CreateCourseComponent implements OnInit {
 	loading: boolean = false;
 	loadingFrm: boolean = false;
-	frmNew: FormGroup = new FormGroup({
-		name: new FormControl('', Validators.required),
-		description: new FormControl(''),
-		imgUrl: new FormControl(''),
-		subject: new FormControl(''),
-		price: new FormControl('0'),
-    langCode: new FormControl('')
+	frmNew: UntypedFormGroup = new UntypedFormGroup({
+		name: new UntypedFormControl('', Validators.required),
+		description: new UntypedFormControl(''),
+		imgUrl: new UntypedFormControl(''),
+		subject: new UntypedFormControl(''),
+		price: new UntypedFormControl('0'),
+    langCode: new UntypedFormControl('')
 	});
 	subjects: Observable<any[]> = of([]);
 

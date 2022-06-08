@@ -25,51 +25,44 @@ import { ModalRegisterComponent } from './modal-register/modal-register.componen
 
 
 @NgModule({
-  declarations: [
-    ModalLoginOptionsComponent,
-    ModalFileManagerComponent,
-    ModalRegisterComponent
-  ],
-  imports: [
-    CommonModule,
-    MatListModule,
-    MatIconModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatInputModule,
-    MatProgressSpinnerModule
-  ],
-  exports: [
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatBottomSheetModule,
-    MatListModule,
-    MatSnackBarModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatSidenavModule,
-    MatCardModule,
-    MatTooltipModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatTabsModule,
-    MatProgressSpinnerModule,
-    MatSlideToggleModule
-  ],
-  entryComponents: [
-    ModalLoginOptionsComponent,
-    ModalFileManagerComponent,
-    ModalRegisterComponent
-  ],
-  providers: [
-    
-  ]
+    declarations: [
+        ModalLoginOptionsComponent,
+        ModalFileManagerComponent,
+        ModalRegisterComponent
+    ],
+    imports: [
+        CommonModule,
+        MatListModule,
+        MatIconModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatTabsModule,
+        MatInputModule,
+        MatProgressSpinnerModule
+    ],
+    exports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatBottomSheetModule,
+        MatListModule,
+        MatSnackBarModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        MatSidenavModule,
+        MatCardModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatTabsModule,
+        MatProgressSpinnerModule,
+        MatSlideToggleModule
+    ],
+    providers: []
 })
 export class SharedModule { }

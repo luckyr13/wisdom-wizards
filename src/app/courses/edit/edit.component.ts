@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { WisdomWizardsContract } from '../../core/contracts/wisdom-wizards';
 import { Observable, Subscription } from 'rxjs';
@@ -26,14 +26,14 @@ export class EditComponent implements OnInit, OnDestroy {
 	loadingFrm: boolean = false;
 	detail$: Subscription = Subscription.EMPTY;
 	detail: any = null;
-	frmEdit: FormGroup = new FormGroup({
-		name: new FormControl('', Validators.required),
-		description: new FormControl(''),
-		imgUrl: new FormControl(''),
-		subject: new FormControl(''),
-		price: new FormControl('0'),
-    langCode: new FormControl(''),
-    status: new FormControl(false)
+	frmEdit: UntypedFormGroup = new UntypedFormGroup({
+		name: new UntypedFormControl('', Validators.required),
+		description: new UntypedFormControl(''),
+		imgUrl: new UntypedFormControl(''),
+		subject: new UntypedFormControl(''),
+		price: new UntypedFormControl('0'),
+    langCode: new UntypedFormControl(''),
+    status: new UntypedFormControl(false)
 	});
 	subjects: Observable<any[]> = of([]);
 
