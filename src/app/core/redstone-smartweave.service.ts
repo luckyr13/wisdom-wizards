@@ -15,7 +15,9 @@ export class RedstoneSmartweaveService {
 
   constructor(private _arweave: ArweaveService) {
     LoggerFactory.INST.logLevel('fatal');
-  	this._smartweave = SmartWeaveWebFactory.memCached(_arweave.arweave);
+  	this._smartweave = SmartWeaveWebFactory.memCachedBased(_arweave.arweave)
+    .useRedStoneGateway( {confirmed: true} )
+    .build();
   }
 
   getSmartweave(): SmartWeave {
