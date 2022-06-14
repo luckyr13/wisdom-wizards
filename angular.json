@@ -40,6 +40,7 @@
               "ar-gql",
               "crypto",
               "typescript-is",
+              "lodash/cloneDeep"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
